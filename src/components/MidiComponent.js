@@ -20,6 +20,15 @@ function recieveMIDIMessage(message) {
     
 }
 
+function loadSysex(input) {
+    let file = input.current.files[0];
+    console.log(file);
+}
+
+function dumpBufferfromSysexFile() {
+    
+}
+
 function MIDIComponent () {
     
     navigator.requestMIDIAccess({sysex: true}).then(onMIDISuccess, onMIDIFailure);
@@ -27,9 +36,7 @@ function MIDIComponent () {
 
     const handleInput = (event) => {
         event.preventDefault();
-        alert(
-            `Selected file - ${fileInput.current.files[0].name}`
-        );
+        loadSysex(fileInput);
     }
 
     return(
@@ -43,10 +50,6 @@ function MIDIComponent () {
         </form>
     );
 
-
-}
-
-function parseSysexFile() {
 
 }
 
