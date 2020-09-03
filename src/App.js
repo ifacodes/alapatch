@@ -4,11 +4,17 @@ import './App.css';
 import { makeStyles } from '@material-ui/styles' 
 import Slider from  '@material-ui/core/Slider'
 
+import MidiComponent from './components/MidiComponent'
+
 const useStyles = makeStyles({
   root: {
     width: 127,
   },
 });
+
+function valuetext(value) {
+  return `${value}`;
+}
 
 function SettingSlider() {
 
@@ -20,7 +26,7 @@ function SettingSlider() {
 
   return(
     <div className={classes.root}>
-      <Slider value={value} onChange={handleEvent}/> 
+      <Slider value={value} getAriaValueText={valuetext} valueLabelDisplay="auto" onChange={handleEvent} min={0} max={127}/> 
     </div>
   );
 }
@@ -30,9 +36,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        <div>
           <SettingSlider/>
-        </p>
+          <MidiComponent/>
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
