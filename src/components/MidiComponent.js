@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 
 // this will pass true to enable SYSEX
 
@@ -7,8 +6,8 @@ import { render } from '@testing-library/react';
 function onMIDISuccess(access) {
     console.log(access);
 
-    var inputs = access.inputs;
-    var outputs = access.outputs;
+    //var inputs = access.inputs;
+    //var outputs = access.outputs;
 }
 
 //Failure Callback
@@ -17,27 +16,27 @@ function onMIDIFailure() {
 }
 
 function recieveMIDIMessage(message) {
-    
+    console.log(message);
 }
 
 function isValidSysex(data) {
-    if (data.length != 291) {
+    if (data.length !== 297) {
         console.log("incorrect file length");
         return false;
     }
-    if (data[0] != 0xF0) {
+    if (data[0] !== 0xF0) {
         console.log("first byte is not SYSEX byte");
         return false;
     }
-    if (data[1] != 0x42) {
+    if (data[1] !== 0x42) {
         console.log("manufacturer code is not KORG");
         return false;
     }
-    if (data[data.length-1] != 0xF7) {
+    if (data[data.length-1] !== 0xF7) {
         console.log("last byte is does not end SYSEX message");
         return false;
     }
-    if (data[4] != 0x400) {
+    if (data[4] !== 0x40) {
         console.log("not a program dump")
         return false;
     }
@@ -64,8 +63,22 @@ function loadSysex(input) {
     reader.readAsArrayBuffer(file);
 }
 
-function dumpBufferFromSysexFile() {
-    
+function dumpBufferFromSysexFile(array) {
+    // remove the header and footer bytes
+    let dump = array.slice(5, -1);
+    console.log(dump);
+    // quick test for verification;
+    if (dump[0] !== 0x00) {
+        console.log("incorrect byte");
+        return;
+    }
+    console.log(dump);
+    dump = dump.filter(
+        function(num, index, array) {
+            return index % 8;
+        }
+    );
+    console.log(dump);
 }
 
 function MIDIComponent () {
@@ -73,26 +86,27 @@ function MIDIComponent () {
     // request midi access
     navigator.requestMIDIAccess({sysex: true}).then(onMIDISuccess, onMIDIFailure);
     const fileInput = React.useRef();
-    const sysexFile;
 
     // on file load, verify correct file format
     const getFile = (event) => {
         event.preventDefault();
-        sysexFile = loadSysex(fileInput);
+        loadSysex(fileInput);
+        // enable the submit button
     }
 
     // on submit button press, convert the file to correct Dump Format, as per microKORG MIDI Implementation Doc
     const handleInput = (event) => {
         event.preventDefault();
-        if (sysexFile == null) {
+        /*if (sysexFile == null) {
             alert("Please load a SYSEX File");
             return;
-        }
+        }*/
         let reader = new FileReader();
         reader.onload = (e) => {
-            dumpBufferFromSysexFile(e.target.result);
+            let data = new Uint8ClampedArray(e.target.result);
+            dumpBufferFromSysexFile(data);
         }
-        reader.readAsArrayBuffer(sysexFile);
+        reader.readAsArrayBuffer(fileInput.current.files[0]);
     }
 
     return(
