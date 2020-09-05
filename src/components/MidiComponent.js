@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 // this will pass true to enable SYSEX
 
@@ -63,31 +63,34 @@ function loadSysex(input) {
     reader.readAsArrayBuffer(file);
 }
 
+// converts SYSEX file to the dump format the system uses (and the implementation refers to)
 function dumpBufferFromSysexFile(array) {
     // remove the header and footer bytes
-    let dump = array.slice(5, -1);
-    console.log(dump);
+    let dump = array.slice(5, -1);    
     // quick test for verification;
     if (dump[0] !== 0x00) {
         console.log("incorrect byte");
         return;
     }
-    console.log(dump);
+    console.log('trimmed file', dump);
+    // convert from 291 bytes to 254 (ala the implementation)
     dump = dump.filter(
         function(num, index, array) {
             return index % 8;
         }
     );
-    console.log(dump);
+    console.log('dump format', dump);
     return dump;
 }
 
+// load a SYSEX File into the MIDI component
 function LoadSYSEXFile (props) {
 
     const fileInput = React.useRef();
-    const [data, updateData] = React.useState(new Uint8ClampedArray());
+    const [data, updateData] = useState(new Uint8ClampedArray());
 
-    React.useEffect(() => {
+    // make sure data is updating correctly
+    useEffect(() => {
         console.log(data);
     }, [data]);
 
@@ -97,7 +100,9 @@ function LoadSYSEXFile (props) {
         if (loadSysex(fileInput) !== null) {
             let reader = new FileReader();
             reader.onload = (e) => {
+                // here we load the file into a clamped byte array and trim and convert it to the dump format (see implementation)
                 let l_data = new Uint8ClampedArray(e.target.result);
+                // updata state with dump format
                 updateData(dumpBufferFromSysexFile(l_data));
             }
             reader.readAsArrayBuffer(fileInput.current.files[0]);
@@ -133,18 +138,21 @@ function LoadSYSEXFile (props) {
                 <input type='file' ref={fileInput} onChange={getFile}/>
             </label>
             <br />
-            <button disabled={!fileLoaded} type="submit">Submit</button>
+            <button disabled={!fileLoaded()} type="submit">Submit</button>
         </form>
     );
 }
 
 function MIDIComponent () {
 
-    // request midi access
-    navigator.requestMIDIAccess({sysex: true}).then(onMIDISuccess, onMIDIFailure);
-    const [loadedFile, loadFile] = React.useState(null);
+    const [loadedFile, loadFile] = useState(null);
 
-    React.useEffect(() => {
+    // request midi access
+    useEffect(() => {
+        navigator.requestMIDIAccess({sysex: true}).then(onMIDISuccess, onMIDIFailure);
+    }, []);
+    
+    useEffect(() => {
         console.log(loadedFile);
     }, [loadedFile]);
 
