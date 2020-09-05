@@ -79,34 +79,49 @@ function dumpBufferFromSysexFile(array) {
         }
     );
     console.log(dump);
+    return dump;
 }
 
-function MIDIComponent () {
+function LoadSYSEXFile (props) {
 
-    // request midi access
-    navigator.requestMIDIAccess({sysex: true}).then(onMIDISuccess, onMIDIFailure);
     const fileInput = React.useRef();
+    const [data, updateData] = React.useState(new Uint8ClampedArray());
+
+    React.useEffect(() => {
+        console.log(data);
+    }, [data]);
 
     // on file load, verify correct file format
     const getFile = (event) => {
         event.preventDefault();
-        loadSysex(fileInput);
-        // enable the submit button
+        if (loadSysex(fileInput) !== null) {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                let l_data = new Uint8ClampedArray(e.target.result);
+                updateData(dumpBufferFromSysexFile(l_data));
+            }
+            reader.readAsArrayBuffer(fileInput.current.files[0]);
+        }
+        else {
+            alert("Please load a SYSEX File");
+            return null;
+        }
     }
 
     // on submit button press, convert the file to correct Dump Format, as per microKORG MIDI Implementation Doc
     const handleInput = (event) => {
-        event.preventDefault();
-        /*if (sysexFile == null) {
-            alert("Please load a SYSEX File");
-            return;
-        }*/
-        let reader = new FileReader();
-        reader.onload = (e) => {
-            let data = new Uint8ClampedArray(e.target.result);
-            dumpBufferFromSysexFile(data);
+        if (!fileLoaded()) {
+            event.preventDefault();
         }
-        reader.readAsArrayBuffer(fileInput.current.files[0]);
+        else {
+            props.sendFileData(data);
+        }
+    }
+
+    const fileLoaded = () => {
+        return (
+            data.length === 254
+        );       
     }
 
     return(
@@ -116,8 +131,27 @@ function MIDIComponent () {
                 <input type='file' ref={fileInput} onChange={getFile}/>
             </label>
             <br />
-            <button type="submit">Submit</button>
+            <button disabled={!fileLoaded} type="submit">Submit</button>
         </form>
+    );
+}
+
+function MIDIComponent () {
+
+    // request midi access
+    navigator.requestMIDIAccess({sysex: true}).then(onMIDISuccess, onMIDIFailure);
+    const [loadedFile, loadFile] = React.useState(null);
+
+    React.useEffect(() => {
+        console.log(loadedFile);
+    }, [loadedFile]);
+
+    const getChildFile = (childData) => {
+        loadFile(childData);
+    }
+
+    return(
+        <LoadSYSEXFile sendFileData={getChildFile} />
     );
 
 
