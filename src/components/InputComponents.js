@@ -19,6 +19,13 @@ export default function SettingSelect(props) {
     const classes = useStyles();
     const [setting, updateSetting] = useState("");
 
+    useEffect(
+        {
+            //here we update the sysex / or the settings object when the value changes
+        },
+        [setting]
+    );
+
     const handleChange = (e) => {
         updateSetting(e.target.value);
     };
