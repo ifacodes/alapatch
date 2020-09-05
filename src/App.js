@@ -1,10 +1,10 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { makeStyles } from '@material-ui/styles' 
-import Slider from  '@material-ui/core/Slider'
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { makeStyles } from "@material-ui/styles";
+import Slider from "@material-ui/core/Slider";
 
-import MidiComponent from './components/MidiComponent'
+import MidiComponent from "./components/MidiComponent";
 
 const useStyles = makeStyles({
   root: {
@@ -17,16 +17,22 @@ function valuetext(value) {
 }
 
 function SettingSlider() {
-
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const handleEvent = (event, newValue) => {
     setValue(newValue);
-  }
+  };
 
-  return(
+  return (
     <div className={classes.root}>
-      <Slider value={value} getAriaValueText={valuetext} valueLabelDisplay="auto" onChange={handleEvent} min={0} max={127}/> 
+      <Slider
+        value={value}
+        getAriaValueText={valuetext}
+        valueLabelDisplay="auto"
+        onChange={handleEvent}
+        min={0}
+        max={127}
+      />
     </div>
   );
 }
@@ -37,8 +43,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <div>
-          <SettingSlider/>
-          <MidiComponent/>
+          <SettingSlider />
+          <MidiComponent />
         </div>
         <a
           className="App-link"
