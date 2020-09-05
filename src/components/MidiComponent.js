@@ -114,11 +114,13 @@ function LoadSYSEXFile (props) {
             event.preventDefault();
         }
         else {
+            event.preventDefault();
             props.sendFileData(data);
         }
     }
 
     const fileLoaded = () => {
+        console.log(data.length);
         return (
             data.length === 254
         );       
