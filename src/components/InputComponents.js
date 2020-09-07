@@ -4,6 +4,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -15,7 +16,36 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SettingSelect(props) {
+function NameInput(props) {
+    const [name, setName] = useState("init");
+
+    useEffect(
+        (props) => {
+            props.returnName(name);
+        },
+        [name]
+    );
+
+    const handleChange = (e) => {
+        setName(e.target.value);
+    };
+
+    return (
+        <form>
+            <TextField
+                id="simple-filled"
+                value={name}
+                label="Name"
+                variant="filled"
+                onChange={(e) => {
+                    setName(handleChange);
+                }}
+            />
+        </form>
+    );
+}
+
+function SettingSelect(props) {
     const classes = useStyles();
     const [setting, updateSetting] = useState("");
 
@@ -44,3 +74,8 @@ export default function SettingSelect(props) {
         </FormControl>
     );
 }
+
+export default {
+    SettingSelect,
+    NameInput,
+};
