@@ -110,10 +110,8 @@ function LoadSYSEXFile(props) {
 
     // on submit button press, pass the file to the parent component
     const handleInput = (event) => {
-        if (!fileLoaded()) {
-            event.preventDefault();
-        } else {
-            event.preventDefault();
+        event.preventDefault();
+        if (fileLoaded()) {
             props.sendFileData(data);
         }
     };
@@ -136,8 +134,6 @@ function LoadSYSEXFile(props) {
         </form>
     );
 }
-
-function fileToObject() {}
 
 function MIDIComponent() {
     const [loadedFile, loadFile] = useState(null);
