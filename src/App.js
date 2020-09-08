@@ -1,62 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { makeStyles } from "@material-ui/styles";
-import Slider from "@material-ui/core/Slider";
 
+import FileIOComponent from "./components/FileIOComponent";
 import MidiComponent from "./components/MidiComponent";
+import EditorComponent from "./components/EditorComponent";
 
-const useStyles = makeStyles({
-  root: {
-    width: 127,
-  },
-});
+function PatchEditor() {
+    const defaultPatch = {
+        name: "",
+        arpeggio: { length: 8, pattern: [0, 0, 0, 0, 0, 0, 0, 0] },
+        arpeggio2: {},
+        voiceMode: 0,
+        scaleKey: 0, // C
+        scaleType: 0, // Equal Temperment
+        delayFX: { sync: false, timeBase: 5, delayTime: 0, depth: 0, type: 0 },
+        modFX: { lfoSpeed: 0, depth: 0, type: 0 },
+        eq: { hiFreq: 0, hiGain: 0, lowFreq: 0, lowGain: 0 },
+        octave: 0, // this is a 7 bit number so -1 is 127 and -3 is 125
+        synthParameter1: {}, // only use this one in single voice mode
+        synthParameter2: {}, // use this and the previous in multi voice mode
+        synthParameter3: {}, // this is for vocoder mode
+    };
 
-function valuetext(value) {
-  return `${value}`;
-}
+    const [patch, updatePatch] = useState(defaultPatch);
 
-function SettingSlider() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const handleEvent = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  return (
-    <div className={classes.root}>
-      <Slider
-        value={value}
-        getAriaValueText={valuetext}
-        valueLabelDisplay="auto"
-        onChange={handleEvent}
-        min={0}
-        max={127}
-      />
-    </div>
-  );
+    return (
+        <div>
+            <FileIOComponent />
+            <EditorComponent />
+            <MidiComponent />
+        </div>
+    );
 }
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div>
-          <SettingSlider />
-          <MidiComponent />
+    return (
+        <div className="App">
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+                <div>
+                    <MidiComponent />
+                </div>
+                <a
+                    className="App-link"
+                    href="https://reactjs.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Learn React
+                </a>
+            </header>
         </div>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    );
 }
 
 export default App;

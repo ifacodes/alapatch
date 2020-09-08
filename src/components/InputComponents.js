@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
+import Slider from "@material-ui/core/Slider";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -14,7 +15,36 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
+    root: {
+        width: 127,
+    },
 }));
+
+function SettingSlider() {
+    const classes = useStyles();
+    const [value, setValue] = React.useState(0);
+
+    const handleEvent = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    const valuetext = (value) => {
+        return `${value}`;
+    };
+
+    return (
+        <div className={classes.root}>
+            <Slider
+                value={value}
+                getAriaValueText={valuetext}
+                valueLabelDisplay="auto"
+                onChange={handleEvent}
+                min={0}
+                max={127}
+            />
+        </div>
+    );
+}
 
 function NameInput(props) {
     const [name, setName] = useState("init");
@@ -77,5 +107,6 @@ function SettingSelect(props) {
 
 export default {
     SettingSelect,
+    SettingSlider,
     NameInput,
 };
