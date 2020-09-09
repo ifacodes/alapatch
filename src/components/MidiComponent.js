@@ -22,7 +22,7 @@ function onMIDIFailure() {
 // Component to load a SYSEX File into the MIDI component
 
 function MIDIComponent() {
-    const [loadedFile, loadFile] = useState(null);
+    const [file, setFile] = useState(null);
 
     // request midi access
     useEffect(() => {
@@ -32,11 +32,11 @@ function MIDIComponent() {
     }, []);
 
     useEffect(() => {
-        console.log(loadedFile);
-    }, [loadedFile]);
+        console.log(file);
+    }, [file]);
 
     const getChildFile = (childData) => {
-        loadFile(childData);
+        setFile(childData);
     };
 
     return; //<LoadSYSEXFile sendFileData={getChildFile} />;
