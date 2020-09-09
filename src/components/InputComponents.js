@@ -77,7 +77,7 @@ function NameInput(props) {
 
 function SettingSelect(props) {
     const classes = useStyles();
-    const [setting, updateSetting] = useState("");
+    const [setting, setSetting] = useState("");
 
     useEffect(
         {
@@ -87,7 +87,7 @@ function SettingSelect(props) {
     );
 
     const handleChange = (e) => {
-        updateSetting(e.target.value);
+        setSetting(e.target.value);
     };
 
     return (
