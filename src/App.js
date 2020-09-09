@@ -35,40 +35,49 @@ function parse(binary) {
     // every eigth byte is padding, so we remove it
     const unpaddedBinary = trimmedBinary.filter((el, idx) => idx % 8);
 
-    const timbre = new Parser()
+    const paramStart = new Parser()
         .uint8("midiChannel")
         .bit2("assignMode")
         .bit1("eg2Reset")
         .bit1("eg1Reset")
         .bit1("triggerMode")
         .bit2("keyPriority")
-        .uint8("unisonDetune")
+        .uint8("unisonDetune");
+
+    const pitch = new Parser()
         .uint8("pitchTune")
         .uint8("pitchBendRange")
         .uint8("pitchTranspose")
-        .uint8("pitchVibratoInt")
+        .uint8("pitchVibratoInt");
+
+    const osc1 = new Parser()
         .uint8("osc1Wave")
         .uint8("osc1WaveCtrl1")
         .uint8("osc1WaveCtrl2")
-        .uint8("osc1DWGSWave")
-        .seek(1)
-        .bit2("ignore")
+        .uint8("osc1DWGSWave");
+
+    const osc2 = new Parser()
+        .bit2("ignore") // only timbres 1 and 2
         .bit2("osc2ModSelect")
         .bit2("ignore")
         .bit2("osc2Wave")
         .uint8("osc2Semitone")
-        .uint8("osc2Tune")
-        .bit1("ignore")
-        .bit7("portamentoTime")
-        .uint8("osc1Level")
-        .uint8("osc2Level")
-        .uint8("noiseLevel")
+        .uint8("osc2Tune");
+
+    const mixer = new Parser()
+        .uint8("Level1")
+        .uint8("Level2")
+        .uint8("noiseLevel");
+
+    const filter = new Parser()
         .uint8("filterType")
         .uint8("filterCutoff")
         .uint8("filterResonance")
         .uint8("filterEG1Intensity")
         .uint8("filterVelocitySense")
-        .uint8("filterKeyboardTrack")
+        .uint8("filterKeyboardTrack");
+
+    const amp = new Parser()
         .uint8("ampLevel")
         .uint8("ampPanpot")
         .bit1("ignore")
@@ -76,34 +85,28 @@ function parse(binary) {
         .bit6("ignore")
         .bit1("ampDistortion")
         .uint8("ampVelocitySense")
-        .uint8("ampKeyboardTrack")
-        .uint8("eg1Attack")
-        .uint8("eg1Decay")
-        .uint8("eg1Sustain")
-        .uint8("eg1Release")
-        .uint8("eg2Attack")
-        .uint8("eg2Decay")
-        .uint8("eg2Sustain")
-        .uint8("eg2Release")
+        .uint8("ampKeyboardTrack");
+
+    const env = new Parser()
+        .uint8("egAttack")
+        .uint8("egDecay")
+        .uint8("egSustain")
+        .uint8("egRelease");
+
+    const lfo = new Parser()
         .bit2("ignore")
-        .bit2("lfo1KeySync")
+        .bit2("lfoKeySync")
         .bit2("ignore")
-        .bit2("lfo1Wave")
-        .uint8("lfo1Freq")
-        .bit1("lfo1TempoSync")
+        .bit2("lfoWave")
+        .uint8("lfoFreq")
+        .bit1("lfoTempoSync")
         .bit2("ignore")
-        .bit5("lfo1SyncNote")
-        .bit2("ignore")
-        .bit2("lfo2KeySync")
-        .bit2("ignore")
-        .bit2("lfo2Wave")
-        .uint8("lfo2Freq")
-        .bit1("lfo2TempoSync")
-        .bit2("ignore")
-        .bit5("lfo2SyncNote")
-        .bit4("patch1Dest")
+        .bit5("lfoSyncNote");
+
+    const patchMods = new Parser()
+        .bit4("patch1Dest") // Patch Begin      // only timbres and and 2
         .bit4("patch1Src")
-        .uint8("patch1Intensity")
+        .uint8("patch1Intensity") // Patch End
         .bit4("patch2Dest")
         .bit4("patch2Src")
         .uint8("patch2Intensity")
@@ -112,7 +115,69 @@ function parse(binary) {
         .uint8("patch3Intensity")
         .bit4("patch4Dest")
         .bit4("patch4Src")
-        .uint8("patch4Intensity");
+        .uint8("patch4Intensity")
+        .seek(56);
+
+    const timbre = new Parser()
+        .nest({ type: paramStart })
+        .nest({ type: pitch })
+        .nest({ type: osc1 })
+        .seek(1)
+        .nest({ type: osc2 })
+        .bit1("ignore")
+        .bit7("portamentoTime")
+        .nest({ type: mixer })
+        .nest({ type: filter })
+        .nest({ type: amp })
+        .nest("eg1", { type: env })
+        .nest("eg2", { type: env })
+        .nest("lfo1", { type: lfo })
+        .nest("lfo2", { type: lfo })
+        .nest({ type: patchMods });
+
+    const vocoder = new Parser()
+        .nest({ type: paramStart })
+        .nest({ type: pitch })
+        .nest({ type: osc1 })
+        .seek(1)
+        .bit7("ignore")
+        .bit1("hpfGate")
+        .seek(1)
+        .bit1("ignore")
+        .bit7("portamentoTime")
+        .nest({ type: mixer })
+        .uint8("hpfLevel")
+        .uint8("gateSense")
+        .uint8("threshold")
+        .uint8("filterShift")
+        .uint8("filterCutoff")
+        .uint8("filterResonance")
+        .uint8("filterModSource")
+        .uint8("filterIntensity")
+        .uint8("filterEFSense")
+        .uint8("ampLevel")
+        .uint8("ampDirectLevel")
+        .bit7("ignore")
+        .b1("ampDistortion")
+        .uint8("ampVelocitySense")
+        .uint8("ampKeyTrack")
+        .nest("eg1", { type: env })
+        .nest("eg2", { type: env })
+        .nest("lfo1", { type: lfo })
+        .nest("lfo2", { type: lfo })
+        .array("level", {
+            type: "uint8",
+            lengthInBytes: 16,
+        })
+        .array("pan", {
+            type: "uint8",
+            lengthInBytes: 16,
+        })
+        .array("efHoldLevel", {
+            type: "uint8",
+            lengthInBytes: 16,
+        });
+    //end stuff
 
     const parser = new Parser()
         .endianness("big")
@@ -154,9 +219,10 @@ function parse(binary) {
         .uint8("arpSwing")
         .uint8("kbdOctave")
         .nest("timbre1", { type: timbre })
-        .seek(56)
         .nest("timbre2", { type: timbre })
-        .seek(56);
+        .nest("vocoder", { type: vocoder });
+
+    parser.parse(trimmedBinary); // return a object with this
 }
 
 function PatchEditor() {
@@ -211,8 +277,7 @@ function App() {
                     className="App-link"
                     href="https://reactjs.org"
                     target="_blank"
-                    rel="noopener noreferrer"
-                >
+                    rel="noopener noreferrer">
                     Learn React
                 </a>
             </header>
