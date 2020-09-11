@@ -158,39 +158,15 @@ function parse(binary) {
         .nest("timbre2", { type: timbre })
         .seek(56);
 
+    // make a vocoder timbre instead of ignoring it LMAO
+
     console.log(parser.parse(unpaddedBinary));
+
+    // do stuff with the parsed object
 }
 
 function PatchEditor() {
-    const defaultPatch = {
-        name: "",
-        arpeggio: { length: 8, pattern: [0, 0, 0, 0, 0, 0, 0, 0] },
-        arpeggio2: {
-            tempo: 20,
-            seq: 0,
-            on: false,
-            latch: false,
-            target: 0,
-            keySync: false,
-            type: 0, // 0 - 5
-            range: 0, // 0 - 4
-            gate: 0, // 0 - 100
-            resolution: 0,
-            swing: 0,
-        },
-        voiceMode: 0,
-        scaleKey: 0, // C
-        scaleType: 0, // Equal Temperment
-        delayFX: { sync: false, timeBase: 5, delayTime: 0, depth: 0, type: 0 },
-        modFX: { lfoSpeed: 0, depth: 0, type: 0 },
-        eq: { hiFreq: 0, hiGain: 0, lowFreq: 0, lowGain: 0 },
-        octave: 0, // this is a 7 bit number so -1 is 127 and -3 is 125
-        synthParameter1: {}, // only use this one in single voice mode
-        synthParameter2: {}, // use this and the previous in multi voice mode
-        synthParameter3: {}, // this is for vocoder mode
-    };
-
-    const [patch, setPatch] = useState(defaultPatch);
+    const [patch, setPatch] = useState();
 
     return (
         <div>
@@ -204,19 +180,16 @@ function PatchEditor() {
 function App() {
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <div>
-                    <PatchEditor />
-                </div>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
+            <div>
+                <PatchEditor />
+            </div>
+            <a
+                className="App-link"
+                href="https://reactjs.org"
+                target="_blank"
+                rel="noopener noreferrer">
+                Learn React
+            </a>
         </div>
     );
 }
