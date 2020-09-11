@@ -6,7 +6,7 @@ import FileIOComponent from "./components/FileIOComponent";
 import MidiComponent from "./components/MidiComponent";
 //import EditorComponent from "./components/EditorComponent";
 
-import Parser from "binary-parser";
+import { Parser } from "binary-parser";
 
 // converts SYSEX file to the dump format the system uses (and the implementation refers to)
 function parse(binary) {
@@ -36,7 +36,7 @@ function parse(binary) {
     const unpaddedBinary = trimmedBinary.filter((el, idx) => idx % 8);
 
     const timbre = new Parser()
-        .uint8("midiChannel")
+        .uint8("midiChannel") // in 7 bits
         .bit2("assignMode")
         .bit1("eg2Reset")
         .bit1("eg1Reset")
@@ -52,13 +52,13 @@ function parse(binary) {
         .uint8("osc1WaveCtrl2")
         .uint8("osc1DWGSWave")
         .seek(1)
-        .bit2("ignore")
+        .bit2("ignore1")
         .bit2("osc2ModSelect")
-        .bit2("ignore")
+        .bit2("ignore2")
         .bit2("osc2Wave")
         .uint8("osc2Semitone")
         .uint8("osc2Tune")
-        .bit1("ignore")
+        .bit1("ignore3")
         .bit7("portamentoTime")
         .uint8("osc1Level")
         .uint8("osc2Level")
@@ -71,9 +71,9 @@ function parse(binary) {
         .uint8("filterKeyboardTrack")
         .uint8("ampLevel")
         .uint8("ampPanpot")
-        .bit1("ignore")
+        .bit1("ignore4")
         .bit1("ampSW")
-        .bit6("ignore")
+        .bit5("ignore5")
         .bit1("ampDistortion")
         .uint8("ampVelocitySense")
         .uint8("ampKeyboardTrack")
@@ -85,21 +85,21 @@ function parse(binary) {
         .uint8("eg2Decay")
         .uint8("eg2Sustain")
         .uint8("eg2Release")
-        .bit2("ignore")
+        .bit2("ignore6")
         .bit2("lfo1KeySync")
-        .bit2("ignore")
+        .bit2("ignore7")
         .bit2("lfo1Wave")
         .uint8("lfo1Freq")
         .bit1("lfo1TempoSync")
-        .bit2("ignore")
+        .bit2("ignore8")
         .bit5("lfo1SyncNote")
-        .bit2("ignore")
+        .bit2("ignore9")
         .bit2("lfo2KeySync")
-        .bit2("ignore")
+        .bit2("ignore10")
         .bit2("lfo2Wave")
         .uint8("lfo2Freq")
         .bit1("lfo2TempoSync")
-        .bit2("ignore")
+        .bit2("ignore11")
         .bit5("lfo2SyncNote")
         .bit4("patch1Dest")
         .bit4("patch1Src")
@@ -115,20 +115,20 @@ function parse(binary) {
         .uint8("patch4Intensity");
 
     const parser = new Parser()
-        .endianness("big")
-        .string("name", ["ASCII", 12])
-        .seek(3)
-        .bit5("ignore")
+        .endianess("big")
+        .string("name", { encoding: "ASCII", length: 12 })
+        .seek(2)
+        .bit5("ignore12")
         .bit3("arpTriggerLength")
         .bit8("arpTriggerPattern")
-        .bit2("ignore")
+        .bit2("ignore13")
         .bit2("voiceMode")
-        .bit4("ignore")
+        .bit4("ignore14")
         .bit4("scaleKey")
         .bit4("scaleType")
         .seek(1)
         .bit1("delayFxSync")
-        .bit3("ignore")
+        .bit3("ignore15")
         .bit4("delayFXTimeBase")
         .uint8("delayFXDelayTime")
         .uint8("delayFXDepth")
@@ -140,12 +140,12 @@ function parse(binary) {
         .uint8("eqHiGain")
         .uint8("eqLowFreq")
         .uint8("eqLowGain")
-        .uint8be("arpTempo")
-        .uint8le("arpSeqTempo")
+        .uint8("arpTempo")
+        .uint8("arpSeqTempo")
         .bit1("arpOnOff")
         .bit1("arpLatchOnOff")
         .bit2("arpTarget")
-        .bit1("ignore")
+        .bit1("ignore16")
         .bit1("arpKeySync")
         .bit4("arpRange")
         .bit4("arpType")
@@ -157,6 +157,8 @@ function parse(binary) {
         .seek(56)
         .nest("timbre2", { type: timbre })
         .seek(56);
+
+    console.log(parser.parse(unpaddedBinary));
 }
 
 function PatchEditor() {
@@ -211,8 +213,7 @@ function App() {
                     className="App-link"
                     href="https://reactjs.org"
                     target="_blank"
-                    rel="noopener noreferrer"
-                >
+                    rel="noopener noreferrer">
                     Learn React
                 </a>
             </header>
