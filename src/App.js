@@ -1,15 +1,106 @@
-import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
+import { Grommet, Box } from "grommet";
 import "./App.css";
 
 import FileIOComponent from "./components/FileIOComponent";
 import MidiComponent from "./components/MidiComponent";
-//import EditorComponent from "./components/EditorComponent";
+import EditorComponent from "./components/EditorComponent";
 
 import { Parser } from "binary-parser";
 
+const theme = {
+    "name": "my theme",
+    "rounding": 4,
+    "spacing": 12,
+    "defaultMode": "light",
+    "global": {
+        "colors": {
+            "brand": {
+                "dark": "#7700cc",
+                "light": "#6600cc",
+            },
+            "background": {
+                "dark": "#111111",
+                "light": "#FFFFFF",
+            },
+            "background-back": {
+                "dark": "#111111",
+                "light": "#EEEEEE",
+            },
+            "background-front": {
+                "dark": "#222222",
+                "light": "#FFFFFF",
+            },
+            "background-contrast": {
+                "dark": "#FFFFFF11",
+                "light": "#11111111",
+            },
+            "text": {
+                "dark": "#EEEEEE",
+                "light": "#333333",
+            },
+            "text-strong": {
+                "dark": "#FFFFFF",
+                "light": "#000000",
+            },
+            "text-weak": {
+                "dark": "#CCCCCC",
+                "light": "#444444",
+            },
+            "text-xweak": {
+                "dark": "#999999",
+                "light": "#666666",
+            },
+            "border": {
+                "dark": "#444444",
+                "light": "#CCCCCC",
+            },
+            "control": "brand",
+            "active-background": "background-contrast",
+            "active-text": "text-strong",
+            "selected-background": "brand",
+            "selected-text": "text-strong",
+            "status-critical": "#FF4040",
+            "status-warning": "#FFAA15",
+            "status-ok": "#00C781",
+            "status-unknown": "#CCCCCC",
+            "status-disabled": "#CCCCCC",
+            "graph-0": "brand",
+            "graph-1": "status-warning",
+        },
+        "font": {
+            "family": "Fira Mono",
+        },
+        "active": {
+            "background": "active-background",
+            "color": "active-text",
+        },
+        "hover": {
+            "background": "active-background",
+            "color": "active-text",
+        },
+        "selected": {
+            "background": "selected-background",
+            "color": "selected-text",
+        },
+        "focus": {
+            "outline": {
+                "size": "0",
+            },
+            "shadow:": {
+                "size": 0,
+            },
+        },
+    },
+    "chart": {},
+    "diagram": {
+        "line": {},
+    },
+    "meter": {},
+};
+
 // converts SYSEX file to the dump format the system uses (and the implementation refers to)
-function parse(binary) {
+function parse(parser, binary) {
     // check if the binary is a valid KORG-produced SYSEX file
     if (binary.length !== 297) {
         throw new Error("incorrect file length");
@@ -35,6 +126,23 @@ function parse(binary) {
     // every eigth byte is padding, so we remove it
     const unpaddedBinary = trimmedBinary.filter((el, idx) => idx % 8);
 
+    // make a vocoder timbre instead of ignoring it LMAO
+    const buffer = Buffer.from(
+        Buffer.from(unpaddedBinary).toString("hex"),
+        "hex"
+    );
+
+    console.log(parser.parse(buffer));
+
+    // do stuff with the parsed object
+}
+
+// converts patch object to dump format the system uses
+function serialise(parser, object) {
+    console.log(parser.encode(object));
+}
+
+function PatchEditor() {
     const timbre = new Parser()
         .uint8("midiChannel") // in 7 bits
         .bit2("assignMode")
@@ -51,7 +159,7 @@ function parse(binary) {
         .uint8("osc1WaveCtrl1")
         .uint8("osc1WaveCtrl2")
         .uint8("osc1DWGSWave")
-        .seek(1)
+        .skip(1)
         .bit2("ignore1")
         .bit2("osc2ModSelect")
         .bit2("ignore2")
@@ -114,10 +222,28 @@ function parse(binary) {
         .bit4("patch4Src")
         .uint8("patch4Intensity");
 
+    const vocoder = new Parser()
+        .uint8("midiChannel") // in 7 bits
+        .bit2("assignMode")
+        .bit1("eg2Reset")
+        .bit1("eg1Reset")
+        .bit1("triggerMode")
+        .bit2("keyPriority")
+        .uint8("unisonDetune")
+        .uint8("pitchTune")
+        .uint8("pitchBendRange")
+        .uint8("pitchTranspose")
+        .uint8("pitchVibratoInt")
+        .uint8("osc1Wave")
+        .uint8("osc1WaveCtrl1")
+        .uint8("osc1WaveCtrl2")
+        .uint8("osc1DWGSWave")
+        .skip(1);
+
     const parser = new Parser()
         .endianess("big")
         .string("name", { encoding: "ASCII", length: 12 })
-        .seek(2)
+        .skip(2)
         .bit5("ignore12")
         .bit3("arpTriggerLength")
         .bit8("arpTriggerPattern")
@@ -126,7 +252,7 @@ function parse(binary) {
         .bit4("ignore14")
         .bit4("scaleKey")
         .bit4("scaleType")
-        .seek(1)
+        .skip(1)
         .bit1("delayFxSync")
         .bit3("ignore15")
         .bit4("delayFXTimeBase")
@@ -154,43 +280,34 @@ function parse(binary) {
         .uint8("arpSwing")
         .uint8("kbdOctave")
         .nest("timbre1", { type: timbre })
-        .seek(56)
+        .skip(56)
         .nest("timbre2", { type: timbre })
-        .seek(56);
+        .skip(56);
 
-    // make a vocoder timbre instead of ignoring it LMAO
-
-    console.log(parser.parse(unpaddedBinary));
-
-    // do stuff with the parsed object
-}
-
-function PatchEditor() {
     const [patch, setPatch] = useState();
 
+    const toParse = (binary) => {
+        setPatch(parse(parser, binary));
+    };
+
+    const toSerialise = (object) => {
+        serialise(parser, object);
+    };
+
     return (
-        <div>
-            <FileIOComponent getBinaryData={parse} />
-            {/*<EditorComponent />
-            <MidiComponent />*/}
+        <div className="patch-editor">
+            <FileIOComponent getBinaryData={toParse} />
+            <EditorComponent />
+            {/*<MidiComponent />*/}
         </div>
     );
 }
 
 function App() {
     return (
-        <div className="App">
-            <div>
-                <PatchEditor />
-            </div>
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer">
-                Learn React
-            </a>
-        </div>
+        <Grommet theme={theme}>
+            <PatchEditor />
+        </Grommet>
     );
 }
 
