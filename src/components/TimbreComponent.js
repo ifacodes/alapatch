@@ -4,28 +4,33 @@ import { Text, Stack, Heading, RangeInput, Select, Box, Grid } from "grommet";
 const reducer = (state, action) => action;
 
 const LabeledSlider = (props) => (
-    <Box
-        align="center"
-        justify="start"
-        direction="row"
-        fill="horizontal"
-        wrap={false}
-        gap={props.gap}>
-        <Text
-            weight="bold"
-            truncate={false}
-            style={{ "whiteSpace": "nowrap" }}
-            margin="xsmall">
-            {props.label}
-        </Text>
-        <RangeInput
-            max={props.max}
-            min={props.min}
-            step={props.step}
-            value={props.value}
-            onChange={(e) => props.onChange(e.target.value)}
-        />
-    </Box>
+    <Grid
+        columns={["xsmall", "small"]}
+        rows={["xxxsmall"]}
+        areas={[
+            { "name": "text", "start": [0, 0], "end": [0, 0] },
+            { "name": "sliders", "start": [1, 0], "end": [1, 0] },
+        ]}>
+        <Box align="center" justify="stretch" direction="row" gridArea="text">
+            <Text size="small" textAlign="start" weight="bold" truncate={false}>
+                {props.label}
+            </Text>
+        </Box>
+        <Box
+            align="center"
+            justify="center"
+            direction="row"
+            fill="horizontal"
+            gridArea="sliders">
+            <RangeInput
+                max={props.max}
+                min={props.min}
+                step={props.step}
+                value={props.value}
+                onChange={(e) => props.onChange(e.target.value)}
+            />
+        </Box>
+    </Grid>
 );
 
 function VCO1(props) {
@@ -87,24 +92,20 @@ function VCO1(props) {
                         direction="column"
                         gap="medium"
                         fill="horizontal"
-                        margin={{ "top": "medium" }}
-                        pad="xsmall">
+                        margin={{ "top": "medium" }}>
                         <Box
                             align="center"
                             justify="start"
                             fill="horizontal"
                             direction="row"
                             gap="small">
-                            <Text weight="bold">Waveform</Text>
-                            <RangeInput
-                                style={{ "spacing": 16 }}
+                            <LabeledSlider
+                                label="Waveform"
                                 max={127}
                                 min={0}
                                 step={1}
                                 value={waveform}
-                                onChange={(e) => {
-                                    wfDispatch(e.target.value);
-                                }}
+                                onChange={wfDispatch}
                             />
                         </Box>
                         <Box
@@ -112,23 +113,14 @@ function VCO1(props) {
                             justify="start"
                             direction="row"
                             fill="horizontal"
-                            wrap={false}
-                            gap="medium">
-                            <Text
-                                textAlign="start"
-                                weight="bold"
-                                truncate={false}
-                                style={{ "whiteSpace": "nowrap" }}>
-                                LFO Mod
-                            </Text>
-                            <RangeInput
+                            gap="small">
+                            <LabeledSlider
+                                label="LFO Mod"
                                 max={127}
                                 min={0}
                                 step={1}
                                 value={mod}
-                                onChange={(e) => {
-                                    modDispatch(e.target.value);
-                                }}
+                                onChange={modDispatch}
                             />
                         </Box>
                     </Box>
@@ -185,26 +177,41 @@ function VCO2(props) {
                     <Box
                         align="center"
                         justify="center"
-                        gap="small"
+                        direction="column"
+                        gap="medium"
                         fill="horizontal"
-                        flex>
-                        <LabeledSlider
-                            label="Waveform"
-                            max={127}
-                            min={0}
-                            step={1}
-                            value={waveform}
-                            onChange={wfDispatch}
-                        />
-                        <LabeledSlider
-                            label="LFO Mod"
-                            gap="small"
-                            max={127}
-                            min={0}
-                            step={1}
-                            value={mod}
-                            onChange={modDispatch}
-                        />
+                        margin={{ "top": "medium" }}>
+                        <Box
+                            align="center"
+                            justify="start"
+                            fill="horizontal"
+                            direction="row"
+                            gap="small">
+                            <LabeledSlider
+                                label="Waveform"
+                                max={127}
+                                min={0}
+                                step={1}
+                                value={waveform}
+                                onChange={wfDispatch}
+                            />
+                        </Box>
+                        <Box
+                            align="center"
+                            justify="start"
+                            fill="horizontal"
+                            direction="row"
+                            gap="small">
+                            <LabeledSlider
+                                label="LFO Mod"
+                                gap="small"
+                                max={127}
+                                min={0}
+                                step={1}
+                                value={mod}
+                                onChange={modDispatch}
+                            />
+                        </Box>
                     </Box>
                 </Box>
             </Box>
@@ -232,16 +239,14 @@ function Mixer(props) {
                 align="center"
                 justify="center"
                 background={{ "color": "background" }}
-                pad="medium"
-                gap="medium"
                 direction="column"
                 elevation="small"
-                round="small">
+                round="small"
+                pad={{ "top": "large", "bottom": "medium" }}>
                 <Box
                     align="center"
                     justify="center"
-                    pad={{ "horizontal": "medium" }}
-                    margin={{ "top": "medium", "horizontal": "medium" }}
+                    pad={{ "top": "small", "horizontal": "medium" }}
                     fill="horizontal"
                     gap="small">
                     <LabeledSlider
@@ -284,23 +289,100 @@ function Mixer(props) {
 }
 
 function Pitch(props) {
+    const [uniTune, setUniTune] = useReducer(reducer, 0);
+    const [tune, setTune] = useReducer(reducer, 0);
+    const [transpose, setTranspose] = useReducer(reducer, 0);
+    const [portamento, setPortamento] = useReducer(reducer, 0);
+    const [bend, setBend] = useReducer(reducer, 0);
+    const [vInt, setVInt] = useReducer(reducer, 0);
+
     return (
         <Stack fill anchor="top-left" guidingChild="first">
             <Box
                 align="center"
                 justify="center"
+                background={{ "color": "background" }}
+                gridArea="VCO2"
+                pad="large"
+                gap="medium"
+                direction="column"
                 elevation="small"
                 round="small"
                 fill>
-                <Box align="center" justify="center" gap="medium">
+                <Box
+                    align="center"
+                    justify="center"
+                    fill="horizontal"
+                    gap="small">
                     <Select
                         options={["Mono", "Poly", "Unison"]}
+                        plain={false}
+                        multiple={false}
+                        name="voice-assign"
                         placeholder="Voice Assign"
                     />
                     <Select
                         options={["Single", "Multi"]}
-                        placeholder="Trigger Assign"
+                        plain={false}
+                        multiple={false}
+                        name="trigger-mode"
+                        placeholder="Trigger Mode"
                     />
+                    <Box
+                        align="center"
+                        justify="start"
+                        direction="column"
+                        fill="horizontal"
+                        gap="small">
+                        <LabeledSlider
+                            label="Transpose"
+                            max={24}
+                            min={-24}
+                            step={1}
+                            value={transpose}
+                            onChange={setTranspose}
+                        />
+                        <LabeledSlider
+                            label="Tune"
+                            max={50}
+                            min={-50}
+                            step={1}
+                            value={tune}
+                            onChange={setTune}
+                        />
+                        <LabeledSlider
+                            label="Unison Detune"
+                            max={99}
+                            min={0}
+                            step={1}
+                            value={uniTune}
+                            onChange={setUniTune}
+                        />
+                        <LabeledSlider
+                            label="Portamento"
+                            max={127}
+                            min={0}
+                            step={1}
+                            value={portamento}
+                            onChange={setPortamento}
+                        />
+                        <LabeledSlider
+                            label="Bend Range"
+                            max={12}
+                            min={-12}
+                            step={1}
+                            value={bend}
+                            onChange={setBend}
+                        />
+                        <LabeledSlider
+                            label="Vibrato Int"
+                            max={63}
+                            min={-63}
+                            step={1}
+                            value={vInt}
+                            onChange={setVInt}
+                        />
+                    </Box>
                 </Box>
             </Box>
             <Heading
