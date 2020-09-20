@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Grommet, Box } from "grommet";
+import css from "styled-components";
 import "./App.css";
 
 import FileIOComponent from "./components/FileIOComponent";
@@ -44,16 +45,16 @@ const theme = {
                 "light": "#000000",
             },
             "text-weak": {
-                "dark": "#CCCCCC",
-                "light": "#444444",
+                dark: "#CCCCCC",
+                light: "#444444",
             },
             "text-xweak": {
-                "dark": "#999999",
-                "light": "#666666",
+                dark: "#999999",
+                light: "#666666",
             },
-            "border": {
-                "dark": "#444444",
-                "light": "#CCCCCC",
+            border: {
+                dark: "#444444",
+                light: "#CCCCCC",
             },
             "control": "brand",
             "active-background": "background-contrast",
@@ -68,35 +69,66 @@ const theme = {
             "graph-0": "brand",
             "graph-1": "status-warning",
         },
-        "font": {
-            "family": "Fira Mono",
+        font: {
+            family: "Fira Mono",
         },
-        "active": {
-            "background": "active-background",
-            "color": "active-text",
+        active: {
+            background: "active-background",
+            color: "active-text",
         },
-        "hover": {
-            "background": "active-background",
-            "color": "active-text",
+        hover: {
+            background: "active-background",
+            color: "active-text",
         },
-        "selected": {
-            "background": "selected-background",
-            "color": "selected-text",
+        selected: {
+            background: "selected-background",
+            color: "selected-text",
         },
-        "focus": {
-            "outline": {
-                "size": "0",
+        focus: {
+            outline: {
+                size: "0",
             },
-            "shadow:": {
-                "size": 0,
+            shadow: {
+                size: 0,
             },
         },
     },
-    "chart": {},
-    "diagram": {
-        "line": {},
+    tab: {
+        background: {
+            color: "light-1",
+        },
+        color: "dark",
+        border: undefined,
+        active: {
+            background: "brand",
+            color: "white",
+        },
+        hover: {
+            background: "brand",
+            color: "white",
+        },
+        pad: "small",
+        extend: () =>
+            `
+                transition: background 0.5s ease, color 0.5s ease;
+                border-radius: 4px;
+                box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+            `,
     },
-    "meter": {},
+    tabs: {
+        header: {
+            background: "dark-1",
+            extend: () => `
+                padding: 10px;
+            `,
+        },
+        background: "light-3",
+    },
+    chart: {},
+    diagram: {
+        line: {},
+    },
+    meter: {},
 };
 
 // converts SYSEX file to the dump format the system uses (and the implementation refers to)

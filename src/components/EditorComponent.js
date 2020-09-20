@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Collapsible, Tab, Tabs, Grid, Box } from "grommet";
+import React from "react";
+import { Tab, Tabs, Box } from "grommet";
 
-import TimbreComponent from "./TimbreComponent";
+import {
+    TimbreComponent,
+    VocoderComponent,
+    EffectsComponent,
+} from "./EditorTabComponent";
 
 function EditorComponent(props) {
     return (
@@ -11,15 +15,46 @@ function EditorComponent(props) {
             fill
             direction="column"
             overflow="hidden">
-            <Tabs>
+            <Tabs fill="horizontal">
                 <Tab title="Timbre 1">
-                    <Box pad="medium" align="center" justify="center">
-                        <TimbreComponent />
+                    <Box
+                        key="timbre1"
+                        pad="medium"
+                        align="center"
+                        justify="center"
+                        animation={{ type: "zoomIn", duration: 200 }}>
+                        <TimbreComponent key={1} />
                     </Box>
                 </Tab>
-                <Tab title="Timbre 2"></Tab>
-                <Tab title="Vocoder"></Tab>
-                <Tab title="Effects"></Tab>
+                <Tab title="Timbre 2">
+                    <Box
+                        key="timbre2"
+                        pad="medium"
+                        align="center"
+                        justify="center"
+                        animation={{ type: "zoomIn", duration: 200 }}>
+                        <TimbreComponent key={2} />
+                    </Box>
+                </Tab>
+                <Tab title="Vocoder">
+                    <Box
+                        pad="medium"
+                        align="center"
+                        justify="center"
+                        animation={{ type: "zoomIn", duration: 200 }}>
+                        <VocoderComponent key={3} />
+                    </Box>
+                </Tab>
+                <Tab title="Effects">
+                    <Box
+                        pad="medium"
+                        align="center"
+                        justify="center"
+                        animation={{ type: "zoomIn", duration: 200 }}>
+                        <EffectsComponent key={4} />
+                    </Box>
+                </Tab>
+
                 <Tab title="Arpeggio"></Tab>
             </Tabs>
         </Box>
