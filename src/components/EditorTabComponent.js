@@ -1494,6 +1494,83 @@ function Delay(props) {
     );
 }
 
+function EQ(props) {
+    const [lowFreq, setLowFreq] = useReducer(reducer, 40);
+    const [hiFreq, setHiFreq] = useReducer(reducer, 100);
+    const [lowGain, setLowGain] = useReducer(reducer, 0);
+    const [hiGain, setHiGain] = useReducer(reducer, 0);
+
+    return (
+        <Stack fill anchor="top-left" guidingChild="first">
+            <Box
+                background={{ "color": "background" }}
+                elevation="small"
+                round="small"
+                pad="large"
+                gap="medium"
+                fill>
+                <Box
+                    align="center"
+                    justify="center"
+                    fill="horizontal"
+                    gap="small"
+                    pad={{ "top": "medium" }}>
+                    <Box
+                        align="center"
+                        justify="start"
+                        direction="column"
+                        fill="horizontal"
+                        gap="medium">
+                        <LabeledSlider
+                            label="Low EQ Freq"
+                            min={40}
+                            max={100}
+                            step={1}
+                            value={lowFreq}
+                            onChange={setLowFreq}
+                        />
+                        <LabeledSlider
+                            label="Low EQ Gain"
+                            min={-12}
+                            max={12}
+                            step={1}
+                            value={lowGain}
+                            onChange={setLowGain}
+                        />
+                        <LabeledSlider
+                            label="Hi EQ Freq"
+                            min={100}
+                            max={180}
+                            step={1}
+                            value={hiFreq}
+                            onChange={setHiFreq}
+                        />
+                        <LabeledSlider
+                            label="Hi EQ Gain"
+                            min={-12}
+                            max={12}
+                            step={1}
+                            value={hiGain}
+                            onChange={setHiGain}
+                        />
+                    </Box>
+                </Box>
+            </Box>
+            <Heading
+                textAlign="start"
+                size="small"
+                level="2"
+                margin={{ "top": "xsmall", "left": "small" }}>
+                EQ
+            </Heading>
+        </Stack>
+    );
+}
+
+function ArpegA(props) {}
+
+function ArpegB(props) {}
+
 function TimbreComponent(props) {
     return (
         <Grid
@@ -1628,6 +1705,31 @@ function EffectsComponent(props) {
     return (
         <Grid
             rows={["small", "xsmall", "small", "xsmall"]}
+            columns={["small", "small", "small", "small"]}
+            areas={[
+                { "name": "modFX", "start": [1, 0], "end": [2, 1] },
+                { "name": "Delay", "start": [0, 2], "end": [1, 3] },
+                { "name": "EQ", "start": [2, 2], "end": [3, 3] },
+            ]}
+            gap="medium"
+            fill="vertical">
+            <Box align="center" justify="center" gridArea="modFX">
+                <ModFX />
+            </Box>
+            <Box align="center" justify="center" gridArea="Delay">
+                <Delay />
+            </Box>
+            <Box align="center" justify="center" gridArea="EQ">
+                <EQ />
+            </Box>
+        </Grid>
+    );
+}
+
+function ArpeggioComponent(props) {
+    return (
+        <Grid
+            rows={["small", "xsmall", "small", "xsmall"]}
             columns={["medium"]}
             areas={[
                 { "name": "modFX", "start": [0, 0], "end": [0, 1] },
@@ -1640,11 +1742,9 @@ function EffectsComponent(props) {
             </Box>
             <Box align="center" justify="center" gridArea="Delay">
                 <Delay />
-            </Box>  
+            </Box>
         </Grid>
     );
 }
-
-function ArpeggioComponent(props) {}
 
 export { TimbreComponent, VocoderComponent, EffectsComponent };
