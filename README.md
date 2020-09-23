@@ -8,8 +8,8 @@ Alapatch currently only supports loading and saving patch files in the .SYSEX fo
 
 -   [x] Sysex File Loading
 -   [x] Binary Parsing to Object
--   [ ] Object to Binary Serialising (In Progress, Current Focus)
 -   [x] UI Design
--   [ ] UI Implementation (In Progress)
--   [ ] Editor Implementation (In Progress)
+-   [x] UI Implementation
+-   [x] Editor Implementation
+-   [ ] Object to Binary Serialising (In Progress, Current Focus)
 -   [ ] Send Sysex to Machine via Midi Message (In Progress)
