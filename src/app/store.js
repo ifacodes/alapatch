@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
-import timbreReducer from '../features/timbre/timbreSlice';
+import parameterReducer from '../features/timbre/parameters/parameterSlice';
 
 export default configureStore({
     reducer: {
         counter: counterReducer,
-        timbre: timbreReducer,
+        parameters: parameterReducer,
     },
 });

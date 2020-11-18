@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectById, parameterUpdated } from '../timbreSlice.js';
+import { selectById, parameterUpdated } from './parameterSlice.js';
 
 export default function VCO(props) {
     const parameters = useSelector((state) => selectById(state, props.id));
@@ -14,7 +14,7 @@ export default function VCO(props) {
                 onClick={() =>
                     dispatch(
                         parameterUpdated({
-                            id: 'vco1',
+                            id: props.id,
                             changes: { waveform: 'Triangle' },
                         })
                     )
@@ -22,17 +22,17 @@ export default function VCO(props) {
                 {' '}
                 Set Waveform to Triangle{' '}
             </button>
-            <span>Current Mod Value {parameters.mod} </span>
+            <span>Current Mod Value {parameters.waveMod} </span>
             <input
                 type="range"
                 min="0"
                 max="100"
-                value={parameters.mod}
+                value={parameters.waveMod}
                 onChange={(e) =>
                     dispatch(
                         parameterUpdated({
-                            id: 'vco1',
-                            changes: { mod: e.target.value },
+                            id: props.id,
+                            changes: { waveMod: e.target.value },
                         })
                     )
                 }
