@@ -1,18 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
-
-const Slider = (props) => {
-    return (
-        <input
-            type="range"
-            min="0"
-            max="127"
-            value={props.parameter}
-            onChange={(e) => props.onChange(e.target.value)}
-        />
-    );
-};
+import { Slider } from '../../helpers/Helpers';
 
 export default function Mixer(props) {
     const parameters = useSelector((state) => selectById(state, props.id));

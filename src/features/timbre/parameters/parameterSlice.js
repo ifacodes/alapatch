@@ -83,9 +83,17 @@ const parametersSlice = createSlice({
             },
             'lfo1': {
                 id: 'lfo1',
+                waveform: 'Saw',
+                keySync: 'Off',
+                tempoSync: false,
+                frequency: 0,
             },
             'lfo2': {
                 id: 'lfo2',
+                waveform: 'Saw',
+                keySync: 'Off',
+                tempoSync: false,
+                frequency: 0,
             },
         },
     }),

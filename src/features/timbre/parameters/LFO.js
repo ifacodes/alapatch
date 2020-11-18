@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
-import { Slider, SelectList } from '../../helpers/Helpers';
+import { Slider, SelectList, Checkbox } from '../../helpers/Helpers';
 
-export default function VCO(props) {
+export default function LFO(props) {
     const parameters = useSelector((state) => selectById(state, props.id));
-
     const dispatch = useDispatch();
+
     return (
         <div>
             <SelectList
@@ -22,39 +22,35 @@ export default function VCO(props) {
                 }
             />
             <SelectList
-                value={parameters.dwgsOrModType}
-                list={props.dwgsOrModType}
+                value={parameters.keySync}
+                list={['Off', 'Timbre', 'Voice']}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { dwgsOrModType: value },
+                            changes: { keySync: value },
+                        })
+                    )
+                }
+            />
+            <Checkbox
+                parameter={parameters.tempoSync}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { tempoSync: value },
                         })
                     )
                 }
             />
             <Slider
-                min="0"
-                max="100"
-                parameter={parameters.waveMod}
+                parameter={parameters.frequency}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { waveMod: value },
-                        })
-                    )
-                }
-            />
-            <Slider
-                min="0"
-                max="100"
-                parameter={parameters.lfoMod}
-                onChange={(value) =>
-                    dispatch(
-                        parameterUpdated({
-                            id: props.id,
-                            changes: { lfoMod: value },
+                            changes: { frequency: value },
                         })
                     )
                 }
