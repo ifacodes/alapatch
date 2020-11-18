@@ -28,7 +28,7 @@ const parametersSlice = createSlice({
             },
             'vco2': {
                 id: 'vco2',
-                waveform: 'Saw',
+                waveform: 'Square',
                 dwgsOrModType: 0,
                 waveMod: 0,
                 lfoMod: 0,
