@@ -67,7 +67,7 @@ export default function EG(props) {
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { egReset: !parameters.egReset },
+                            changes: { egReset: value },
                         })
                     )
                 }

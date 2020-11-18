@@ -31,8 +31,9 @@ const Checkbox = (props) => {
     return (
         <input
             type="checkbox"
-            checked={props.parameter}
-            onChange={(e) => props.onChange(e.target.value)}
+            value={props.parameter}
+            defaultChecked={props.parameter}
+            onChange={(e) => props.onChange(e.target.checked)}
         />
     );
 };
