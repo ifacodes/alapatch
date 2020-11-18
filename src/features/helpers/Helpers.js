@@ -4,8 +4,8 @@ const Slider = (props) => {
     return (
         <input
             type="range"
-            min="0"
-            max="127"
+            min={props.min}
+            max={props.max}
             value={props.parameter}
             onChange={(e) => props.onChange(e.target.value)}
         />
@@ -27,4 +27,14 @@ const SelectList = (props) => {
     );
 };
 
-export default { Slider, SelectList };
+const Checkbox = (props) => {
+    return (
+        <input
+            type="checkbox"
+            checked={props.parameter}
+            onChange={(e) => props.onChange(e.target.value)}
+        />
+    );
+};
+
+export { Slider, SelectList, Checkbox };
