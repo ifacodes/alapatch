@@ -68,6 +68,10 @@ const parametersSlice = createSlice({
             },
             'amp1': {
                 id: 'amp1',
+                ampLevel: 127,
+                panpot: 0,
+                ampTrack: 0,
+                distortion: false,
             },
             'eg2': {
                 id: 'eg2',
