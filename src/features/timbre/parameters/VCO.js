@@ -3,17 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 
 const SelectList = (props) => {
-    const options = props.list.map((option) =>
-        option === props.value ? (
-            <option value={option} selected>
-                {option}
-            </option>
-        ) : (
-            <option value={option}>{option}</option>
-        )
-    );
+    const options = props.list.map((option, index) => (
+        <option value={option} key={index}>
+            {option}
+        </option>
+    ));
     return (
-        <select onChange={(e) => props.onChange(e.target.value)}>
+        <select
+            value={props.value}
+            onChange={(e) => props.onChange(e.target.value)}>
             {options}
         </select>
     );
