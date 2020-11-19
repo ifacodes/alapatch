@@ -1,0 +1,21 @@
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    height: 5px;
+    background-color: lightgray;
+    border-radius: 10px;
+    position: relative;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: slategray;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    transition: background 0.15s ease-in-out;
+}
+.slider::-webkit-slider-thumb:hover {
+    background: slateblue;
+}

@@ -1,8 +1,10 @@
 import React from 'react';
+import styles from './Helpers.module.css';
 
 const Slider = (props) => {
     return (
         <input
+            className={styles.slider}
             type="range"
             min={props.min}
             max={props.max}
@@ -20,6 +22,7 @@ const SelectList = (props) => {
     ));
     return (
         <select
+            className={styles.dropdown}
             value={props.value}
             onChange={(e) => props.onChange(e.target.value)}>
             {options}
