@@ -2,13 +2,15 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider, SelectList } from '../../helpers/Helpers';
+import styles from './Parameters.module.css';
 
 export default function VCO(props) {
     const parameters = useSelector((state) => selectById(state, props.id));
 
     const dispatch = useDispatch();
     return (
-        <div>
+        <div className={styles.container}>
+            Waveform
             <SelectList
                 value={parameters.waveform}
                 list={props.waveforms}
@@ -21,6 +23,7 @@ export default function VCO(props) {
                     )
                 }
             />
+            {`${props.dwgsOrModTypeName}`}
             <SelectList
                 value={parameters.dwgsOrModType}
                 list={props.dwgsOrModType}
@@ -33,6 +36,7 @@ export default function VCO(props) {
                     )
                 }
             />
+            Waveform Mod
             <Slider
                 min="0"
                 max="100"
@@ -46,6 +50,7 @@ export default function VCO(props) {
                     )
                 }
             />
+            LFO Mod
             <Slider
                 min="0"
                 max="100"
