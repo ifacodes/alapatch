@@ -12,8 +12,8 @@ export default function Amp(props) {
         <div className={styles.container}>
             <Slider
                 parameter={parameters.ampLevel}
-                min="0"
-                max="127"
+                min={0}
+                max={127}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -25,8 +25,8 @@ export default function Amp(props) {
             />
             <Slider
                 parameter={parameters.panpot}
-                min="-63"
-                max="63"
+                min={-63}
+                max={63}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -38,8 +38,8 @@ export default function Amp(props) {
             />
             <Slider
                 parameter={parameters.ampTrack}
-                min="-63"
-                max="63"
+                min={-63}
+                max={63}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({

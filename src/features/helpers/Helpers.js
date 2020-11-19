@@ -1,15 +1,17 @@
 import React from 'react';
-import styles from './Helpers.module.css';
+import RCSlider, { createSliderWithTooltip } from 'rc-slider';
+import './index.css';
+
+const SliderWithToolTip = createSliderWithTooltip(RCSlider);
 
 const Slider = (props) => {
     return (
-        <input
-            className={styles.slider}
-            type="range"
+        <SliderWithToolTip
+            tipFormatter={(v) => `${v}`}
             min={props.min}
             max={props.max}
             value={props.parameter}
-            onChange={(e) => props.onChange(e.target.value)}
+            onChange={(v) => props.onChange(v)}
         />
     );
 };
@@ -22,7 +24,6 @@ const SelectList = (props) => {
     ));
     return (
         <select
-            className={styles.dropdown}
             value={props.value}
             onChange={(e) => props.onChange(e.target.value)}>
             {options}

@@ -11,6 +11,8 @@ export default function Mixer(props) {
     return (
         <div className={styles.container}>
             <Slider
+                min={0}
+                max={127}
                 parameter={parameters.vol1}
                 onChange={(value) =>
                     dispatch(
@@ -22,6 +24,8 @@ export default function Mixer(props) {
                 }
             />
             <Slider
+                min={0}
+                max={127}
                 parameter={parameters.vol2}
                 onChange={(value) =>
                     dispatch(
@@ -33,6 +37,9 @@ export default function Mixer(props) {
                 }
             />
             <Slider
+                className={styles.slider}
+                min={0}
+                max={127}
                 parameter={parameters.vol3}
                 onChange={(value) =>
                     dispatch(

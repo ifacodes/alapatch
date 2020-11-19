@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import VCO from './parameters/VCO';
 import Mixer from './parameters/Mixer';
 import Pitch from './parameters/Pitch';
@@ -6,6 +7,7 @@ import Filter from './parameters/Filter';
 import EG from './parameters/EG';
 import Amp from './parameters/Amp';
 import LFO from './parameters/LFO';
+import { selectById } from './timbreSlice.js';
 
 const style = {
     display: 'flex',
@@ -13,10 +15,11 @@ const style = {
 };
 
 export function Timbre(props) {
+    const ids = useSelector((state) => selectById(state, props.id));
     return (
         <div style={style}>
             <VCO
-                id="vco1"
+                id={ids.vco1}
                 waveforms={[
                     'Saw',
                     'Square',
@@ -96,23 +99,23 @@ export function Timbre(props) {
                 ]}
             />
             <VCO
-                id="vco2"
+                id={ids.vco2}
                 waveforms={['Saw', 'Square', 'Triangle']}
                 dwgsOrModTypeName="Mod Type"
                 dwgsOrModType={['Off', 'Ring', 'Sync', 'RingSync']}
             />
-            <Mixer id="mixer1" />
-            <Pitch id="pitch1" />
-            <Filter id="filter1" />
-            <EG id="eg1" />
-            <Amp id="amp1" />
-            <EG id="eg2" />
+            <Mixer id={ids.mixer} />
+            <Pitch id={ids.pitch} />
+            <Filter id={ids.filter} />
+            <EG id={ids.eg1} />
+            <Amp id={ids.amp} />
+            <EG id={ids.eg2} />
             <LFO
-                id="lfo1"
+                id={ids.lfo1}
                 waveforms={['Saw', 'Square 1', 'Triangle', 'Sample & Hold']}
             />
             <LFO
-                id="lfo2"
+                id={ids.lfo2}
                 waveforms={['Saw', 'Square 2', 'Sine', 'Sample & Hold']}
             />
         </div>

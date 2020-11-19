@@ -6,7 +6,8 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <Timbre />
+                <Timbre id="timbre1" />
+                <Timbre id="timbre2" />
             </header>
         </div>
     );

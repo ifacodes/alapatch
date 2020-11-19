@@ -38,8 +38,8 @@ export default function VCO(props) {
             />
             Waveform Mod
             <Slider
-                min="0"
-                max="100"
+                min={0}
+                max={100}
                 parameter={parameters.waveMod}
                 onChange={(value) =>
                     dispatch(
@@ -52,8 +52,8 @@ export default function VCO(props) {
             />
             LFO Mod
             <Slider
-                min="0"
-                max="100"
+                min={0}
+                max={100}
                 parameter={parameters.lfoMod}
                 onChange={(value) =>
                     dispatch(

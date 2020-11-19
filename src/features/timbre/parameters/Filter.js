@@ -29,8 +29,8 @@ export default function Filter(props) {
             />
             <Slider
                 parameter={parameters.cutoff}
-                min="0"
-                max="127"
+                min={0}
+                max={127}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -42,8 +42,8 @@ export default function Filter(props) {
             />
             <Slider
                 parameter={parameters.resonance}
-                min="0"
-                max="127"
+                min={0}
+                max={127}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -55,8 +55,8 @@ export default function Filter(props) {
             />
             <Slider
                 parameter={parameters.egIntensity}
-                min="-63"
-                max="63"
+                min={-63}
+                max={63}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -68,8 +68,8 @@ export default function Filter(props) {
             />
             <Slider
                 parameter={parameters.keyboardTrack}
-                min="-63"
-                max="63"
+                min={-63}
+                max={63}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({

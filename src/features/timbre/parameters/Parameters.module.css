@@ -6,10 +6,9 @@
     padding: 10pt;
     margin: 2pt;
     border: solid 1pt black;
+    width: 120px;
+    flex-basis: 100%;
 }
-.container > input {
-    margin: 7pt 0;
-}
-.container > select {
+.container > * {
     margin: 2.5pt 0;
 }

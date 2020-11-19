@@ -36,8 +36,8 @@ export default function Pitch(props) {
             />
             <Slider
                 parameter={parameters.transpose}
-                min="-24"
-                max="24"
+                min={-24}
+                max={24}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -49,8 +49,8 @@ export default function Pitch(props) {
             />
             <Slider
                 parameter={parameters.tune}
-                min="-50"
-                max="50"
+                min={-50}
+                max={50}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -62,8 +62,8 @@ export default function Pitch(props) {
             />
             <Slider
                 parameter={parameters.unisonDetune}
-                min="0"
-                max="99"
+                min={0}
+                max={99}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -75,8 +75,8 @@ export default function Pitch(props) {
             />
             <Slider
                 parameter={parameters.portamento}
-                min="0"
-                max="127"
+                min={0}
+                max={127}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -88,8 +88,8 @@ export default function Pitch(props) {
             />
             <Slider
                 parameter={parameters.bendRange}
-                min="-12"
-                max="12"
+                min={-12}
+                max={12}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -101,8 +101,8 @@ export default function Pitch(props) {
             />
             <Slider
                 parameter={parameters.vibratoIntensity}
-                min="-63"
-                max="63"
+                min={-63}
+                max={63}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({

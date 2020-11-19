@@ -12,8 +12,8 @@ export default function EG(props) {
         <div className={styles.container}>
             <Slider
                 parameter={parameters.attack}
-                min="0"
-                max="127"
+                min={0}
+                max={127}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -25,8 +25,8 @@ export default function EG(props) {
             />
             <Slider
                 parameter={parameters.decay}
-                min="0"
-                max="127"
+                min={0}
+                max={127}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -38,8 +38,8 @@ export default function EG(props) {
             />
             <Slider
                 parameter={parameters.sustain}
-                min="0"
-                max="127"
+                min={0}
+                max={127}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
@@ -51,8 +51,8 @@ export default function EG(props) {
             />
             <Slider
                 parameter={parameters.release}
-                min="0"
-                max="127"
+                min={0}
+                max={127}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
