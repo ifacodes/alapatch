@@ -2,13 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider } from '../../helpers/Helpers';
+import styles from './Parameters.module.css';
 
 export default function Mixer(props) {
     const parameters = useSelector((state) => selectById(state, props.id));
     const dispatch = useDispatch();
 
     return (
-        <div>
+        <div className={styles.container}>
             <Slider
                 parameter={parameters.vol1}
                 onChange={(value) =>

@@ -2,13 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider, SelectList } from '../../helpers/Helpers';
+import styles from './Parameters.module.css';
 
 export default function Pitch(props) {
     const parameters = useSelector((state) => selectById(state, props.id));
     const dispatch = useDispatch();
 
     return (
-        <div>
+        <div className={styles.container}>
             <SelectList
                 value={parameters.voiceAssign}
                 list={['Mono', 'Poly', 'Unison']}
@@ -67,7 +68,7 @@ export default function Pitch(props) {
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { unisoneDetune: value },
+                            changes: { unisonDetune: value },
                         })
                     )
                 }

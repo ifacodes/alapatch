@@ -2,20 +2,21 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider, Checkbox } from '../../helpers/Helpers';
+import styles from './Parameters.module.css';
 
 export default function Amp(props) {
     const parameters = useSelector((state) => selectById(state, props.id));
     const dispatch = useDispatch();
 
     return (
-        <div>
+        <div className={styles.container}>
             <Slider
                 parameter={parameters.ampLevel}
                 min="0"
                 max="127"
                 onChange={(value) =>
                     dispatch(
-                        parameters({
+                        parameterUpdated({
                             id: props.id,
                             changes: { ampLevel: value },
                         })
@@ -28,7 +29,10 @@ export default function Amp(props) {
                 max="63"
                 onChange={(value) =>
                     dispatch(
-                        parameters({ id: props.id, changes: { panpot: value } })
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { panpot: value },
+                        })
                     )
                 }
             />
@@ -38,7 +42,7 @@ export default function Amp(props) {
                 max="63"
                 onChange={(value) =>
                     dispatch(
-                        parameters({
+                        parameterUpdated({
                             id: props.id,
                             changes: { ampTrack: value },
                         })
@@ -51,7 +55,7 @@ export default function Amp(props) {
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { egReset: value },
+                            changes: { distortion: value },
                         })
                     )
                 }

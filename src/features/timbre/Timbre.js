@@ -7,9 +7,14 @@ import EG from './parameters/EG';
 import Amp from './parameters/Amp';
 import LFO from './parameters/LFO';
 
+const style = {
+    display: 'flex',
+    flexDirection: 'row',
+};
+
 export function Timbre(props) {
     return (
-        <div>
+        <div style={style}>
             <VCO
                 id="vco1"
                 waveforms={[
@@ -22,6 +27,7 @@ export function Timbre(props) {
                     'Noise',
                     'Audio In',
                 ]}
+                dwgsOrModTypeName="DWGS"
                 dwgsOrModType={[
                     'SynSine1',
                     'SynSine2',
@@ -92,6 +98,7 @@ export function Timbre(props) {
             <VCO
                 id="vco2"
                 waveforms={['Saw', 'Square', 'Triangle']}
+                dwgsOrModTypeName="Mod Type"
                 dwgsOrModType={['Off', 'Ring', 'Sync', 'RingSync']}
             />
             <Mixer id="mixer1" />

@@ -1,0 +1,15 @@
+.container {
+    font-size: small;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10pt;
+    margin: 2pt;
+    border: solid 1pt black;
+}
+.container > input {
+    margin: 7pt 0;
+}
+.container > select {
+    margin: 2.5pt 0;
+}
