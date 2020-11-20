@@ -10,7 +10,7 @@ Alapatch currently only supports loading and saving patch files in the .SYSEX fo
 -   [ ] finish implementing for each component
 -   [x] finish one timbre as an example
 -   [x] update state and components to handle multiple timbres
--   [ ] implement switching between currently viewed timbre
+-   [x] implement switching between currently viewed timbre
 -   [ ] style components
 -   [ ] merge with main branch
 
