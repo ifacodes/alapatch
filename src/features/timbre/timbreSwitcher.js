@@ -1,41 +1,32 @@
 import React from 'react';
 import Timbre from './Timbre';
 import Vocoder from './Vocoder';
-import { useDispatch, useSelector } from 'react-redux';
-import { timbreCurrentUpdate } from './timbreSlice';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import styles from './Timbre.module.css';
 
 export default function TimbreSwitcher(props) {
-    const currentTimbre = useSelector((state) => state.timbres.currentTimbre);
-    const dispatch = useDispatch();
-
-    function handleClick(e, value) {
-        e.preventDefault();
-        dispatch(timbreCurrentUpdate(value));
-    }
-
     return (
         <div>
-            <div className={styles.buttonContainer}>
-                <button autoFocus onClick={(e) => handleClick(e, 'timbre1')}>
-                    set to timbre 1
-                </button>
-                <button onClick={(e) => handleClick(e, 'timbre2')}>
-                    set to timbre 2
-                </button>
-                <button onClick={(e) => handleClick(e, 'vocoder')}>
-                    set to vocoder
-                </button>
-            </div>
-            <div>
-                {currentTimbre === 'timbre1' ? (
+            <Tabs
+                defaultIndex="0"
+                selectedTabClassName={styles.selected}
+                selectedTabPanelClassName={styles.tabPanel}>
+                <TabList className={styles.tabList}>
+                    <Tab className={styles.tab}>Timbre 1</Tab>
+                    <Tab className={styles.tab}>Timbre 2</Tab>
+                    <Tab className={styles.tab}>Vocoder</Tab>
+                </TabList>
+
+                <TabPanel>
                     <Timbre id="timbre1" />
-                ) : currentTimbre === 'timbre2' ? (
+                </TabPanel>
+                <TabPanel>
                     <Timbre id="timbre2" />
-                ) : (
+                </TabPanel>
+                <TabPanel>
                     <Vocoder id="vocoder" />
-                )}
-            </div>
+                </TabPanel>
+            </Tabs>
         </div>
     );
 }

@@ -15,17 +15,6 @@
     left: 25%;
 }
 
-.buttonContainer > button {
-    background: white;
-    color: slategrey;
-    font-size: 1em;
-    margin: 0.75em 1em;
-    padding: 0.25em 1em;
-    border: 2px solid slategrey;
-    border-radius: 3px;
-    outline: none;
-}
-
 .buttonContainer > button:hover {
     background: white;
     color: slateblue;
@@ -35,4 +24,55 @@
     background: slateblue;
     color: white;
     border: 2px solid slateblue;
+}
+
+.tabList {
+    position: fixed;
+    display: inline-flex;
+    flex-direction: row;
+    list-style-type: none;
+    top: 0;
+    left: 30%;
+}
+
+.tab {
+    background: white;
+    color: slategrey;
+    font-size: 1em;
+    margin: 0.75em 1em;
+    padding: 0.25em 1em;
+    border: 2px solid slategrey;
+    border-radius: 3px;
+    outline: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.tab:hover {
+    background: white;
+    color: slateblue;
+    border: 2px solid slateblue;
+}
+.selected,
+.selected:hover {
+    background: slateblue;
+    color: white;
+    border: 2px solid slateblue;
+    transition: 0.2s ease-in-out;
+}
+@keyframes slideeffect {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.tabPanel {
+    animation: slideeffect 0.6s ease-in-out;
+    opacity: 1;
 }
