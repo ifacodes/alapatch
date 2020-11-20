@@ -7,9 +7,9 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                {/*<Timbre id="timbre1" />
-                <Timbre id="timbre2" />*/}
-                <Vocoder id="vocoder" />
+                <Timbre id="timbre1" />
+                {/*<Timbre id="timbre2" />
+                <Vocoder id="vocoder" />*/}
             </header>
         </div>
     );

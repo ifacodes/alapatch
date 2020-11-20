@@ -9,7 +9,7 @@ export default function Pitch(props) {
     const dispatch = useDispatch();
 
     return (
-        <div className={styles.pitchContainer}>
+        <div className={styles.horizontalContainer}>
             <div className={styles.container}>
                 Voice Assign
                 <SelectList

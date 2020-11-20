@@ -14,7 +14,7 @@
     margin: 2.5pt 0;
 }
 
-.pitchContainer {
+.horizontalContainer {
     font-size: small;
     display: inline-flex;
     flex-direction: row;
@@ -26,7 +26,7 @@
     width: 420px;
     height: 214px;
 }
-.pitchContainer > .container {
+.horizontalContainer > .container {
     padding: 0 16pt;
     width: 100%;
     margin: 10pt 0;

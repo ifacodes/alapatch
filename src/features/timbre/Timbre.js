@@ -7,6 +7,7 @@ import Filter from './parameters/Filter';
 import EG from './parameters/EG';
 import Amp from './parameters/Amp';
 import LFO from './parameters/LFO';
+import Patches from './parameters/Patches';
 import { selectById } from './timbreSlice.js';
 
 const timbreStyle = {
@@ -144,6 +145,7 @@ export default function Timbre(props) {
                     { value: 'Sample & Hold' },
                 ]}
             />
+            <Patches id={ids.patches} />
         </div>
     );
 }

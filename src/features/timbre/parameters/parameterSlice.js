@@ -265,6 +265,29 @@ const parametersSlice = createSlice({
                 tempoSync: false,
                 frequency: 0,
             },
+            'patches1': {
+                id: 'patches1',
+                patch1: {
+                    source: 'Filter EG',
+                    destination: 'Pitch',
+                    modIntensity: 0,
+                },
+                patch2: {
+                    source: 'Amp EG',
+                    destination: 'Pitch',
+                    modIntensity: 0,
+                },
+                patch3: {
+                    source: 'LFO 1',
+                    destination: 'Pitch',
+                    modIntensity: 0,
+                },
+                patch4: {
+                    source: 'LFO 2',
+                    destination: 'Pitch',
+                    modIntensity: 0,
+                },
+            },
         },
     }),
     reducers: {
