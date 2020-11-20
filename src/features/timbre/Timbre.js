@@ -106,15 +106,11 @@ export function Timbre(props) {
             />
             <VCO
                 id={ids.vco2}
-<<<<<<< HEAD
-                waveforms={['Saw', 'Square', 'Triangle']}
-=======
                 waveforms={[
                     { value: 'Saw' },
                     { value: 'Square' },
                     { value: 'Triangle' },
                 ]}
->>>>>>> v2-styling-react-select
                 dwgsOrModTypeName="Mod Type"
                 dwgsOrModType={[
                     { value: 'Off' },
@@ -126,22 +122,12 @@ export function Timbre(props) {
             <Mixer id={ids.mixer} />
             <Pitch id={ids.pitch} />
             <Filter id={ids.filter} />
-<<<<<<< HEAD
-=======
             <div className="linebreak" style={lineBreak} />
->>>>>>> v2-styling-react-select
             <EG id={ids.eg1} />
             <Amp id={ids.amp} />
             <EG id={ids.eg2} />
             <LFO
                 id={ids.lfo1}
-<<<<<<< HEAD
-                waveforms={['Saw', 'Square 1', 'Triangle', 'Sample & Hold']}
-            />
-            <LFO
-                id={ids.lfo2}
-                waveforms={['Saw', 'Square 2', 'Sine', 'Sample & Hold']}
-=======
                 waveforms={[
                     { value: 'Saw' },
                     { value: 'Square 1' },
@@ -157,7 +143,6 @@ export function Timbre(props) {
                     { value: 'Sine' },
                     { value: 'Sample & Hold' },
                 ]}
->>>>>>> v2-styling-react-select
             />
         </div>
     );

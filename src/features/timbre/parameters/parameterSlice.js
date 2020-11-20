@@ -47,22 +47,14 @@ const parametersSlice = createSlice({
             'vco3': {
                 id: 'vco3',
                 waveform: 'Sine',
-<<<<<<< HEAD
-                dwgsOrModType: 0,
-=======
                 dwgsOrModType: 'SynWave1',
->>>>>>> v2-styling-react-select
                 waveMod: 100,
                 lfoMod: 0,
             },
             'vco4': {
                 id: 'vco4',
                 waveform: 'Triangle',
-<<<<<<< HEAD
-                dwgsOrModType: 0,
-=======
                 dwgsOrModType: 'Off',
->>>>>>> v2-styling-react-select
                 waveMod: 0,
                 lfoMod: 100,
             },

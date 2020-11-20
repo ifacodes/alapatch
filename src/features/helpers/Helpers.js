@@ -26,13 +26,6 @@ const Slider = (props) => {
 
 const SelectList = (props) => {
     return (
-<<<<<<< HEAD
-        <select
-            value={props.value}
-            onChange={(e) => props.onChange(e.target.value)}>
-            {options}
-        </select>
-=======
         <Select
             value={{ value: props.value }}
             options={props.list}
@@ -40,7 +33,6 @@ const SelectList = (props) => {
             onChange={(e) => props.onChange(e.value)}
             styles={SelectStyle}
         />
->>>>>>> v2-styling-react-select
     );
 };
 
