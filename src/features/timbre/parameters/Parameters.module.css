@@ -23,7 +23,7 @@
     padding: 16pt 8pt 16pt 8pt;
     margin: 10pt;
     border: solid 1pt black;
-    width: 420px;
+    width: 448px;
     height: 214px;
 }
 
@@ -52,5 +52,5 @@
     height: 214px;
     width: 1px;
     background-color: black;
-    margin: 0 4pt;
+    margin: 0 8pt;
 }
