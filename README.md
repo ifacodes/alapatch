@@ -8,8 +8,9 @@ Alapatch currently only supports loading and saving patch files in the .SYSEX fo
 
 -   [x] implement React Redux Correctly
 -   [ ] finish implementing for each component
--   [ ] finish one timbre as an example
--   [ ] update state and components to handle multiple timbres
+-   [x] finish one timbre as an example
+-   [x] update state and components to handle multiple timbres
+-   [ ] implement switching between currently viewed timbre
 -   [ ] style components
 -   [ ] merge with main branch
 
