@@ -6,7 +6,7 @@ import styles from './Parameters.module.css';
 
 const Patch = (props) => {
     return (
-        <div>
+        <div className={styles.container}>
             Source
             <SelectList
                 value={props.patch.source}
@@ -71,7 +71,7 @@ export default function Patches(props) {
     const dispatch = useDispatch();
 
     return (
-        <div className={styles.horizontalContainer}>
+        <div id="patches" className={styles.patchesContainer}>
             <Patch
                 patch={parameters.patch1}
                 onChange={(value) =>

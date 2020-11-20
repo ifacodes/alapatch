@@ -123,9 +123,9 @@ export default function Timbre(props) {
             <Mixer id={ids.mixer} />
             <Pitch id={ids.pitch} />
             <Filter id={ids.filter} />
+            <Amp id={ids.amp} />
             <div className="linebreak" style={lineBreak} />
             <EG id={ids.eg1} />
-            <Amp id={ids.amp} />
             <EG id={ids.eg2} />
             <LFO
                 id={ids.lfo1}

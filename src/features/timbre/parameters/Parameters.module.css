@@ -26,7 +26,22 @@
     width: 420px;
     height: 214px;
 }
-.horizontalContainer > .container {
+
+.patchesContainer {
+    font-size: small;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16pt 8pt 16pt 8pt;
+    margin: 10pt;
+    border: solid 1pt black;
+    width: 680px;
+    height: 214px;
+}
+
+.horizontalContainer > .container,
+.patchesContainer > .container {
     padding: 0 16pt;
     width: 100%;
     margin: 10pt 0;

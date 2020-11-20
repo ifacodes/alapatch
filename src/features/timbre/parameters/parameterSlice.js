@@ -273,7 +273,30 @@ const parametersSlice = createSlice({
                     modIntensity: 0,
                 },
                 patch2: {
-                    source: 'Amp EG',
+                    source: 'Filter EG',
+                    destination: 'Pitch',
+                    modIntensity: 0,
+                },
+                patch3: {
+                    source: 'LFO 1',
+                    destination: 'Pitch',
+                    modIntensity: 0,
+                },
+                patch4: {
+                    source: 'LFO 2',
+                    destination: 'Pitch',
+                    modIntensity: 0,
+                },
+            },
+            'patches2': {
+                id: 'patches2',
+                patch1: {
+                    source: 'Filter EG',
+                    destination: 'Pitch',
+                    modIntensity: 0,
+                },
+                patch2: {
+                    source: 'Filter EG',
                     destination: 'Pitch',
                     modIntensity: 0,
                 },

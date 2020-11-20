@@ -49,8 +49,12 @@ const timbreSlice = createSlice({
                 lfo2: 'lfo6',
             },
         },
+        currentTimbre: 'timbre1',
     }),
     reducers: {
+        timbreCurrentUpdate(state, action) {
+            state.currentTimbre = action.payload;
+        },
         timbreAdded: timbreAdapter.addOne,
         timbreUpdated: timbreAdapter.updateOne,
     },
@@ -63,6 +67,10 @@ export const {
     selectIds,
 } = timbreAdapter.getSelectors((state) => state.timbres);
 
-export const { timbreAdded, timbreUpdated } = timbreSlice.actions;
+export const {
+    timbreCurrentUpdate,
+    timbreAdded,
+    timbreUpdated,
+} = timbreSlice.actions;
 
 export default timbreSlice.reducer;
