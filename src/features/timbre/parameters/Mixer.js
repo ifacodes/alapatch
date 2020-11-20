@@ -10,6 +10,7 @@ export default function Mixer(props) {
 
     return (
         <div className={styles.container}>
+            Volume 1
             <Slider
                 min={0}
                 max={127}
@@ -23,6 +24,7 @@ export default function Mixer(props) {
                     )
                 }
             />
+            Volume 2
             <Slider
                 min={0}
                 max={127}
@@ -36,6 +38,7 @@ export default function Mixer(props) {
                     )
                 }
             />
+            Volume 3
             <Slider
                 className={styles.slider}
                 min={0}

@@ -10,6 +10,7 @@ export default function EG(props) {
 
     return (
         <div className={styles.container}>
+            Attack
             <Slider
                 parameter={parameters.attack}
                 min={0}
@@ -23,6 +24,7 @@ export default function EG(props) {
                     )
                 }
             />
+            Decay
             <Slider
                 parameter={parameters.decay}
                 min={0}
@@ -36,6 +38,7 @@ export default function EG(props) {
                     )
                 }
             />
+            Sustain
             <Slider
                 parameter={parameters.sustain}
                 min={0}
@@ -49,6 +52,7 @@ export default function EG(props) {
                     )
                 }
             />
+            Release
             <Slider
                 parameter={parameters.release}
                 min={0}
@@ -62,6 +66,7 @@ export default function EG(props) {
                     )
                 }
             />
+            EG Reset
             <Checkbox
                 parameter={parameters.egReset}
                 onChange={(value) =>

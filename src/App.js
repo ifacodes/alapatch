@@ -7,7 +7,7 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <Timbre id="timbre1" />
-                <Timbre id="timbre2" />
+                {/*<Timbre id="timbre2" />*/}
             </header>
         </div>
     );

@@ -1,8 +1,16 @@
 import React from 'react';
 import RCSlider, { createSliderWithTooltip } from 'rc-slider';
-import './index.css';
+import Select from 'react-select';
+import './rcSelectTheme.css';
 
 const SliderWithToolTip = createSliderWithTooltip(RCSlider);
+
+const SelectStyle = {
+    control: (provided) => ({
+        ...provided,
+        width: '100%',
+    }),
+};
 
 const Slider = (props) => {
     return (
@@ -17,17 +25,22 @@ const Slider = (props) => {
 };
 
 const SelectList = (props) => {
-    const options = props.list.map((option, index) => (
-        <option value={option} key={index}>
-            {option}
-        </option>
-    ));
     return (
+<<<<<<< HEAD
         <select
             value={props.value}
             onChange={(e) => props.onChange(e.target.value)}>
             {options}
         </select>
+=======
+        <Select
+            value={{ value: props.value }}
+            options={props.list}
+            getOptionLabel={(option) => `${option.value}`}
+            onChange={(e) => props.onChange(e.value)}
+            styles={SelectStyle}
+        />
+>>>>>>> v2-styling-react-select
     );
 };
 

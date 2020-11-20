@@ -10,6 +10,7 @@ export default function Amp(props) {
 
     return (
         <div className={styles.container}>
+            Amp Level
             <Slider
                 parameter={parameters.ampLevel}
                 min={0}
@@ -23,6 +24,7 @@ export default function Amp(props) {
                     )
                 }
             />
+            PanPot
             <Slider
                 parameter={parameters.panpot}
                 min={-63}
@@ -36,6 +38,7 @@ export default function Amp(props) {
                     )
                 }
             />
+            Amp Keyboard Tracking
             <Slider
                 parameter={parameters.ampTrack}
                 min={-63}
@@ -49,6 +52,7 @@ export default function Amp(props) {
                     )
                 }
             />
+            Distortion
             <Checkbox
                 parameter={parameters.distortion}
                 onChange={(value) =>

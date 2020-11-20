@@ -10,13 +10,14 @@ export default function Filter(props) {
 
     return (
         <div className={styles.container}>
+            Filter Type
             <SelectList
                 value={parameters.filterType}
                 list={[
-                    '-24db Low Pass',
-                    '-12db Low Pass',
-                    'Band Pass',
-                    'High Pass',
+                    { value: '-24db Low Pass' },
+                    { value: '-12db Low Pass' },
+                    { value: 'Band Pass' },
+                    { value: 'High Pass' },
                 ]}
                 onChange={(value) =>
                     dispatch(
@@ -27,6 +28,7 @@ export default function Filter(props) {
                     )
                 }
             />
+            Cutoff
             <Slider
                 parameter={parameters.cutoff}
                 min={0}
@@ -40,6 +42,7 @@ export default function Filter(props) {
                     )
                 }
             />
+            Resonance
             <Slider
                 parameter={parameters.resonance}
                 min={0}
@@ -53,6 +56,7 @@ export default function Filter(props) {
                     )
                 }
             />
+            EG Intensity
             <Slider
                 parameter={parameters.egIntensity}
                 min={-63}
@@ -66,6 +70,7 @@ export default function Filter(props) {
                     )
                 }
             />
+            Keyboard Tracking
             <Slider
                 parameter={parameters.keyboardTrack}
                 min={-63}

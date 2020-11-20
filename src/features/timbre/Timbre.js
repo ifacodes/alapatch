@@ -9,114 +9,155 @@ import Amp from './parameters/Amp';
 import LFO from './parameters/LFO';
 import { selectById } from './timbreSlice.js';
 
-const style = {
+const timbreStyle = {
     display: 'flex',
+    flexWrap: 'wrap',
     flexDirection: 'row',
+    justifyContent: 'center',
+};
+
+const lineBreak = {
+    width: '100%',
 };
 
 export function Timbre(props) {
     const ids = useSelector((state) => selectById(state, props.id));
     return (
-        <div style={style}>
+        <div style={timbreStyle}>
             <VCO
                 id={ids.vco1}
                 waveforms={[
-                    'Saw',
-                    'Square',
-                    'Triangle',
-                    'Sine',
-                    'Vox Wave',
-                    'DWGS',
-                    'Noise',
-                    'Audio In',
+                    { value: 'Saw' },
+                    { value: 'Square' },
+                    { value: 'Triangle' },
+                    { value: 'Sine' },
+                    { value: 'Vox Wave' },
+                    { value: 'DWGS' },
+                    { value: 'Noise' },
+                    { value: 'Audio In' },
                 ]}
                 dwgsOrModTypeName="DWGS"
                 dwgsOrModType={[
-                    'SynSine1',
-                    'SynSine2',
-                    'SynSine3',
-                    'SynSine4',
-                    'SynSine5',
-                    'SynSine6',
-                    'SynSine7',
-                    'SynBass1',
-                    'SynBass2',
-                    'SynBass3',
-                    'SynBass4',
-                    'SynBass5',
-                    'SynBass6',
-                    'SynBass7',
-                    'SynWave1',
-                    'SynWave2',
-                    'SynWave3',
-                    'SynWave4',
-                    'SynWave5',
-                    'SynWave6',
-                    'SynWave7',
-                    'SynWave8',
-                    'SynWave9',
-                    '5thWave1',
-                    '5thWave2',
-                    '5thWave3',
-                    'Digi1',
-                    'Digi2',
-                    'Digi3',
-                    'Digi4',
-                    'Digi5',
-                    'Digi6',
-                    'Digi7',
-                    'Digi8',
-                    'Endless',
-                    'E.Piano1',
-                    'E.Piano2',
-                    'E.Piano3',
-                    'E.Piano4',
-                    'Organ1',
-                    'Organ2',
-                    'Organ3',
-                    'Organ4',
-                    'Organ5',
-                    'Organ6',
-                    'Organ7',
-                    'Clav1',
-                    'Clav2',
-                    'Guitar1',
-                    'Guitar2',
-                    'Guitar3',
-                    'Bass1',
-                    'Bass2',
-                    'Bass3',
-                    'Bass4',
-                    'Bass5',
-                    'Bell1',
-                    'Bell2',
-                    'Bell3',
-                    'Bell4',
-                    'Voice1',
-                    'Voice2',
-                    'Voice3',
-                    'Voice4',
+                    { value: 'SynSine1' },
+                    { value: 'SynSine2' },
+                    { value: 'SynSine3' },
+                    { value: 'SynSine4' },
+                    { value: 'SynSine5' },
+                    { value: 'SynSine6' },
+                    { value: 'SynSine7' },
+                    { value: 'SynBass1' },
+                    { value: 'SynBass2' },
+                    { value: 'SynBass3' },
+                    { value: 'SynBass4' },
+                    { value: 'SynBass5' },
+                    { value: 'SynBass6' },
+                    { value: 'SynBass7' },
+                    { value: 'SynWave1' },
+                    { value: 'SynWave2' },
+                    { value: 'SynWave3' },
+                    { value: 'SynWave4' },
+                    { value: 'SynWave5' },
+                    { value: 'SynWave6' },
+                    { value: 'SynWave7' },
+                    { value: 'SynWave8' },
+                    { value: 'SynWave9' },
+                    { value: '5thWave1' },
+                    { value: '5thWave2' },
+                    { value: '5thWave3' },
+                    { value: 'Digi1' },
+                    { value: 'Digi2' },
+                    { value: 'Digi3' },
+                    { value: 'Digi4' },
+                    { value: 'Digi5' },
+                    { value: 'Digi6' },
+                    { value: 'Digi7' },
+                    { value: 'Digi8' },
+                    { value: 'Endless' },
+                    { value: 'E.Piano1' },
+                    { value: 'E.Piano2' },
+                    { value: 'E.Piano3' },
+                    { value: 'E.Piano4' },
+                    { value: 'Organ1' },
+                    { value: 'Organ2' },
+                    { value: 'Organ3' },
+                    { value: 'Organ4' },
+                    { value: 'Organ5' },
+                    { value: 'Organ6' },
+                    { value: 'Organ7' },
+                    { value: 'Clav1' },
+                    { value: 'Clav2' },
+                    { value: 'Guitar1' },
+                    { value: 'Guitar2' },
+                    { value: 'Guitar3' },
+                    { value: 'Bass1' },
+                    { value: 'Bass2' },
+                    { value: 'Bass3' },
+                    { value: 'Bass4' },
+                    { value: 'Bass5' },
+                    { value: 'Bell1' },
+                    { value: 'Bell2' },
+                    { value: 'Bell3' },
+                    { value: 'Bell4' },
+                    { value: 'Voice1' },
+                    { value: 'Voice2' },
+                    { value: 'Voice3' },
+                    { value: 'Voice4' },
                 ]}
             />
             <VCO
                 id={ids.vco2}
+<<<<<<< HEAD
                 waveforms={['Saw', 'Square', 'Triangle']}
+=======
+                waveforms={[
+                    { value: 'Saw' },
+                    { value: 'Square' },
+                    { value: 'Triangle' },
+                ]}
+>>>>>>> v2-styling-react-select
                 dwgsOrModTypeName="Mod Type"
-                dwgsOrModType={['Off', 'Ring', 'Sync', 'RingSync']}
+                dwgsOrModType={[
+                    { value: 'Off' },
+                    { value: 'Ring' },
+                    { value: 'Sync' },
+                    { value: 'RingSync' },
+                ]}
             />
             <Mixer id={ids.mixer} />
             <Pitch id={ids.pitch} />
             <Filter id={ids.filter} />
+<<<<<<< HEAD
+=======
+            <div className="linebreak" style={lineBreak} />
+>>>>>>> v2-styling-react-select
             <EG id={ids.eg1} />
             <Amp id={ids.amp} />
             <EG id={ids.eg2} />
             <LFO
                 id={ids.lfo1}
+<<<<<<< HEAD
                 waveforms={['Saw', 'Square 1', 'Triangle', 'Sample & Hold']}
             />
             <LFO
                 id={ids.lfo2}
                 waveforms={['Saw', 'Square 2', 'Sine', 'Sample & Hold']}
+=======
+                waveforms={[
+                    { value: 'Saw' },
+                    { value: 'Square 1' },
+                    { value: 'Triangle' },
+                    { value: 'Sample & Hold' },
+                ]}
+            />
+            <LFO
+                id={ids.lfo2}
+                waveforms={[
+                    { value: 'Saw' },
+                    { value: 'Square 2' },
+                    { value: 'Sine' },
+                    { value: 'Sample & Hold' },
+                ]}
+>>>>>>> v2-styling-react-select
             />
         </div>
     );

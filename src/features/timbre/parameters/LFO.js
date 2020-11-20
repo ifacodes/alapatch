@@ -10,6 +10,7 @@ export default function LFO(props) {
 
     return (
         <div className={styles.container}>
+            LFO Waveform
             <SelectList
                 value={parameters.waveform}
                 list={props.waveforms}
@@ -22,6 +23,7 @@ export default function LFO(props) {
                     )
                 }
             />
+            Key Sync
             <SelectList
                 value={parameters.keySync}
                 list={['Off', 'Timbre', 'Voice']}
@@ -34,6 +36,7 @@ export default function LFO(props) {
                     )
                 }
             />
+            Tempo Sync
             <Checkbox
                 parameter={parameters.tempoSync}
                 onChange={(value) =>
@@ -45,6 +48,7 @@ export default function LFO(props) {
                     )
                 }
             />
+            Frequency
             <Slider
                 parameter={parameters.frequency}
                 onChange={(value) =>
