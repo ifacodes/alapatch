@@ -8,3 +8,31 @@
 .lineBreak {
     width: 100%;
 }
+
+.buttonContainer {
+    position: fixed;
+    top: 0;
+    left: 25%;
+}
+
+.buttonContainer > button {
+    background: white;
+    color: slategrey;
+    font-size: 1em;
+    margin: 0.75em 1em;
+    padding: 0.25em 1em;
+    border: 2px solid slategrey;
+    border-radius: 3px;
+    outline: none;
+}
+
+.buttonContainer > button:hover {
+    background: white;
+    color: slateblue;
+    border: 2px solid slateblue;
+}
+.buttonContainer > button:focus {
+    background: slateblue;
+    color: white;
+    border: 2px solid slateblue;
+}

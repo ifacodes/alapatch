@@ -3,6 +3,7 @@ import Timbre from './Timbre';
 import Vocoder from './Vocoder';
 import { useDispatch, useSelector } from 'react-redux';
 import { timbreCurrentUpdate } from './timbreSlice';
+import styles from './Timbre.module.css';
 
 export default function TimbreSwitcher(props) {
     const currentTimbre = useSelector((state) => state.timbres.currentTimbre);
@@ -15,8 +16,8 @@ export default function TimbreSwitcher(props) {
 
     return (
         <div>
-            <div>
-                <button onClick={(e) => handleClick(e, 'timbre1')}>
+            <div className={styles.buttonContainer}>
+                <button autoFocus onClick={(e) => handleClick(e, 'timbre1')}>
                     set to timbre 1
                 </button>
                 <button onClick={(e) => handleClick(e, 'timbre2')}>
