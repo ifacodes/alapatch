@@ -87,3 +87,98 @@ export default function Filter(props) {
         </div>
     );
 }
+
+export const VocoderFilter = (props) => {
+    const parameters = useSelector((state) => selectById(state, props.id));
+    const dispatch = useDispatch();
+    return (
+        <div className={styles.container}>
+            Cutoff
+            <Slider
+                parameter={parameters.cutoff}
+                min={0}
+                max={127}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { cutoff: value },
+                        })
+                    )
+                }
+            />
+            Resonance
+            <Slider
+                parameter={parameters.resonance}
+                min={0}
+                max={127}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { resonance: value },
+                        })
+                    )
+                }
+            />
+            EF Sense
+            <Slider
+                parameter={parameters.efSense}
+                min={0}
+                max={127}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { efSense: value },
+                        })
+                    )
+                }
+            />
+        </div>
+    );
+};
+
+export const FCMod = (props) => {
+    const parameters = useSelector((state) => selectById(state, props.id));
+    const dispatch = useDispatch();
+    return (
+        <div className={styles.container}>
+            Source
+            <SelectList
+                value={parameters.source}
+                list={[
+                    { value: 'Amp EG' },
+                    { value: 'LFO 1' },
+                    { value: 'LFO 2' },
+                    { value: 'Velocity' },
+                    { value: 'Keyboard Track' },
+                    { value: 'Pitch Bend' },
+                    { value: 'Mod Wheel' },
+                ]}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { source: value },
+                        })
+                    )
+                }
+            />
+            Intensity
+            <Slider
+                parameter={parameters.intensity}
+                min={0}
+                max={127}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { intensity: value },
+                        })
+                    )
+                }
+            />
+        </div>
+    );
+};

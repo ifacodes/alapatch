@@ -20,7 +20,7 @@ const lineBreak = {
     width: '100%',
 };
 
-export function Timbre(props) {
+export default function Timbre(props) {
     const ids = useSelector((state) => selectById(state, props.id));
     return (
         <div style={timbreStyle}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
-import { Slider, SelectList } from '../../helpers/Helpers';
+import { Slider, SelectList, Checkbox } from '../../helpers/Helpers';
 import styles from './Parameters.module.css';
 
 export default function VCO(props) {
@@ -39,7 +39,7 @@ export default function VCO(props) {
             Waveform Mod
             <Slider
                 min={0}
-                max={100}
+                max={127}
                 parameter={parameters.waveMod}
                 onChange={(value) =>
                     dispatch(
@@ -53,7 +53,7 @@ export default function VCO(props) {
             LFO Mod
             <Slider
                 min={0}
-                max={100}
+                max={127}
                 parameter={parameters.lfoMod}
                 onChange={(value) =>
                     dispatch(
@@ -67,3 +67,67 @@ export default function VCO(props) {
         </div>
     );
 }
+
+export const AudioIn = (props) => {
+    const parameters = useSelector((state) => selectById(state, props.id));
+    const dispatch = useDispatch();
+
+    return (
+        <div className={styles.container}>
+            Gate
+            <Slider
+                min={0}
+                max={127}
+                parameter={parameters.gate}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { gate: value },
+                        })
+                    )
+                }
+            />
+            Threshold
+            <Slider
+                min={0}
+                max={127}
+                parameter={parameters.threshold}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { threshold: value },
+                        })
+                    )
+                }
+            />
+            HPF Level
+            <Slider
+                min={0}
+                max={127}
+                parameter={parameters.hpfLevel}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { hpfLevel: value },
+                        })
+                    )
+                }
+            />
+            HPF Gate
+            <Checkbox
+                parameter={parameters.hpfGate}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { hpfGate: value },
+                        })
+                    )
+                }
+            />
+        </div>
+    );
+};

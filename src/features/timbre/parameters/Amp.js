@@ -67,3 +67,67 @@ export default function Amp(props) {
         </div>
     );
 }
+
+export const VocoderAmp = (props) => {
+    const parameters = useSelector((state) => selectById(state, props.id));
+    const dispatch = useDispatch();
+
+    return (
+        <div className={styles.container}>
+            Amp Level
+            <Slider
+                parameter={parameters.ampLevel}
+                min={0}
+                max={127}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { ampLevel: value },
+                        })
+                    )
+                }
+            />
+            Direct Level
+            <Slider
+                parameter={parameters.directLevel}
+                min={0}
+                max={127}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { directLevel: value },
+                        })
+                    )
+                }
+            />
+            Amp Keyboard Tracking
+            <Slider
+                parameter={parameters.ampTrack}
+                min={-63}
+                max={63}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { ampTrack: value },
+                        })
+                    )
+                }
+            />
+            Distortion
+            <Checkbox
+                parameter={parameters.distortion}
+                onChange={(value) =>
+                    dispatch(
+                        parameterUpdated({
+                            id: props.id,
+                            changes: { distortion: value },
+                        })
+                    )
+                }
+            />
+        </div>
+    );
+};
