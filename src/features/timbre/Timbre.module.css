@@ -1,0 +1,10 @@
+.timbreStyle {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.lineBreak {
+    width: 100%;
+}

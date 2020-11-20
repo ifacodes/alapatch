@@ -8,22 +8,12 @@ import EG from './parameters/EG';
 import LFO from './parameters/LFO';
 import { VocoderFilter, FCMod } from './parameters/Filter';
 import { VocoderAmp } from './parameters/Amp';
-
-const timbreStyle = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
-};
-
-const lineBreak = {
-    width: '100%',
-};
+import styles from './Timbre.module.css';
 
 export default function Vocoder(props) {
     const ids = useSelector((state) => selectById(state, props.id));
     return (
-        <div style={timbreStyle}>
+        <div className={styles.timbreStyle}>
             <VCO
                 id={ids.vco}
                 waveforms={[
@@ -109,7 +99,7 @@ export default function Vocoder(props) {
             <Pitch id={ids.pitch} />
             <VocoderFilter id={ids.filter} />
             <FCMod id={ids.fcMod} />
-            <div className="linebreak" style={lineBreak} />
+            <div className={styles.lineBreak} />
             <VocoderAmp id={ids.amp} />
             <EG id={ids.eg} />
             <LFO id={ids.lfo1} />

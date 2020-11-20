@@ -9,22 +9,12 @@ import Amp from './parameters/Amp';
 import LFO from './parameters/LFO';
 import Patches from './parameters/Patches';
 import { selectById } from './timbreSlice.js';
-
-const timbreStyle = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
-};
-
-const lineBreak = {
-    width: '100%',
-};
+import styles from './Timbre.module.css';
 
 export default function Timbre(props) {
     const ids = useSelector((state) => selectById(state, props.id));
     return (
-        <div style={timbreStyle}>
+        <div className={styles.timbreStyle}>
             <VCO
                 id={ids.vco1}
                 waveforms={[
@@ -124,7 +114,7 @@ export default function Timbre(props) {
             <Pitch id={ids.pitch} />
             <Filter id={ids.filter} />
             <Amp id={ids.amp} />
-            <div className="linebreak" style={lineBreak} />
+            <div className={styles.lineBreak} />
             <EG id={ids.eg1} />
             <EG id={ids.eg2} />
             <LFO
