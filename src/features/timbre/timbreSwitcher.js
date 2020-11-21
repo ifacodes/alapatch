@@ -2,6 +2,7 @@ import React from 'react';
 import Timbre from './Timbre';
 import Vocoder from './Vocoder';
 import Effects from './Effects';
+import Arpeggio from './Arpeggio';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import styles from './Timbre.module.css';
 
@@ -33,6 +34,9 @@ export default function TimbreSwitcher(props) {
         </TabPanel>
         <TabPanel>
           <Effects id="effects" />
+        </TabPanel>
+        <TabPanel>
+          <Arpeggio id="arpeggio" />
         </TabPanel>
       </Tabs>
     </div>

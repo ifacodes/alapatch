@@ -43,6 +43,8 @@ const parametersSlice = createSlice({
       'modfx',
       'delay',
       'eq',
+      'arpeggA',
+      'arpeggB',
     ],
     entities: {
       vco1: {
@@ -356,6 +358,22 @@ const parametersSlice = createSlice({
         lowGain: 0,
         highFrequency: 1.0,
         highGain: 0,
+      },
+      arpeggA: {
+        id: 'arpeggA',
+        tempo: 20,
+        resolution: '1/24',
+        gate: 0,
+        type: 'Up',
+        range: 1,
+      },
+      arpeggB: {
+        id: 'arpeggB',
+        latch: false,
+        swing: 0,
+        keySync: false,
+        lastStep: 1,
+        target: 'Both',
       },
     },
   }),

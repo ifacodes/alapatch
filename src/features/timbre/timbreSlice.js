@@ -5,7 +5,7 @@ const timbreAdapter = createEntityAdapter({});
 const timbreSlice = createSlice({
   name: 'timbre',
   initialState: timbreAdapter.getInitialState({
-    ids: ['timbre1', 'timbre2', 'vocoder', 'effects', 'arpeggiator'],
+    ids: ['timbre1', 'timbre2', 'vocoder', 'effects', 'arpeggio'],
     entities: {
       timbre1: {
         id: 'timbre1',
@@ -55,6 +55,10 @@ const timbreSlice = createSlice({
         modfx: 'modfx',
         delay: 'delay',
         eq: 'eq',
+      },
+      arpeggio: {
+        arpeggA: 'arpeggA',
+        arpeggB: 'arpeggB',
       },
     },
     currentTimbre: 'timbre1',
