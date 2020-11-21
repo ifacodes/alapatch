@@ -10,6 +10,7 @@ export default function Amp(props) {
 
     return (
         <div className={styles.container}>
+            <span className={styles.header}>{`${props.name}`}</span>
             Amp Level
             <Slider
                 parameter={parameters.ampLevel}
@@ -74,6 +75,7 @@ export const VocoderAmp = (props) => {
 
     return (
         <div className={styles.container}>
+            <span className={styles.header}>{`${props.name}`}</span>
             Amp Level
             <Slider
                 parameter={parameters.ampLevel}

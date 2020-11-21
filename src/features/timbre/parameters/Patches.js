@@ -72,6 +72,7 @@ export default function Patches(props) {
 
     return (
         <div id="patches" className={styles.patchesContainer}>
+            <span className={styles.header}>{`${props.name}`}</span>
             <Patch
                 patch={parameters.patch1}
                 onChange={(value) =>

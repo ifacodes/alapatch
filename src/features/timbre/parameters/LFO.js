@@ -10,6 +10,7 @@ export default function LFO(props) {
 
     return (
         <div className={styles.container}>
+            <span className={styles.header}>{`${props.name}`}</span>
             LFO Waveform
             <SelectList
                 value={parameters.waveform}

@@ -10,6 +10,7 @@ export default function Pitch(props) {
 
     return (
         <div className={styles.horizontalContainer}>
+            <span className={styles.header}>{`${props.name}`}</span>
             <div className={styles.container}>
                 Voice Assign
                 <SelectList

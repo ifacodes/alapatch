@@ -8,6 +8,8 @@ import EG from './parameters/EG';
 import LFO from './parameters/LFO';
 import { VocoderFilter, FCMod } from './parameters/Filter';
 import { VocoderAmp } from './parameters/Amp';
+import Levels from './parameters/Levels'
+import Pans from './parameters/Pans'
 import styles from './Timbre.module.css';
 
 export default function Vocoder(props) {
@@ -15,6 +17,7 @@ export default function Vocoder(props) {
     return (
         <div className={styles.timbreStyle}>
             <VCO
+                name="VCO"
                 id={ids.vco}
                 waveforms={[
                     { value: 'Saw' },
@@ -94,16 +97,18 @@ export default function Vocoder(props) {
                     { value: 'Voice4' },
                 ]}
             />
-            <AudioIn id={ids.audioIn} />
-            <Mixer id={ids.mixer} />
-            <Pitch id={ids.pitch} />
-            <VocoderFilter id={ids.filter} />
-            <FCMod id={ids.fcMod} />
+            <AudioIn name="Audio In" id={ids.audioIn} />
+            <Mixer name="Mixer" id={ids.mixer} />
+            <Pitch name="Pitch" id={ids.pitch} />
+            <VocoderFilter name="Filter" id={ids.filter} />
+            <FCMod name="FC Mod" id={ids.fcMod} />
             <div className={styles.lineBreak} />
-            <VocoderAmp id={ids.amp} />
-            <EG id={ids.eg} />
-            <LFO id={ids.lfo1} />
-            <LFO id={ids.lfo2} />
+            <VocoderAmp name="Amp" id={ids.amp} />
+            <EG name="EG" id={ids.eg} />
+            <LFO name="LFO 1" id={ids.lfo1} />
+            <LFO name="LFO 2" id={ids.lfo2} />
+            <Levels name="Levels" id={ids.levels} />
+            <Pans name="Pans" id={ids.pans} />
         </div>
     );
 }

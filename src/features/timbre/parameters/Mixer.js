@@ -10,6 +10,7 @@ export default function Mixer(props) {
 
     return (
         <div className={styles.container}>
+            <span className={styles.header}>{`${props.name}`}</span>
             Volume 1
             <Slider
                 min={0}

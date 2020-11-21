@@ -10,6 +10,7 @@ export default function Filter(props) {
 
     return (
         <div className={styles.container}>
+            <span className={styles.header}>{`${props.name}`}</span>
             Filter Type
             <SelectList
                 value={parameters.filterType}
@@ -93,6 +94,7 @@ export const VocoderFilter = (props) => {
     const dispatch = useDispatch();
     return (
         <div className={styles.container}>
+            <span className={styles.header}>{`${props.name}`}</span>
             Cutoff
             <Slider
                 parameter={parameters.cutoff}
@@ -144,6 +146,7 @@ export const FCMod = (props) => {
     const dispatch = useDispatch();
     return (
         <div className={styles.container}>
+            <span className={styles.header}>{`${props.name}`}</span>
             Source
             <SelectList
                 value={parameters.source}

@@ -16,6 +16,7 @@ export default function Timbre(props) {
     return (
         <div className={styles.timbreStyle}>
             <VCO
+                name="VCO 1"
                 id={ids.vco1}
                 waveforms={[
                     { value: 'Saw' },
@@ -96,6 +97,7 @@ export default function Timbre(props) {
                 ]}
             />
             <VCO
+                name="VCO 2"
                 id={ids.vco2}
                 waveforms={[
                     { value: 'Saw' },
@@ -110,14 +112,15 @@ export default function Timbre(props) {
                     { value: 'RingSync' },
                 ]}
             />
-            <Mixer id={ids.mixer} />
-            <Pitch id={ids.pitch} />
-            <Filter id={ids.filter} />
-            <Amp id={ids.amp} />
+            <Mixer name="Mixer" id={ids.mixer} />
+            <Pitch name="Pitch" id={ids.pitch} />
+            <Filter name="Filter" id={ids.filter} />
+            <Amp name="Amp"id={ids.amp} />
             <div className={styles.lineBreak} />
-            <EG id={ids.eg1} />
-            <EG id={ids.eg2} />
+            <EG name="EG 1" id={ids.eg1} />
+            <EG name="EG 2" id={ids.eg2} />
             <LFO
+                name="LFO 1"
                 id={ids.lfo1}
                 waveforms={[
                     { value: 'Saw' },
@@ -127,6 +130,7 @@ export default function Timbre(props) {
                 ]}
             />
             <LFO
+                name="LFO 2"
                 id={ids.lfo2}
                 waveforms={[
                     { value: 'Saw' },
@@ -135,7 +139,7 @@ export default function Timbre(props) {
                     { value: 'Sample & Hold' },
                 ]}
             />
-            <Patches id={ids.patches} />
+            <Patches name="Patches" id={ids.patches} />
         </div>
     );
 }

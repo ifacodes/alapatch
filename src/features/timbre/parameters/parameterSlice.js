@@ -311,6 +311,28 @@ const parametersSlice = createSlice({
                     modIntensity: 0,
                 },
             },
+            'levels': {
+                id: 'levels',
+                level1: 0,
+                level2: 0,
+                level3: 0,
+                level4: 0,
+                level5: 0,
+                level6: 0,
+                level7: 0,
+                level8: 0
+            },
+            'pans': {
+                id: 'pans',
+                pan1: 0,
+                pan2: 0,
+                pan3: 0,
+                pan4: 0,
+                pan5: 0,
+                pan6: 0,
+                pan7: 0,
+                pan8: 0
+            }
         },
     }),
     reducers: {

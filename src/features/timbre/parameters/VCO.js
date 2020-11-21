@@ -10,6 +10,7 @@ export default function VCO(props) {
     const dispatch = useDispatch();
     return (
         <div className={styles.container}>
+            <span className={styles.header}>{`${props.name}`}</span>
             Waveform
             <SelectList
                 value={parameters.waveform}
@@ -74,6 +75,7 @@ export const AudioIn = (props) => {
 
     return (
         <div className={styles.container}>
+            <span className={styles.header}>{`${props.name}`}</span>
             Gate
             <Slider
                 min={0}

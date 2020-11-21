@@ -10,6 +10,7 @@ export default function EG(props) {
 
     return (
         <div className={styles.container}>
+            <span className={styles.header}>{`${props.name}`}</span>
             Attack
             <Slider
                 parameter={parameters.attack}

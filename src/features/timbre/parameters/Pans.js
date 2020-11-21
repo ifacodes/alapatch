@@ -4,7 +4,7 @@ import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider} from '../../helpers/Helpers';
 import styles from './Parameters.module.css';
 
-export default function Levels(props) {
+export default function Pans(props) {
     const parameters = useSelector((state) => selectById(state, props.id));
     const dispatch = useDispatch();
 
@@ -12,58 +12,58 @@ export default function Levels(props) {
         <div className={styles.horizontalContainer}>
             <span className={styles.header}>{`${props.name}`}</span>
             <div className={styles.container}>
-            Level 1
+            Pan 1
             <Slider
                 min={0}
                 max={127}
-                parameter={parameters.level1}
+                parameter={parameters.pan1}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { level1: value },
+                            changes: { pan1: value },
                         })
                     )
                 }
             />
-            Level 2
+            Pan 2
             <Slider
                 min={0}
                 max={127}
-                parameter={parameters.level2}
+                parameter={parameters.pan2}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { level2: value },
+                            changes: { pan2: value },
                         })
                     )
                 }
             />
-            Level 3
+            Pan 3
             <Slider
                 min={0}
                 max={127}
-                parameter={parameters.level3}
+                parameter={parameters.pan3}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { level3: value },
+                            changes: { pan3: value },
                         })
                     )
                 }
             />
-            Level 4
+            Pan 4
             <Slider
                 min={0}
                 max={127}
-                parameter={parameters.level4}
+                parameter={parameters.pan4}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { level4: value },
+                            changes: { pan4: value },
                         })
                     )
                 }
@@ -71,58 +71,58 @@ export default function Levels(props) {
             </div>
             <div className={styles.divider}/>
             <div className={styles.container}>
-            Level 5
+            Pan 5
             <Slider
                 min={0}
                 max={127}
-                parameter={parameters.level5}
+                parameter={parameters.pan5}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { level5: value },
+                            changes: { pan5: value },
                         })
                     )
                 }
             />
-            Level 6
+            Pan 6
             <Slider
                 min={0}
                 max={127}
-                parameter={parameters.level6}
+                parameter={parameters.pan6}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { level6: value },
+                            changes: { pan6: value },
                         })
                     )
                 }
             />
-            Level 7
+            Pan 7
             <Slider
                 min={0}
                 max={127}
-                parameter={parameters.level7}
+                parameter={parameters.pan7}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { level7: value },
+                            changes: { pan7: value },
                         })
                     )
                 }
             />
-            Level 8
+            Pan 8
             <Slider
                 min={0}
                 max={127}
-                parameter={parameters.level8}
+                parameter={parameters.pan8}
                 onChange={(value) =>
                     dispatch(
                         parameterUpdated({
                             id: props.id,
-                            changes: { level8: value },
+                            changes: { pan8: value },
                         })
                     )
                 }

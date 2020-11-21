@@ -47,6 +47,8 @@ const timbreSlice = createSlice({
                 amp: 'amp3',
                 lfo1: 'lfo5',
                 lfo2: 'lfo6',
+                levels: 'levels',
+                pans: 'pans'
             },
         },
         currentTimbre: 'timbre1',
