@@ -6,13 +6,14 @@ Alapatch currently only supports loading and saving patch files in the .SYSEX fo
 
 # Branch TODO List
 
--   [x] implement React Redux Correctly
--   [ ] finish implementing for each component
--   [x] finish one timbre as an example
--   [x] update state and components to handle multiple timbres
--   [x] implement switching between currently viewed timbre
--   [ ] style components
--   [ ] merge with main branch
+- [x] implement React Redux Correctly
+- [x] finish implementing for each component
+- [x] finish one timbre as an example
+- [x] update state and components to handle multiple timbres
+- [x] implement switching between currently viewed timbre
+- [ ] make a home screen!
+- [ ] style components
+- [ ] merge with main branch
 
 # Link to the MicroKORG Midi Implementation
 
