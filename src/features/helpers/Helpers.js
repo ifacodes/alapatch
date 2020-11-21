@@ -38,12 +38,15 @@ const SelectList = (props) => {
 
 const Checkbox = (props) => {
     return (
+        <div>
+        <span>{`${props.name}:`}</span>
         <input
             type="checkbox"
             value={props.parameter}
             defaultChecked={props.parameter}
             onChange={(e) => props.onChange(e.target.checked)}
         />
+        </div>
     );
 };
 

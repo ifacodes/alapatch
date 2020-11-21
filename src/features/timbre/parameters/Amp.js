@@ -53,8 +53,8 @@ export default function Amp(props) {
                     )
                 }
             />
-            Distortion
             <Checkbox
+                name="Distortion"
                 parameter={parameters.distortion}
                 onChange={(value) =>
                     dispatch(
@@ -118,8 +118,8 @@ export const VocoderAmp = (props) => {
                     )
                 }
             />
-            Distortion
             <Checkbox
+                name="Distortion"
                 parameter={parameters.distortion}
                 onChange={(value) =>
                     dispatch(

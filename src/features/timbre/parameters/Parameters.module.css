@@ -4,6 +4,7 @@
 }
 
 .container {
+    position: relative;
     font-size: small;
     display: inline-flex;
     flex-direction: column;
@@ -15,10 +16,32 @@
     line-height: 1.5em;
 }
 .container > * {
-    margin: 2.5pt 0;
+    margin: 3pt 0;
+}
+
+.header {
+    font-size: 1.5em;
+    line-height: 1.25em;
+    text-align: center;
+    background-color: white;
+    padding: 0 .25em 0.075em;
+    border-left: 1px solid slategrey;
+    border-right: 1px solid slategrey;
+    box-sizing: border-box;
+}
+.container > .header {
+    position: absolute;
+    top: -7.5%;
+    left: 12%;
+}
+.horizontalContainer > .header, .patchesContainer > .header {
+    position: absolute;
+    top: -5.25%;
+    left: 6%;
 }
 
 .horizontalContainer {
+    position: relative;
     font-size: small;
     display: inline-flex;
     flex-direction: row;
@@ -32,6 +55,7 @@
 }
 
 .patchesContainer {
+    position: relative;
     font-size: small;
     display: inline-flex;
     flex-direction: row;
@@ -61,3 +85,4 @@
 .patchesContainer > .divider {
     width: 4px;
 }
+

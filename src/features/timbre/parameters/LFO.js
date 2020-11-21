@@ -37,8 +37,8 @@ export default function LFO(props) {
                     )
                 }
             />
-            Tempo Sync
             <Checkbox
+                name="Tempo Sync"
                 parameter={parameters.tempoSync}
                 onChange={(value) =>
                     dispatch(

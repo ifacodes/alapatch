@@ -249,3 +249,16 @@
     border-width: 4px 4px 0;
     border-top-color: #6c6c6c;
 }
+span {
+    font-size: 1em;
+    line-height: 1.5em;
+}
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    transform: matrix(1.5, 0, 0, 1.5, 0, 1.5);
+    margin: 0.75em 1em;
+}
+[type="checkbox"]:checked {
+    filter: hue-rotate(40deg);
+}
+

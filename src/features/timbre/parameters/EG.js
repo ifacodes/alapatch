@@ -67,8 +67,8 @@ export default function EG(props) {
                     )
                 }
             />
-            EG Reset
             <Checkbox
+                name="EG Reset"
                 parameter={parameters.egReset}
                 onChange={(value) =>
                     dispatch(

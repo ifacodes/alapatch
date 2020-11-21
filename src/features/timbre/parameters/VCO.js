@@ -118,8 +118,8 @@ export const AudioIn = (props) => {
                     )
                 }
             />
-            HPF Gate
             <Checkbox
+                name="HPF Gate"
                 parameter={parameters.hpfGate}
                 onChange={(value) =>
                     dispatch(
