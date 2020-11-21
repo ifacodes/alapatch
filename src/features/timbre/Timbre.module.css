@@ -1,12 +1,15 @@
 .timbreStyle {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
+
 }
 
-.lineBreak {
-    width: 100%;
+@media screen and (min-width: 1824) {
+    .lineBreak {
+        width: 100%;
+    }
 }
 
 .buttonContainer {
@@ -26,19 +29,30 @@
     border: 2px solid slateblue;
 }
 
+.tabs {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .tabList {
-    position: fixed;
+    border-bottom: 1px solid black;
     display: inline-flex;
     flex-direction: row;
     list-style-type: none;
+    justify-content: center;
     top: 0;
-    left: 30%;
-}
+    padding: 0;
+    margin: 0;
+    width: 100vw;
 
+    background: white;
+}
 .tab {
+    width: 78px;
     background: white;
     color: slategrey;
-    font-size: 1em;
+    font-size: 0.75em;
     margin: 0.75em 1em;
     padding: 0.25em 1em;
     border: 2px solid slategrey;
@@ -73,6 +87,26 @@
     }
 }
 .tabPanel {
+
+    padding: 1em 0;
+    height: 100%;
     animation: slideeffect 0.6s ease-in-out;
     opacity: 1;
+    overflow-y: scroll;
+}
+.tabPanel::-webkit-scrollbar {
+    width: 0.25em;
+}
+   
+.tabPanel::-webkit-scrollbar-track, .tabPanel::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    
+}
+.tabPanel:hover::-webkit-scrollbar-track {
+    background-color: lightgray;
+}
+   
+.tabPanel:hover::-webkit-scrollbar-thumb {
+    background-color: slateblue;
+    border-radius: 6px;
 }
