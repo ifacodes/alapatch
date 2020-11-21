@@ -1,112 +1,110 @@
 .timbreStyle {
-    display: inline-flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
 }
 
 @media screen and (min-width: 1824) {
-    .lineBreak {
-        width: 100%;
-    }
+  .lineBreak {
+    width: 100%;
+  }
 }
 
 .buttonContainer {
-    position: fixed;
-    top: 0;
-    left: 25%;
+  position: fixed;
+  top: 0;
+  left: 25%;
 }
 
 .buttonContainer > button:hover {
-    background: white;
-    color: slateblue;
-    border: 2px solid slateblue;
+  background: white;
+  color: slateblue;
+  border: 2px solid slateblue;
 }
 .buttonContainer > button:focus {
-    background: slateblue;
-    color: white;
-    border: 2px solid slateblue;
+  background: slateblue;
+  color: white;
+  border: 2px solid slateblue;
 }
 
 .tabs {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .tabList {
-    border-bottom: 1px solid black;
-    display: inline-flex;
-    flex-direction: row;
-    list-style-type: none;
-    justify-content: center;
-    top: 0;
-    padding: 0;
-    margin: 0;
-    width: 100vw;
+  border-bottom: 1px solid black;
+  display: inline-flex;
+  flex-direction: row;
+  list-style-type: none;
+  justify-content: center;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
 
-    background: white;
+  background: white;
 }
 .tab {
-    width: 78px;
-    background: white;
-    color: slategrey;
-    font-size: 0.75em;
-    margin: 0.75em 1em;
-    padding: 0.25em 1em;
-    border: 2px solid slategrey;
-    border-radius: 3px;
-    outline: none;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none;
+  width: 78px;
+  background: white;
+  color: slategrey;
+  font-size: 0.75em;
+  margin: 0.75em 1em;
+  padding: 0.25em 1em;
+  border: 2px solid slategrey;
+  border-radius: 3px;
+  outline: none;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 .tab:hover {
-    background: white;
-    color: slateblue;
-    border: 2px solid slateblue;
+  background: white;
+  color: slateblue;
+  border: 2px solid slateblue;
 }
 .selected,
 .selected:hover {
-    background: slateblue;
-    color: white;
-    border: 2px solid slateblue;
-    transition: 0.2s ease-in-out;
+  background: slateblue;
+  color: white;
+  border: 2px solid slateblue;
+  transition: 0.2s ease-in-out;
 }
 @keyframes slideeffect {
-    0% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .tabPanel {
-
-    padding: 1em 0;
-    height: 100%;
-    animation: slideeffect 0.6s ease-in-out;
-    opacity: 1;
-    overflow-y: scroll;
+  padding: 1em 0;
+  height: 100%;
+  animation: slideeffect 0.6s ease-in-out;
+  opacity: 1;
+  overflow-y: scroll;
 }
 .tabPanel::-webkit-scrollbar {
-    width: 0.25em;
+  width: 0.25em;
 }
-   
-.tabPanel::-webkit-scrollbar-track, .tabPanel::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    
+
+.tabPanel::-webkit-scrollbar-track,
+.tabPanel::-webkit-scrollbar-thumb {
+  background-color: transparent;
 }
 .tabPanel:hover::-webkit-scrollbar-track {
-    background-color: lightgray;
+  background-color: lightgray;
 }
-   
+
 .tabPanel:hover::-webkit-scrollbar-thumb {
-    background-color: slateblue;
-    border-radius: 6px;
+  background-color: slateblue;
+  border-radius: 6px;
 }
