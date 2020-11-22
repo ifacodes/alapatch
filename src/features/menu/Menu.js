@@ -11,7 +11,7 @@ export default function MainMenu(props) {
 
   return (
     <div>
-      <div className={`menu menu-${open}`}>
+      <div className={open ? 'menu menu-true' : 'menu menu-false scale-out-tl'}>
         <img src={logo} className="menu-logo" alt="logo" />
         <header className="menu-title">Alapatch</header>
         <div className="menu-button-container">
@@ -22,7 +22,11 @@ export default function MainMenu(props) {
         </div>
       </div>
       {!open && (
-        <button className="menu-open-button" onClick={HandleClick}></button>
+        <button
+          className="menu-open-button"
+          onClick={HandleClick}
+          onAnimationEnd={() => setOpen(!open)}
+        />
       )}
     </div>
   );
