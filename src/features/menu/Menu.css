@@ -1,17 +1,21 @@
 .menu {
-  position: absolute;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+    position: absolute;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    min-width: 100vw;
 }
 
 .scale-out-tl {
-  -webkit-animation: scale-out-tl 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
-    both;
-  animation: scale-out-tl 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    -webkit-animation: scale-out-tl 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+        both;
+    animation: scale-out-tl 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 
 /* ----------------------------------------------
@@ -27,102 +31,92 @@
  * ----------------------------------------
  */
 @-webkit-keyframes scale-out-tl {
-  0% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-    opacity: 1;
-  }
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 1;
+    }
 }
 @keyframes scale-out-tl {
-  0% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-    opacity: 1;
-  }
-}
-
-.menu-true {
-  top: 0;
-  left: 0;
-  min-height: 100vh;
-  min-width: 100vw;
-}
-
-.menu-false {
-  left: -100vw;
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 1;
+    }
 }
 
 .menu-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 .menu-title {
-  color: #1c1d21;
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-  line-height: 1em;
-  font-size: calc(10px + 10vmin);
-  margin: 0 0 0.5em 0;
+    color: #1c1d21;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    line-height: 1em;
+    font-size: calc(10px + 10vmin);
+    margin: 0 0 0.5em 0;
 }
 
 .menu-button,
 .menu-open-button {
-  background: transparent;
-  display: inline-block;
-  margin: 1em;
-  padding: 0.35em 1em;
-  border: 0.1em solid slateblue;
-  border-radius: 0.12em;
-  color: slateblue;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1em;
-  font-weight: 300;
-  text-align: center;
-  outline: none;
-  transition: all 0.2s ease-in-out;
+    background: transparent;
+    display: inline-block;
+    margin: 1em;
+    padding: 0.35em 1em;
+    border: 0.1em solid slateblue;
+    border-radius: 0.12em;
+    color: slateblue;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    text-align: center;
+    outline: none;
+    transition: all 0.2s ease-in-out;
 }
 .menu-button:hover {
-  color: white;
-  background: slateblue;
+    color: white;
+    background: slateblue;
 }
 
 .menu-open-button:hover {
-  color: white;
-  background: #ef476f;
+    color: white;
+    background: #ef476f;
 }
 
 .menu-open-button {
-  line-height: 1em;
-  position: absolute;
-  padding: 0.13em 0.3em;
-  color: #ef476f;
-  border: 0.09em solid #ef476f;
-  margin: 0;
-  top: 0.55em;
-  left: 0.5em;
+    height: 1.5em;
+    line-height: 0.9em;
+    position: absolute;
+    padding: 0.13em 0.3em;
+    color: #ef476f;
+    border: 0.09em solid #ef476f;
+    margin: 0;
+    top: 0.55em;
+    left: 0.5em;
 }
 
 /* change how the button is handled when screen is smaller then 880px*/
 
 .menu-open-button::before {
-  content: '\2630';
+    content: '\2630';
 }
