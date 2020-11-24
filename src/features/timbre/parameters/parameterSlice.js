@@ -372,6 +372,7 @@ const defaultState = {
             target: 'Both',
         },
     },
+    unsaved: false,
 };
 
 const parametersAdapter = createEntityAdapter({});
@@ -380,9 +381,14 @@ const parametersSlice = createSlice({
     name: 'parameters',
     initialState: parametersAdapter.getInitialState(defaultState),
     reducers: {
-        parameterAdded: parametersAdapter.addOne,
-        parameterUpdated: parametersAdapter.updateOne,
+        parameterUpdated(state, action) {
+            parametersAdapter.updateOne(state, action.payload);
+            state.unsaved = true;
+        },
         parameterRefreshAll: () => defaultState,
+        parameterFlipUnsaved(state) {
+            state.unsaved = !state.unsaved;
+        },
     },
 });
 
@@ -397,6 +403,7 @@ export const {
     parameterAdded,
     parameterUpdated,
     parameterRefreshAll,
+    parameterFlipUnsaved,
 } = parametersSlice.actions;
 
 export default parametersSlice.reducer;
