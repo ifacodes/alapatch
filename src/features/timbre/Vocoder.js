@@ -8,8 +8,8 @@ import EG from './parameters/EG';
 import LFO from './parameters/LFO';
 import { VocoderFilter, FCMod } from './parameters/Filter';
 import { VocoderAmp } from './parameters/Amp';
-import Levels from './parameters/Levels'
-import Pans from './parameters/Pans'
+import Levels from './parameters/Levels';
+import Pans from './parameters/Pans';
 import styles from './Timbre.module.css';
 
 export default function Vocoder(props) {
@@ -102,9 +102,9 @@ export default function Vocoder(props) {
             <Pitch name="Pitch" id={ids.pitch} />
             <VocoderFilter name="Filter" id={ids.filter} />
             <FCMod name="FC Mod" id={ids.fcMod} />
-            <div className={styles.lineBreak} />
             <VocoderAmp name="Amp" id={ids.amp} />
             <EG name="EG" id={ids.eg} />
+            <div className={styles.lineBreak} />
             <LFO name="LFO 1" id={ids.lfo1} />
             <LFO name="LFO 2" id={ids.lfo2} />
             <Levels name="Levels" id={ids.levels} />

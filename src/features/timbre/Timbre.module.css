@@ -5,7 +5,29 @@
     justify-content: center;
 }
 
-@media screen and (min-width: 1824) {
+.lineBreak {
+    width: 0%;
+}
+
+@media only screen and (max-width: 1920px) {
+    .lineBreak {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1440px) {
+    .lineBreak {
+        width: 0%;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .lineBreak {
+        width: 0%;
+    }
+}
+
+@media only screen and (max-width: 920px) {
     .lineBreak {
         width: 100%;
     }
