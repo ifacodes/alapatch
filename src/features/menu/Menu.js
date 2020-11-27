@@ -1,16 +1,12 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; // probably temporarily here
-import {
-    parameterRefreshAll,
-    parameterFlipUnsaved,
-} from '../timbre/parameters/parameterSlice'; // probably temporarily here
+import { parameterRefreshAll } from '../timbre/parameters/parameterSlice'; // probably temporarily here
 import logo from '../../1f3b9.svg';
 import './Menu.css';
 
 // for things such as (do you want to save? or do you want to reset things?)
 const Modal = ({ show, handleSave, handleNoSave, handleClose }) => {
     const modalDisplay = show ? 'modal modal-display' : 'modal modal-hide';
-    const dispatch = useDispatch();
     return (
         <div className={modalDisplay}>
             <div className="modal-main">
@@ -46,10 +42,6 @@ export default function MainMenu() {
     });
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
-
-    const unSavedUpdate = useCallback(() => dispatch(parameterFlipUnsaved), [
-        dispatch,
-    ]);
 
     const HandleClick = () => {
         setOpen({
