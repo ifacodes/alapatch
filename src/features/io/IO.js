@@ -1,32 +1,34 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
+import './IO.css';
 
 const baseStyle = {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '20px',
+    height: '4.25em',
+    padding: '0.5em',
     borderWidth: 2,
     borderRadius: 2,
-    borderColor: '#eeeeee',
+    borderColor: 'slategrey',
     borderStyle: 'dashed',
-    backgroundColor: '#fafafa',
-    color: '#bdbdbd',
+    backgroundColor: 'ghostwhite',
+    color: 'slategray',
     outline: 'none',
     transition: 'border .24s ease-in-out',
 };
 
 const activeStyle = {
-    borderColor: '#2196f3',
+    borderColor: 'slateblue',
 };
 
 const acceptStyle = {
-    borderColor: '#00e676',
+    borderColor: 'mediumseagreen',
 };
 
 const rejectStyle = {
-    borderColor: '#ff1744',
+    borderColor: 'crimson',
 };
 
 const Dropzone = ({ setFile }) => {
@@ -54,16 +56,20 @@ const Dropzone = ({ setFile }) => {
     );
 
     return (
-        <section className="dropzone-container">
+        <div className="dropzone-container">
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
                 <p>Drag and drop file here, or click to select</p>
             </div>
-        </section>
+        </div>
     );
 };
 
-export default function IO(props) {
+export default function IO({ show }) {
+    const display = show
+        ? 'dropzone-container show'
+        : 'dropzone-container hide';
+
     const [file, setFile] = useState(null);
 
     useEffect(() => {
@@ -71,7 +77,7 @@ export default function IO(props) {
     });
 
     return (
-        <div className="io">
+        <div className={display}>
             <Dropzone className="dropzone-modal" setFile={setFile} />
         </div>
     );

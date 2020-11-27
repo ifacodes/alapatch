@@ -1,0 +1,24 @@
+.dropzone-container {
+    background: white;
+    padding: 0.95em;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(7.5em);
+    box-sizing: border-box;
+    width: 14em;
+    z-index: 100;
+    border: 0.09em solid slategray;
+    border-radius: 6px;
+}
+
+.show {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import IO from '../io/IO';
 import { useDispatch, useSelector } from 'react-redux'; // probably temporarily here
 import { parameterRefreshAll } from '../timbre/parameters/parameterSlice'; // probably temporarily here
 import logo from '../../1f3b9.svg';
@@ -40,7 +41,10 @@ export default function MainMenu() {
         className: '',
         openState: true,
     });
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState({
+        saveCheck: false,
+        ioModal: false,
+    });
     const dispatch = useDispatch();
 
     const HandleClick = () => {
@@ -59,22 +63,26 @@ export default function MainMenu() {
         });
     };
 
-    const modalState = () => {
-        setShowModal(!showModal);
+    const showSaveCheck = () => {
+        setShowModal({ ...showModal, saveCheck: !showModal.saveCheck });
+    };
+
+    const showIOModal = () => {
+        setShowModal({ ...showModal, ioModal: !showModal.ioModal });
     };
 
     return (
         <div>
             <Modal
-                show={showModal}
-                handleClose={modalState}
+                show={showModal.saveCheck}
+                handleClose={showSaveCheck}
                 handleSave={() => {
-                    modalState();
+                    showSaveCheck();
                     HandleClick(); // temporary while I implement the binary parsing stuff
                 }}
                 handleNoSave={() => {
                     dispatch(parameterRefreshAll());
-                    modalState();
+                    showSaveCheck();
                     HandleClick();
                 }}
             />
@@ -90,14 +98,20 @@ export default function MainMenu() {
                     <button
                         className="menu-button"
                         onClick={() => {
-                            !unsaved ? HandleClick() : modalState();
+                            !unsaved ? HandleClick() : showSaveCheck();
                         }}>
                         New Patch
                     </button>
-                    <button className="menu-button">Load Patch</button>
+                    <button
+                        className="menu-button"
+                        onClick={() => {
+                            !unsaved ? showIOModal() : showSaveCheck();
+                        }}>
+                        Load Patch
+                    </button>
                 </div>
             </div>
-
+            <IO show={showModal.ioModal} />
             <button className="menu-open-button" onClick={HandleClick} />
         </div>
     );
