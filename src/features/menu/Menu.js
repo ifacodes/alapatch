@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import IO from '../io/IO';
 import { useDispatch, useSelector } from 'react-redux'; // probably temporarily here
 import { parameterRefreshAll } from '../timbre/parameters/parameterSlice'; // probably temporarily here
@@ -6,31 +6,34 @@ import logo from '../../1f3b9.svg';
 import './Menu.css';
 
 // for things such as (do you want to save? or do you want to reset things?)
-const Modal = ({ show, handleSave, handleNoSave, handleClose }) => {
+const Modal = ({ children, show, setShow }) => {
+    const node = useRef();
     const modalDisplay = show ? 'modal modal-display' : 'modal modal-hide';
+
+    useEffect(() => {
+        const current = node.current;
+
+        const handleOutsideClick = (event) => {
+            console.log('clicking anywhere');
+            if (current.contains(event.target)) {
+                return;
+            } else setShow();
+        };
+
+        if (show) {
+            document.addEventListener('mousedown', handleOutsideClick);
+        } else {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [show, setShow]);
+
     return (
-        <div className={modalDisplay}>
-            <div className="modal-main">
-                <span className="modal-header">Save Changes</span>
-                <span className="modal-text">
-                    Do you want to save your changes?
-                </span>
-                <button
-                    className="menu-button button-save"
-                    onClick={handleSave}>
-                    Save Changes
-                </button>
-                <button
-                    className="menu-button button-no-save"
-                    onClick={handleNoSave}>
-                    Don't Save
-                </button>
-                <button
-                    className="menu-button button-cancel"
-                    onClick={handleClose}>
-                    Cancel
-                </button>
-            </div>
+        <div ref={node} className={modalDisplay}>
+            {children}
         </div>
     );
 };
@@ -73,19 +76,37 @@ export default function MainMenu() {
 
     return (
         <div>
-            <Modal
-                show={showModal.saveCheck}
-                handleClose={showSaveCheck}
-                handleSave={() => {
-                    showSaveCheck();
-                    HandleClick(); // temporary while I implement the binary parsing stuff
-                }}
-                handleNoSave={() => {
-                    dispatch(parameterRefreshAll());
-                    showSaveCheck();
-                    HandleClick();
-                }}
-            />
+            <Modal show={showModal.saveCheck} setShow={showSaveCheck}>
+                <div className="modal-main">
+                    <span className="modal-header">Save Changes</span>
+                    <span className="modal-text">
+                        Do you want to save your changes?
+                    </span>
+                    <button
+                        className="menu-button button-save"
+                        onClick={() => {
+                            showSaveCheck();
+                            HandleClick();
+                        }} // temporary while I implement the binary parsing stuff
+                    >
+                        Save Changes
+                    </button>
+                    <button
+                        className="menu-button button-no-save"
+                        onClick={() => {
+                            dispatch(parameterRefreshAll());
+                            showSaveCheck();
+                            HandleClick();
+                        }}>
+                        Don't Save
+                    </button>
+                    <button
+                        className="menu-button button-cancel"
+                        onClick={showSaveCheck}>
+                        Cancel
+                    </button>
+                </div>
+            </Modal>
             <div
                 className={`menu ${open.className}`}
                 onAnimationEnd={AnimationEnd}>
@@ -111,7 +132,9 @@ export default function MainMenu() {
                     </button>
                 </div>
             </div>
-            <IO show={showModal.ioModal} />
+            <Modal show={showModal.ioModal} setShow={showIOModal}>
+                <IO />
+            </Modal>
             <button className="menu-open-button" onClick={HandleClick} />
         </div>
     );

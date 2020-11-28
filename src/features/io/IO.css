@@ -14,11 +14,3 @@
     border: 0.09em solid slategray;
     border-radius: 6px;
 }
-
-.show {
-    display: flex;
-}
-
-.hide {
-    display: none;
-}

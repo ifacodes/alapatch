@@ -65,11 +65,7 @@ const Dropzone = ({ setFile }) => {
     );
 };
 
-export default function IO({ show }) {
-    const display = show
-        ? 'dropzone-container show'
-        : 'dropzone-container hide';
-
+export default function IO() {
     const [file, setFile] = useState(null);
 
     useEffect(() => {
@@ -77,8 +73,10 @@ export default function IO({ show }) {
     });
 
     return (
-        <div className={display}>
+        <div className="dropzone-container">
             <Dropzone className="dropzone-modal" setFile={setFile} />
         </div>
     );
 }
+
+/* TODO -- possibly add clicking outside the modal to close it*/
