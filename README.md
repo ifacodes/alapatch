@@ -2,9 +2,9 @@
 
 Alapatch is a Patch Editor for the KORG microKorg Synthesizer, that allows you to design patches in a web editor with an easy to use GUI.
 
-Alapatch currently only supports loading and saving patch files in the .SYSEX format used internally in the microKORG, however future support for the .plg format may be a possibility. (because it needs to be reverse engineered still.)
+Alapatch currently only supports loading and saving patch files in the .SYSEX format used internally in the microKORG, however future support for the .plg format may be a possibility. (because I need to reverse engineer it still.)
 
-# Branch TODO List
+# TODO List
 
 -   [x] implement React Redux Correctly
 -   [x] finish implementing for each component
@@ -12,9 +12,12 @@ Alapatch currently only supports loading and saving patch files in the .SYSEX fo
 -   [x] update state and components to handle multiple timbres
 -   [x] implement switching between currently viewed timbre
 -   [x] make a home screen!
--   [ ] implement popup to confirm new patch if a patch is currently being worked on.
--   [ ] style components
--   [ ] merge with main branch
+-   [x] implement popup to confirm new patch if a patch is currently being worked on.
+-   [x] add file dropper.
+-   [x] style components (may restyle in later update)
+-   [ ] finish file loading and saving
+-   [ ] add testing cases
+-   [ ] add sending live updates thru midi (eventually. aim for 2.0.0)
 
 # Link to the MicroKORG Midi Implementation
 
