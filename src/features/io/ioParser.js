@@ -247,5 +247,6 @@ const parser = new Parser()
 
 // converts patch object to dump format the system uses
 function serialise(parser, object) {
+    // output object
     console.log(parser.encode(object));
 }
