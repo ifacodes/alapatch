@@ -110,7 +110,12 @@ export default function MainMenu() {
             <div
                 className={`menu ${open.className}`}
                 onAnimationEnd={AnimationEnd}>
-                <img src={logo} className="menu-logo" alt="logo" />
+                <img
+                    src={logo}
+                    className="menu-logo"
+                    alt="logo"
+                    draggable={false}
+                />
                 <header className="menu-title">
                     <h1>Alapatch</h1>
                     <h2>A microKORG Patch Editor</h2>
