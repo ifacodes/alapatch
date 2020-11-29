@@ -1,41 +1,5 @@
 import { Parser } from 'binary-parser-encoder';
 
-function parse(parser, binary) {
-    // check if the binary is a valid KORG-produced SYSEX file
-    if (binary.length !== 297) {
-        throw new Error('incorrect file length');
-    }
-    if (binary[0] !== 0xf0) {
-        throw new Error('first byte is not SYSEX byte');
-    }
-    if (binary[1] !== 0x42) {
-        throw new Error('manufacturer code is not KORG');
-    }
-    if (binary[4] !== 0x40) {
-        throw new Error('not a program dump');
-    }
-    if (binary[5] !== 0x00) {
-        // in all files found in the wild it's always zero
-        throw new Error('sixth byte is not zero');
-    }
-    if (binary[binary.length - 1] !== 0xf7) {
-        throw new Error('last byte is does not end SYSEX message');
-    }
-
-    const trimmedBinary = binary.slice(5, -1);
-    // every eigth byte is padding, so we remove it
-    const unpaddedBinary = trimmedBinary.filter((_, idx) => idx % 8);
-
-    const buffer = Buffer.from(
-        Buffer.from(unpaddedBinary).toString('hex'),
-        'hex'
-    );
-
-    console.log(parser.parse(buffer));
-
-    // do stuff with the parsed object
-}
-
 const timbre = new Parser()
     .int8('midiChannel') // in 7 bits
     .bit2('assignMode')
@@ -238,15 +202,56 @@ const parser = new Parser()
     .nest('timbre1', { type: timbre })
     // dummy bytes *see documentation
     .skip(56)
-    .nest('timbre2', { type: timbre })
-    // dummy bytes *see documentation
-    .skip(56)
-    .nest('vocoder', { type: vocoder })
-    // dummy bytes *see documentation
-    .skip(111);
+    .nest('timbre2', { type: timbre });
+// dummy bytes *see documentation
+//.skip(56)
+//.nest('vocoder', { type: vocoder })
+// dummy bytes *see documentation
+// .skip(111);
+
+function parse(parser, binary) {
+    // check if the binary is a valid KORG-produced SYSEX file
+    if (binary.length !== 297) {
+        throw new Error('incorrect file length');
+    }
+    if (binary[0] !== 0xf0) {
+        throw new Error('first byte is not SYSEX byte');
+    }
+    if (binary[1] !== 0x42) {
+        throw new Error('manufacturer code is not KORG');
+    }
+    if (binary[4] !== 0x40) {
+        throw new Error('not a program dump');
+    }
+    if (binary[5] !== 0x00) {
+        // in all files found in the wild it's always zero
+        throw new Error('sixth byte is not zero');
+    }
+    if (binary[binary.length - 1] !== 0xf7) {
+        throw new Error('last byte is does not end SYSEX message');
+    }
+
+    const trimmedBinary = binary.slice(5, -1);
+    // every eigth byte is padding, so we remove it
+    const unpaddedBinary = trimmedBinary.filter((_, idx) => idx % 8);
+
+    const buffer = Buffer.from(unpaddedBinary).toString('hex');
+
+    console.log(buffer);
+
+    console.log(parser.parse(unpaddedBinary));
+
+    // do stuff with the parsed object
+}
 
 // converts patch object to dump format the system uses
 function serialise(parser, object) {
     // output object
     console.log(parser.encode(object));
 }
+
+function Parse(object) {
+    return parse(parser, object);
+}
+
+export { Parse, serialise };

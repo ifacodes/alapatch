@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { Parse } from './ioParser';
 import './IO.css';
 
 const baseStyle = {
@@ -56,7 +57,7 @@ const Dropzone = ({ setFile }) => {
     );
 
     return (
-        <div className="dropzone-container">
+        <div className='dropzone-container'>
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
                 <p>Drag and drop file here, or click to select</p>
@@ -67,14 +68,25 @@ const Dropzone = ({ setFile }) => {
 
 export default function IO() {
     const [file, setFile] = useState(null);
+    const reader = new FileReader();
+
+    // turn file into array buffer for parsing
+    const fileToArrayBuffer = (f) => {
+        reader.onload = (e) => {
+            setFile(new Uint8Array(e.target.result));
+        };
+        reader.readAsArrayBuffer(f);
+    };
 
     useEffect(() => {
-        console.log(file);
+        if (file) {
+            console.log(Parse(file));
+        }
     });
 
     return (
-        <div className="dropzone-container">
-            <Dropzone className="dropzone-modal" setFile={setFile} />
+        <div className='dropzone-container'>
+            <Dropzone className='dropzone-modal' setFile={fileToArrayBuffer} />
         </div>
     );
 }
