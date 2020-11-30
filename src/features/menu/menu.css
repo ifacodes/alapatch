@@ -1,0 +1,54 @@
+.menu {
+  height: 100vh;
+  min-width: 15vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.menu-patch-container > * {
+  margin-top: 10pt;
+}
+
+input[type='text'] {
+  font-family: 'Roboto', sans-serif;
+  text-indent: 8pt;
+  width: 70%;
+  padding: 6pt 0;
+  outline: none;
+  border-radius: 4pt;
+  border: 1px solid gainsboro;
+}
+input[type='text']:hover {
+  border-color: silver;
+}
+input[type='text']:focus {
+  border: 2px solid dodgerblue;
+}
+
+.menu-button {
+  width: 65%;
+  display: block;
+  padding: 4pt;
+  margin: 8px auto;
+  outline: none;
+}
+
+h2 {
+  text-align: left;
+  font-size: x-large;
+  font-weight: 400;
+}
+
+.menu-file-input {
+  display: none;
+}
+
+.patch-settings {
+  font-size: small;
+  width: 75%;
+  margin: 10pt auto;
+  line-height: 1.5em;
+}
