@@ -425,7 +425,7 @@ const defaultState = {
     },
   },
   unsaved: false,
-  tabIndex: 0,
+  activeTab: 'Timbre1',
 };
 
 const parametersAdapter = createEntityAdapter({});
@@ -442,8 +442,8 @@ const parametersSlice = createSlice({
     parameterFlipUnsaved(state) {
       state.unsaved = !state.unsaved;
     },
-    parameterUpdateIndex(state, action) {
-      state.tabIndex = action.payload;
+    parameterUpdateTab(state, action) {
+      state.activeTab = action.payload;
     },
     parameterFromFile(state, action) {
       parametersAdapter.upsertMany(state, action.payload);
@@ -464,7 +464,7 @@ export const {
   parameterRefreshAll,
   parameterFlipUnsaved,
   parameterFromFile,
-  parameterUpdateIndex,
+  parameterUpdateTab,
 } = parametersSlice.actions;
 
 export default parametersSlice.reducer;

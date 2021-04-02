@@ -2,12 +2,12 @@ import { useRef, useState, useEffect } from 'react';
 import { Select } from '../utils/components';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  parameterUpdateIndex,
+  parameterUpdateTab,
   parameterUpdated,
   parameterFromFile,
   parameterRefreshAll,
   selectEntities,
-} from '../timbre/parameters/parameterSlice'; // probably temporarily here
+} from '../editor/parameters/parameterSlice'; // probably temporarily here
 import { return_store_from_file, return_file_from_store } from '../io';
 
 export default function Menu() {
@@ -106,7 +106,7 @@ export default function Menu() {
           disabled={state.patch.mode === 'Vocoder'}
           className='btn'
           onClick={() => {
-            dispatch(parameterUpdateIndex(0));
+            dispatch(parameterUpdateTab('Timbre1'));
           }}>
           Timbre 1
         </button>
@@ -114,7 +114,7 @@ export default function Menu() {
           disabled={state.patch.mode !== 'Multiple'}
           className='btn'
           onClick={() => {
-            dispatch(parameterUpdateIndex(1));
+            dispatch(parameterUpdateTab('Timbre2'));
           }}>
           Timbre 2
         </button>
@@ -122,21 +122,21 @@ export default function Menu() {
           disabled={state.patch.mode !== 'Vocoder'}
           className='btn'
           onClick={() => {
-            dispatch(parameterUpdateIndex(2));
+            dispatch(parameterUpdateTab('Vocoder'));
           }}>
           Vocoder
         </button>
         <button
           className='btn'
           onClick={() => {
-            dispatch(parameterUpdateIndex(3));
+            dispatch(parameterUpdateTab('Effects'));
           }}>
           Effects
         </button>
         <button
           className='btn'
           onClick={() => {
-            dispatch(parameterUpdateIndex(4));
+            dispatch(parameterUpdateTab('Arpeggio'));
           }}>
           Arpeggio
         </button>
