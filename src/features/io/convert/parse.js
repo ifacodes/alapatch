@@ -33,7 +33,7 @@ function build_patch(patch) {
   return {
     /* BYTES 0, 11 NOT 0, 12 */
     program_name: String.fromCharCode(...patch.slice(0, 12)),
-    /* BYTES 13 / 14 SKIPPED */
+    /* BYTES 12 / 13 SKIPPED */
     arp_trigger_length: patch[14],
     arp_trigger_pattern: toBitArray(patch[15]),
     voice_mode: getBits(patch[16], 4, 5),
@@ -52,11 +52,11 @@ function build_patch(patch) {
     eq_hi_gain: patch[27],
     eq_low_freq: patch[28],
     eq_low_gain: patch[29],
-    arp_tempo: patch.slice(30, 32).reduce((acc, curr) => acc + curr),
+    arp_tempo: (patch[30] << 8) + patch[31],
     arp_on_off: patch[32] & 0x80,
     arp_latch: patch[32] & 0x40,
     arp_target: getBits(patch[32], 4, 5),
-    arp_key_sync: patch[32] & 0x01,
+    arp_key_sync: patch[32] & 0x00,
     arp_type: getBits(patch[33], 0, 3),
     arp_range: getBits(patch[33], 4, 7),
     arp_gate_time: patch[34],

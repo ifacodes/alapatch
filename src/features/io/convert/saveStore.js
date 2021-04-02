@@ -40,7 +40,7 @@ export default function saveStoreState(state) {
         {
           ...state_patch({
             unused: { ...state.unusedPatch },
-            patch: { ...state.Patch },
+            patch: { ...state.patch },
             arpeggA: { ...state.arpeggA },
             arpeggB: { ...state.arpeggB },
             delay: { ...state.delay },

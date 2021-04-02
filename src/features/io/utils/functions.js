@@ -1,5 +1,19 @@
 const toBitArray = (n, b = 8) => [...Array(b)].map((x, i) => (n >> i) & 1);
 
+const fromBitArray = (array) => {
+  return (
+    0 |
+    (array[0] << 7) |
+    (array[1] << 6) |
+    (array[2] << 5) |
+    (array[3] << 4) |
+    (array[4] << 3) |
+    (array[5] << 2) |
+    (array[6] << 1) |
+    (array[7] << 0)
+  );
+};
+
 const getBits = (byte, indexStart, indexEnd = 7) =>
   parseInt(
     toBitArray(byte)
@@ -8,6 +22,15 @@ const getBits = (byte, indexStart, indexEnd = 7) =>
       .join(''),
     2
   );
+
+function buildByte(...args) {
+  // we take an objects, with the value, and the bits it takes up.
+  let byte = 0;
+  for (const element of arguments) {
+    byte = byte | (element.value << element.start);
+  }
+  return byte;
+}
 
 const signedNumber = (byte) => (byte > 63 ? (byte ^ 64) - 64 : byte);
 
@@ -29,4 +52,12 @@ function returnValue(setting, list) {
   }
 }
 
-export { toBitArray, getBits, signedNumber, returnFromList, returnValue };
+export {
+  toBitArray,
+  fromBitArray,
+  getBits,
+  buildByte,
+  signedNumber,
+  returnFromList,
+  returnValue,
+};
