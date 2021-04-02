@@ -30,7 +30,7 @@ export default function Menu() {
   }, [file, dispatch]);
 
   return (
-    <div className='flex flex-col justify-around border-solid border-r-2 border-gray-400 px-4'>
+    <div className='flex flex-col justify-around border-solid border-r border-black px-4'>
       <div className='menu-patch-container'>
         <div className='patch-name'>
           <input
@@ -51,21 +51,21 @@ export default function Menu() {
         </div>
         <div className='my-1 flex flex-col items-center'>
           <button
-            className='mx-4 my-1 bg-gray-100 rounded-md w-32 h-10 border-transparent hover:bg-gray-200'
+            className='btn'
             onClick={() => {
               dispatch(parameterRefreshAll());
             }}>
             New Patch
           </button>
           <button
-            className='mx-4 my-1 bg-gray-100 rounded-md w-32 h-10 border-transparent hover:bg-gray-200'
+            className='btn'
             onClick={() => {
               fileRef.current.click();
             }}>
             Load Patch
           </button>
           <button
-            className='mx-4 my-1 bg-gray-100 rounded-md w-32 h-10 border-transparent hover:bg-gray-200'
+            className='btn'
             onClick={() => {
               return_file_from_store(state);
             }}>
@@ -83,7 +83,7 @@ export default function Menu() {
         </div>
         <div className='patch-settings'>
           <Select
-            className=''
+            className='w-full bg-gray-100 rounded-md border-transparent hover:bg-gray-200 focus:bg-white focus:ring-1'
             value={state.patch.mode}
             list={[
               { value: 'Single' },
@@ -101,10 +101,10 @@ export default function Menu() {
           />
         </div>
       </div>
-      <div className='menu-timbre-select'>
+      <div className='my-1 flex flex-col items-center'>
         <button
           disabled={state.patch.mode === 'Vocoder'}
-          className='menu-button'
+          className='btn'
           onClick={() => {
             dispatch(parameterUpdateIndex(0));
           }}>
@@ -112,7 +112,7 @@ export default function Menu() {
         </button>
         <button
           disabled={state.patch.mode !== 'Multiple'}
-          className='menu-button'
+          className='btn'
           onClick={() => {
             dispatch(parameterUpdateIndex(1));
           }}>
@@ -120,29 +120,30 @@ export default function Menu() {
         </button>
         <button
           disabled={state.patch.mode !== 'Vocoder'}
-          className='menu-button'
+          className='btn'
           onClick={() => {
             dispatch(parameterUpdateIndex(2));
           }}>
           Vocoder
         </button>
         <button
-          className='menu-button'
+          className='btn'
           onClick={() => {
             dispatch(parameterUpdateIndex(3));
           }}>
           Effects
         </button>
         <button
-          className='menu-button'
+          className='btn'
           onClick={() => {
             dispatch(parameterUpdateIndex(4));
           }}>
           Arpeggio
         </button>
       </div>
-      <div className='menu-title'>
-        Alapatch <br /> A microKORG Patch Editor
+      <div className='w-full text-center text-xl font-semibold'>
+        <span className='text-3xl pb-6'>Alapatch</span> <br /> A microKORG Patch
+        Editor
       </div>
     </div>
   );
