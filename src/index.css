@@ -17,3 +17,12 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply mx-4 my-1 bg-gray-100 rounded-md w-32 h-10 border-transparent hover:bg-gray-200;
+  }
+  .btn:disabled {
+    @apply opacity-60 hover:bg-gray-100 cursor-default;
+  }
+}
