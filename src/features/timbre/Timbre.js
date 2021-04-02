@@ -9,12 +9,11 @@ import Amp from './parameters/Amp';
 import LFO from './parameters/LFO';
 import Patches from './parameters/Patches';
 import { selectById } from './timbreSlice.js';
-import styles from './Timbre.module.css';
 
 export default function Timbre(props) {
   const ids = useSelector((state) => selectById(state, props.id));
   return (
-    <div className={styles.timbreStyle}>
+    <div>
       <VCO
         name='VCO 1'
         id={ids.vco1}
@@ -118,7 +117,7 @@ export default function Timbre(props) {
       <Amp name='Amp' id={ids.amp} />
       <EG name='EG 1' id={ids.eg1} />
       <EG name='EG 2' id={ids.eg2} />
-      <div className={styles.lineBreak} />
+      <div />
       <LFO
         name='LFO 1'
         id={ids.lfo1}

@@ -2,15 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider, SelectList, Checkbox } from '../../helpers/Helpers';
-import styles from './Parameters.module.css';
 
 const ModFX = (props) => {
   const parameters = useSelector((state) => selectById(state, props.id));
   const dispatch = useDispatch();
 
   return (
-    <div className={styles.container}>
-      <span className={styles.header}>Mod FX</span>
+    <div>
+      <span>Mod FX</span>
       Mod Type
       <SelectList
         value={parameters.type}
@@ -65,8 +64,8 @@ const Delay = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={styles.container}>
-      <span className={styles.header}>Delay</span>
+    <div>
+      <span>Delay</span>
       Delay Type
       <SelectList
         value={parameters.type}
@@ -85,7 +84,7 @@ const Delay = (props) => {
         }
       />
       <Checkbox
-        name="Tempo Sync"
+        name='Tempo Sync'
         parameter={parameters.tempoSync}
         onChange={(value) =>
           dispatch(
@@ -169,8 +168,8 @@ const EQ = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={styles.container}>
-      <span className={styles.header}>EQ</span>
+    <div>
+      <span>EQ</span>
       Low EQ Frequency
       <SelectList
         labelFunction={(e) => `${e.value}kHz`}

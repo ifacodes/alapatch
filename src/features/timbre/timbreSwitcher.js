@@ -5,24 +5,18 @@ import Effects from './Effects';
 import Arpeggio from './Arpeggio';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useSelector } from 'react-redux';
-import styles from './Timbre.module.css';
 
 export default function TimbreSwitcher() {
   const index = useSelector((state) => state.parameters.tabIndex);
   return (
-    <div className={styles.tabs}>
-      <Tabs
-        className={styles.tabs}
-        selectedIndex={index}
-        onSelect={() => {}}
-        selectedTabClassName={styles.selected}
-        selectedTabPanelClassName={styles.tabPanel}>
-        <TabList className={styles.tabList}>
-          <Tab className={styles.tab}>Timbre 1</Tab>
-          <Tab className={styles.tab}>Timbre 2</Tab>
-          <Tab className={styles.tab}>Vocoder</Tab>
-          <Tab className={styles.tab}>Effects</Tab>
-          <Tab className={styles.tab}>Arpeggio</Tab>
+    <div>
+      <Tabs selectedIndex={index} onSelect={() => {}}>
+        <TabList>
+          <Tab>Timbre 1</Tab>
+          <Tab>Timbre 2</Tab>
+          <Tab>Vocoder</Tab>
+          <Tab>Effects</Tab>
+          <Tab>Arpeggio</Tab>
         </TabList>
 
         <TabPanel>

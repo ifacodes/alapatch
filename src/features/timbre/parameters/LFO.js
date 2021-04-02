@@ -2,15 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider, SelectList, Checkbox } from '../../helpers/Helpers';
-import styles from './Parameters.module.css';
 
 export default function LFO(props) {
   const parameters = useSelector((state) => selectById(state, props.id));
   const dispatch = useDispatch();
 
   return (
-    <div className={styles.lfo}>
-      <span className={styles.header}>{`${props.name}`}</span>
+    <div>
+      <span>{`${props.name}`}</span>
       LFO Waveform
       <SelectList
         value={parameters.waveform}

@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import './menu.css';
-import { SelectList } from '../helpers/Helpers';
+import { Select } from '../utils/components';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   parameterUpdateIndex,
@@ -31,10 +30,11 @@ export default function Menu() {
   }, [file, dispatch]);
 
   return (
-    <div className='menu'>
+    <div className='flex flex-col justify-around border-solid border-r-2 border-gray-400 px-4'>
       <div className='menu-patch-container'>
         <div className='patch-name'>
           <input
+            className='block w-full rounded-md bg-gray-100 border-transparent hover:bg-gray-200 focus:bg-white focus:ring-1'
             placeholder='Patch Name'
             type='text'
             maxLength='12'
@@ -49,32 +49,32 @@ export default function Menu() {
             }}
           />
         </div>
-        <div className='patch-load'>
+        <div className='my-1 flex flex-col items-center'>
           <button
-            className='menu-button'
+            className='mx-4 my-1 bg-gray-100 rounded-md w-32 h-10 border-transparent hover:bg-gray-200'
             onClick={() => {
               dispatch(parameterRefreshAll());
             }}>
             New Patch
           </button>
           <button
-            className='menu-button'
+            className='mx-4 my-1 bg-gray-100 rounded-md w-32 h-10 border-transparent hover:bg-gray-200'
             onClick={() => {
               fileRef.current.click();
             }}>
             Load Patch
           </button>
           <button
-            className='menu-button'
+            className='mx-4 my-1 bg-gray-100 rounded-md w-32 h-10 border-transparent hover:bg-gray-200'
             onClick={() => {
               return_file_from_store(state);
             }}>
             Save Patch
           </button>
           <input
+            className='hidden'
             type='file'
             accept='.syx'
-            className='menu-file-input'
             ref={fileRef}
             onChange={(e) => {
               loadFile(e.target.files[0]);
@@ -82,7 +82,8 @@ export default function Menu() {
           />
         </div>
         <div className='patch-settings'>
-          <SelectList
+          <Select
+            className=''
             value={state.patch.mode}
             list={[
               { value: 'Single' },

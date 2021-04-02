@@ -2,16 +2,15 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider, SelectList, Checkbox } from '../../helpers/Helpers';
-import styles from './Parameters.module.css';
 
 const ArpeggA = (props) => {
   const parameters = useSelector((state) => selectById(state, props.id));
   const dispatch = useDispatch();
 
   return (
-    <div className={styles.horizontalContainer}>
-      <span className={styles.header}>Arpeggio A.</span>
-      <div className={styles.container}>
+    <div>
+      <span>Arpeggio A.</span>
+      <div>
         Tempo
         <Slider
           min={20}
@@ -61,8 +60,8 @@ const ArpeggA = (props) => {
           }
         />
       </div>
-      <div className={styles.divider} />
-      <div className={styles.container}>
+      <div />
+      <div>
         Type
         <SelectList
           value={parameters.type}
@@ -107,11 +106,11 @@ const ArpeggB = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={styles.horizontalContainer}>
-      <span className={styles.header}>Arpeggio B.</span>
-      <div className={styles.container}>
+    <div>
+      <span>Arpeggio B.</span>
+      <div>
         <Checkbox
-          name="Latch"
+          name='Latch'
           parameter={parameters.latch}
           onChange={(value) =>
             dispatch(
@@ -137,7 +136,7 @@ const ArpeggB = (props) => {
           }
         />
         <Checkbox
-          name="Key Sync"
+          name='Key Sync'
           parameter={parameters.keySync}
           onChange={(value) =>
             dispatch(
@@ -149,8 +148,8 @@ const ArpeggB = (props) => {
           }
         />
       </div>
-      <div className={styles.divider} />
-      <div className={styles.container}>
+      <div />
+      <div>
         Last Step
         <SelectList
           labelFunction={(v) => `Step ${v.value}`}
