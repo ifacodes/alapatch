@@ -70,7 +70,7 @@ export default function Patches(props) {
   const dispatch = useDispatch();
 
   return (
-    <div id='patches'>
+    <div className={props.className} id='patches'>
       <span>{`${props.name}`}</span>
       <Patch
         patch={parameters.patch1}

@@ -8,7 +8,7 @@ export default function Filter(props) {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={props.className}>
       <span>{`${props.name}`}</span>
       Filter Type
       <SelectList
@@ -92,7 +92,7 @@ export const VocoderFilter = (props) => {
   const parameters = useSelector((state) => selectById(state, props.id));
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className={props.className}>
       <span>{`${props.name}`}</span>
       Cutoff
       <Slider

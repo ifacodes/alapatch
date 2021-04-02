@@ -8,7 +8,7 @@ export default function EG(props) {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={props.className}>
       <span>{`${props.name}`}</span>
       Attack
       <Slider

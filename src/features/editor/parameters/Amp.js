@@ -8,7 +8,7 @@ export default function Amp(props) {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={props.className}>
       <span>{`${props.name}`}</span>
       Amp Level
       <Slider
@@ -73,7 +73,7 @@ export const VocoderAmp = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={props.className}>
       <span>{`${props.name}`}</span>
       Amp Level
       <Slider

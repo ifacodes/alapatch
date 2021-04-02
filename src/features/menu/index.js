@@ -30,7 +30,7 @@ export default function Menu() {
   }, [file, dispatch]);
 
   return (
-    <div className='flex flex-col justify-around border-solid border-r border-black px-4'>
+    <div className='col-span-1 flex flex-col justify-around border-solid border-r border-black bg-white px-4'>
       <div className='menu-patch-container'>
         <div className='patch-name'>
           <input
@@ -83,7 +83,7 @@ export default function Menu() {
         </div>
         <div className='patch-settings'>
           <Select
-            className='w-full bg-gray-100 rounded-md border-transparent hover:bg-gray-200 focus:bg-white focus:ring-1'
+            className='w-full select'
             value={state.patch.mode}
             list={[
               { value: 'Single' },

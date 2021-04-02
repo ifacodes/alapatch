@@ -8,7 +8,7 @@ export default function LFO(props) {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={props.className}>
       <span>{`${props.name}`}</span>
       LFO Waveform
       <SelectList

@@ -1,70 +1,81 @@
 import React from 'react';
+import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
-import { Slider, SelectList, Checkbox } from '../../helpers/Helpers';
+import { Select } from '../../utils/components';
+import { Slider, Checkbox } from '../../helpers/Helpers';
 
 export default function VCO(props) {
   const parameters = useSelector((state) => selectById(state, props.id));
-
   const dispatch = useDispatch();
+
   return (
-    <div>
-      <span>{`${props.name}`}</span>
-      Waveform
-      <SelectList
-        value={parameters.waveform}
-        list={props.waveforms}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { waveform: value },
-            })
-          )
-        }
-      />
-      {`${props.dwgsOrModTypeName}`}
-      <SelectList
-        value={parameters.dwgsOrModType}
-        list={props.dwgsOrModType}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { dwgsOrModType: value },
-            })
-          )
-        }
-      />
-      Waveform Mod
-      <Slider
-        min={0}
-        max={127}
-        parameter={parameters.waveMod}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { waveMod: value },
-            })
-          )
-        }
-      />
-      LFO Mod
-      <Slider
-        min={0}
-        max={127}
-        parameter={parameters.lfoMod}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { lfoMod: value },
-            })
-          )
-        }
-      />
-    </div>
+    <Card className='col-span-2' header={props.name}>
+      <div className='flex items-center justify-between'>
+        <h3 className='text-lg font-semibold text-gray-900'>Waveform</h3>
+        <Select
+          className='select w-3/5'
+          value={parameters.waveform}
+          list={props.waveforms}
+          onChange={(value) =>
+            dispatch(
+              parameterUpdated({
+                id: props.id,
+                changes: { waveform: value },
+              })
+            )
+          }
+        />
+      </div>
+      <div className='flex items-center justify-between'>
+        <h3 className='text-lg font-semibold text-gray-900'>{`${props.dwgsOrModTypeName}`}</h3>
+        <Select
+          className='select w-3/5'
+          value={parameters.dwgsOrModType}
+          list={props.dwgsOrModType}
+          onChange={(value) =>
+            dispatch(
+              parameterUpdated({
+                id: props.id,
+                changes: { dwgsOrModType: value },
+              })
+            )
+          }
+        />
+      </div>
+      <div className='flex items-center justify-center'>
+        <h3 className='text-lg font-semibold text-gray-900'>Waveform Mod</h3>
+        <Slider
+          min={0}
+          max={127}
+          parameter={parameters.waveMod}
+          onChange={(value) =>
+            dispatch(
+              parameterUpdated({
+                id: props.id,
+                changes: { waveMod: value },
+              })
+            )
+          }
+        />
+      </div>
+      <div className='flex items-center justify-center'>
+        <h3 className='text-lg font-semibold text-gray-900'>LFO Mod</h3>
+        <Slider
+          min={0}
+          max={127}
+          parameter={parameters.lfoMod}
+          onChange={(value) =>
+            dispatch(
+              parameterUpdated({
+                id: props.id,
+                changes: { lfoMod: value },
+              })
+            )
+          }
+        />
+      </div>
+    </Card>
   );
 }
 
@@ -73,7 +84,7 @@ export const AudioIn = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={props.className}>
       <span>{`${props.name}`}</span>
       Gate
       <Slider

@@ -13,8 +13,9 @@ import { selectById } from './timbreSlice.js';
 export default function Timbre(props) {
   const ids = useSelector((state) => selectById(state, props.id));
   return (
-    <div>
+    <div className='h-screen grid grid-cols-8 grid-rows-3 gap-4 m-6'>
       <VCO
+        className='col-span-2'
         name='VCO 1'
         id={ids.vco1}
         waveforms={[
@@ -96,6 +97,7 @@ export default function Timbre(props) {
         ]}
       />
       <VCO
+        className='col-span-2'
         name='VCO 2'
         id={ids.vco2}
         waveforms={[
@@ -111,14 +113,14 @@ export default function Timbre(props) {
           { value: 'Ring Sync' },
         ]}
       />
-      <Mixer name='Mixer' id={ids.mixer} />
-      <Pitch name='Pitch' id={ids.pitch} />
-      <Filter name='Filter' id={ids.filter} />
-      <Amp name='Amp' id={ids.amp} />
-      <EG name='EG 1' id={ids.eg1} />
-      <EG name='EG 2' id={ids.eg2} />
-      <div />
+      <Mixer className='col-span-1' name='Mixer' id={ids.mixer} />
+      <Pitch className='col-span-3' name='Pitch' id={ids.pitch} />
+      <Filter className='col-span-2' name='Filter' id={ids.filter} />
+      <Amp className='col-span-2' name='Amp' id={ids.amp} />
+      <EG className='col-span-2' name='EG 1' id={ids.eg1} />
+      <EG className='col-span-2' name='EG 2' id={ids.eg2} />
       <LFO
+        className='col-span-2'
         name='LFO 1'
         id={ids.lfo1}
         waveforms={[
@@ -129,6 +131,7 @@ export default function Timbre(props) {
         ]}
       />
       <LFO
+        className='col-span-2'
         name='LFO 2'
         id={ids.lfo2}
         waveforms={[
@@ -138,7 +141,7 @@ export default function Timbre(props) {
           { value: 'Sample & Hold' },
         ]}
       />
-      <Patches name='Patches' id={ids.patches} />
+      <Patches className='col-span-2' name='Patches' id={ids.patches} />
     </div>
   );
 }

@@ -4,9 +4,9 @@ import Editor from './features/editor';
 
 function App() {
   return (
-    <div className='grid grid-cols-6 grid-rows-1 gap-4 h-screen'>
-      <Menu className='col-span-1' />
-      <Editor className='col-span-5' />
+    <div className='bg-gray-100 grid grid-cols-6 grid-rows-1 gap-4 h-screen'>
+      <Menu />
+      <Editor />
     </div>
   );
 }
