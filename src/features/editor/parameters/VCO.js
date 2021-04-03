@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
-import { Select } from '../../utils/components';
+import { Select, Knob } from '../../utils/components';
 import { Slider, Checkbox } from '../../helpers/Helpers';
 
 export default function VCO(props) {
@@ -11,10 +11,10 @@ export default function VCO(props) {
 
   return (
     <Card className='col-span-2' header={props.name}>
-      <div className='flex items-center justify-between'>
+      <div className='-mt-2 flex items-center justify-between'>
         <h3 className='text-lg font-semibold text-gray-900'>Waveform</h3>
         <Select
-          className='select w-3/5'
+          className='select w-4/6'
           value={parameters.waveform}
           list={props.waveforms}
           onChange={(value) =>
@@ -27,10 +27,10 @@ export default function VCO(props) {
           }
         />
       </div>
-      <div className='flex items-center justify-between'>
+      <div className='-mt-4 flex items-center justify-between'>
         <h3 className='text-lg font-semibold text-gray-900'>{`${props.dwgsOrModTypeName}`}</h3>
         <Select
-          className='select w-3/5'
+          className='select w-4/6'
           value={parameters.dwgsOrModType}
           list={props.dwgsOrModType}
           onChange={(value) =>
@@ -43,37 +43,37 @@ export default function VCO(props) {
           }
         />
       </div>
-      <div className='flex items-center justify-center'>
-        <h3 className='text-lg font-semibold text-gray-900'>Waveform Mod</h3>
-        <Slider
-          min={0}
-          max={127}
-          parameter={parameters.waveMod}
-          onChange={(value) =>
-            dispatch(
-              parameterUpdated({
-                id: props.id,
-                changes: { waveMod: value },
-              })
-            )
-          }
-        />
-      </div>
-      <div className='flex items-center justify-center'>
-        <h3 className='text-lg font-semibold text-gray-900'>LFO Mod</h3>
-        <Slider
-          min={0}
-          max={127}
-          parameter={parameters.lfoMod}
-          onChange={(value) =>
-            dispatch(
-              parameterUpdated({
-                id: props.id,
-                changes: { lfoMod: value },
-              })
-            )
-          }
-        />
+      <div className='mb-2 flex flex-row'>
+        <div className='w-1/2'>
+          <h3 className='text-lg font-semibold text-gray-900'>Waveform Mod</h3>
+          <Knob
+            maxValue={127}
+            value={parameters.waveMod}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id,
+                  changes: { waveMod: value },
+                })
+              )
+            }
+          />
+        </div>
+        <div className='w-1/2'>
+          <h3 className='text-lg font-semibold text-gray-900'>LFO Mod</h3>
+          <Knob
+            maxValue={127}
+            value={parameters.lfoMod}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id,
+                  changes: { lfoMod: value },
+                })
+              )
+            }
+          />
+        </div>
       </div>
     </Card>
   );

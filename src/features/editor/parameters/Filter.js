@@ -1,4 +1,6 @@
 import React from 'react';
+import Card from '../card';
+import { Select, Knob } from '../../utils/components';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider, SelectList } from '../../helpers/Helpers';
@@ -8,83 +10,102 @@ export default function Filter(props) {
   const dispatch = useDispatch();
 
   return (
-    <div className={props.className}>
-      <span>{`${props.name}`}</span>
-      Filter Type
-      <SelectList
-        value={parameters.filterType}
-        list={[
-          { value: '-24db Low Pass' },
-          { value: '-12db Low Pass' },
-          { value: 'Band Pass' },
-          { value: 'High Pass' },
-        ]}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { filterType: value },
-            })
-          )
-        }
-      />
-      Cutoff
-      <Slider
-        parameter={parameters.cutoff}
-        min={0}
-        max={127}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { cutoff: value },
-            })
-          )
-        }
-      />
-      Resonance
-      <Slider
-        parameter={parameters.resonance}
-        min={0}
-        max={127}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { resonance: value },
-            })
-          )
-        }
-      />
-      EG Intensity
-      <Slider
-        parameter={parameters.egIntensity}
-        min={-63}
-        max={63}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { egIntensity: value },
-            })
-          )
-        }
-      />
-      Keyboard Tracking
-      <Slider
-        parameter={parameters.keyboardTrack}
-        min={-63}
-        max={63}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { keyboardTrack: value },
-            })
-          )
-        }
-      />
-    </div>
+    <Card className={props.className} header={props.name}>
+      <div className='-mt-4 flex items-center justify-between'>
+        <h3 className='text-lg font-semibold text-gray-900'>Filter Type</h3>
+        <Select
+          className='select w-4/6'
+          value={parameters.filterType}
+          list={[
+            { value: '-24db Low Pass' },
+            { value: '-12db Low Pass' },
+            { value: 'Band Pass' },
+            { value: 'High Pass' },
+          ]}
+          onChange={(value) =>
+            dispatch(
+              parameterUpdated({
+                id: props.id,
+                changes: { filterType: value },
+              })
+            )
+          }
+        />
+      </div>
+      <div className='flex flex-row justify-evenly'>
+        <div className='flex flex-col w-1/2'>
+          <div>
+            <h3 className='text-lg font-semibold text-gray-900'>Cutoff</h3>
+            <Knob
+              value={parameters.cutoff}
+              maxValue={127}
+              onChange={(value) =>
+                dispatch(
+                  parameterUpdated({
+                    id: props.id,
+                    changes: { cutoff: value },
+                  })
+                )
+              }
+            />
+          </div>
+          <div className='pt-3'>
+            <h3 className='text-lg font-semibold text-gray-900'>Resonance</h3>
+            <Knob
+              value={parameters.resonance}
+              max={127}
+              onChange={(value) =>
+                dispatch(
+                  parameterUpdated({
+                    id: props.id,
+                    changes: { resonance: value },
+                  })
+                )
+              }
+            />
+          </div>
+        </div>
+        <div className='px-4'></div>
+        <div className='flex flex-col w-1/2'>
+          <div>
+            <h3 className='text-lg font-semibold text-gray-900'>
+              EG Intensity
+            </h3>
+            <Knob
+              value={parameters.egIntensity}
+              dual={true}
+              maxValue={63}
+              onChange={(value) =>
+                dispatch(
+                  parameterUpdated({
+                    id: props.id,
+                    changes: { egIntensity: value },
+                  })
+                )
+              }
+            />
+          </div>
+          <div className='pt-3'>
+            <h3 className='text-lg font-semibold text-gray-900'>
+              Keyboard Tracking
+            </h3>
+            <Knob
+              value={parameters.keyboardTrack}
+              dual={true}
+              max={63}
+              onChange={(value) =>
+                dispatch(
+                  parameterUpdated({
+                    id: props.id,
+                    changes: { keyboardTrack: value },
+                  })
+                )
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </Card>
   );
 }
 

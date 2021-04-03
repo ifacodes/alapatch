@@ -18,6 +18,12 @@ code {
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h3 {
+    @apply pointer-events-none select-none;
+  }
+}
+
 @layer components {
   .btn {
     @apply mx-4 my-1 bg-gray-100 rounded-md w-32 h-10 border-transparent hover:bg-gray-200;
@@ -26,6 +32,6 @@ code {
     @apply opacity-60 hover:bg-gray-100 cursor-default;
   }
   .select {
-    @apply block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+    @apply select-none block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
   }
 }
