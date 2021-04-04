@@ -30,7 +30,7 @@ export default function Menu() {
   }, [file, dispatch]);
 
   return (
-    <div className='col-span-1 flex flex-col justify-around border-solid border-r border-black bg-white px-4'>
+    <div className='col-span-1 flex flex-col justify-around border-solid border-r border-gray-300 bg-white px-4'>
       <div className='menu-patch-container'>
         <div className='patch-name'>
           <input

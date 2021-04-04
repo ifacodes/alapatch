@@ -13,7 +13,7 @@ import { selectById } from './timbreSlice.js';
 export default function Timbre(props) {
   const ids = useSelector((state) => selectById(state, props.id));
   return (
-    <div className='h-screen grid grid-cols-8 grid-rows-3 gap-4 p-6'>
+    <div className='h-screen grid grid-cols-8 grid-rows-3 gap-4 p-6 pr-10'>
       <VCO
         className='col-span-2'
         name='VCO 1'
