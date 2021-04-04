@@ -162,6 +162,16 @@ function Knob({
         } transition duration-75 ease-in select-none pointer-events-none absolute -mt-6 bg-gray-800 text-white truncate text-xs box-content rounded text-center w-8 py-0.5`}>
         {Math.round(value * maxValue)}
       </div>
+      <svg
+        className={` ${
+          isDragging ? 'opacity-100' : 'opacity-0'
+        } transition duration-75 ease-in absolute text-gray-800 w-full h-2 -mt-1`}
+        x='0px'
+        y='0px'
+        viewBox='0 0 255 255'
+        xmlSpace='preserve'>
+        <polygon class='fill-current' points='0,0 127.5,127.5 255,0'></polygon>
+      </svg>
       <div
         style={{
           position: 'relative',
