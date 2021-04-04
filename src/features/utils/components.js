@@ -154,90 +154,100 @@ function Knob({
   }, [onMouseMove]);
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        cursor: 'pointer',
-        height: size,
-        width: size,
-        overflow: 'hidden',
-        flexShrink: 0,
-      }}
-      onMouseDown={onMouseDown}>
-      <svg className='absolute top-0 left-0' width={size} height={size}>
-        <defs>
-          <DialMask
-            size={size}
-            startAngle={START_ANGLE}
-            endAngle={END_ANGLE}
-            id={`value-track-mask-${uid}`}
-          />
-          <DialMask
-            size={size}
-            startAngle={dial_zero}
-            endAngle={valueAngle}
-            id={`value-mask-${uid}`}
-          />
-        </defs>
-        {/* Track outer */}
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={size / 2}
-          className='fill-current text-blue-900 opacity-50'
-          style={{ mask: `url(#value-track-mask-${uid})` }}
-        />
-        {/* Value fill */}
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={size / 2}
-          className='fill-current text-blue-500'
-          style={{ mask: `url(#value-mask-${uid})` }}
-        />
-      </svg>
-      <svg
+    <div className='flex flex-col items-center'>
+      {/* TOOLTIP */}
+      <div
+        className={` ${
+          isDragging ? 'opacity-100' : 'opacity-0'
+        } transition duration-75 ease-in select-none pointer-events-none absolute -mt-6 bg-gray-800 text-white truncate text-xs box-content rounded text-center w-8 py-0.5`}>
+        {Math.round(value * maxValue)}
+      </div>
+      <div
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-        }}>
-        {/* Knob */}
-        <circle
-          cx={radius}
-          cy={radius}
-          r={radius - fillWidth}
-          className='fill-current text-gray-300'
-        />
-        {/* Highlight */}
-        <circle
-          cx={radius}
-          cy={radius}
-          r={radius - fillWidth}
-          style={{
-            fill: 'transparent',
-          }}
-        />
+          position: 'relative',
+          cursor: 'pointer',
+          height: size,
+          width: size,
+          overflow: 'hidden',
+          flexShrink: 0,
+        }}
+        onMouseDown={onMouseDown}>
+        {/* KNOB */}
+        <svg className='absolute top-0 left-0' width={size} height={size}>
+          <defs>
+            <DialMask
+              size={size}
+              startAngle={START_ANGLE}
+              endAngle={END_ANGLE}
+              id={`value-track-mask-${uid}`}
+            />
+            <DialMask
+              size={size}
+              startAngle={dial_zero}
+              endAngle={valueAngle}
+              id={`value-mask-${uid}`}
+            />
+          </defs>
+          {/* Track outer */}
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={size / 2}
+            className='fill-current text-blue-900 opacity-50'
+            style={{ mask: `url(#value-track-mask-${uid})` }}
+          />
+          {/* Value fill */}
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={size / 2}
+            className='fill-current text-blue-500'
+            style={{ mask: `url(#value-mask-${uid})` }}
+          />
+        </svg>
         <svg
-          width={size}
-          height={size}
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
           }}>
-          {
-            <line
-              x1={lineX1}
-              y1={lineY1}
-              x2={size / 2}
-              y2={size / 2}
-              strokeLinecap='round'
-              strokeWidth='3'
-              className='stroke-current text-blue-500'></line>
-          }
+          {/* Knob */}
+          <circle
+            cx={radius}
+            cy={radius}
+            r={radius - fillWidth}
+            className='fill-current text-gray-300'
+          />
+          {/* Highlight */}
+          <circle
+            cx={radius}
+            cy={radius}
+            r={radius - fillWidth}
+            style={{
+              fill: 'transparent',
+            }}
+          />
+          <svg
+            width={size}
+            height={size}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+            }}>
+            {
+              <line
+                x1={lineX1}
+                y1={lineY1}
+                x2={size / 2}
+                y2={size / 2}
+                strokeLinecap='round'
+                strokeWidth='3'
+                className='stroke-current text-blue-500'></line>
+            }
+          </svg>
         </svg>
-      </svg>
+      </div>
     </div>
   );
 }
