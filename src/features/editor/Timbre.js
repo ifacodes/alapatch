@@ -119,7 +119,7 @@ export default function Timbre(props) {
       <Amp className='col-span-2' name='Amp' id={ids.amp} />
       <EG className='col-span-2' name='EG 1' id={ids.eg1} />
       <EG className='col-span-2' name='EG 2' id={ids.eg2} />
-      {/*<LFO
+      <LFO
         className='col-span-2'
         name='LFO 1'
         id={ids.lfo1}
@@ -141,7 +141,7 @@ export default function Timbre(props) {
           { value: 'Sample & Hold' },
         ]}
       />
-      <Patches className='col-span-2' name='Patches' id={ids.patches} />*/}
+      <Patches className='col-span-2' name='Patches' id={ids.patches} />
     </div>
   );
 }

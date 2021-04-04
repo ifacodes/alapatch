@@ -1,4 +1,6 @@
 import React from 'react';
+import { Knob } from '../../utils/components';
+import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider, Checkbox } from '../../helpers/Helpers';
@@ -8,12 +10,10 @@ export default function Amp(props) {
   const dispatch = useDispatch();
 
   return (
-    <div className={props.className}>
-      <span>{`${props.name}`}</span>
-      Amp Level
-      <Slider
-        parameter={parameters.ampLevel}
-        min={0}
+    <Card className={props.className} header={props.name}>
+      <h3>Amp Level</h3>
+      <Knob
+        value={parameters.ampLevel}
         max={127}
         onChange={(value) =>
           dispatch(
@@ -24,10 +24,10 @@ export default function Amp(props) {
           )
         }
       />
-      PanPot
-      <Slider
-        parameter={parameters.panpot}
-        min={-63}
+      <h3>PanPot</h3>
+      <Knob
+        value={parameters.panpot}
+        dual={true}
         max={63}
         onChange={(value) =>
           dispatch(
@@ -38,10 +38,10 @@ export default function Amp(props) {
           )
         }
       />
-      Amp Keyboard Tracking
-      <Slider
-        parameter={parameters.ampTrack}
-        min={-63}
+      <h3>Amp Keyboard Tracking</h3>
+      <Knob
+        value={parameters.ampTrack}
+        dual={true}
         max={63}
         onChange={(value) =>
           dispatch(
@@ -53,7 +53,6 @@ export default function Amp(props) {
         }
       />
       <Checkbox
-        name='Distortion'
         parameter={parameters.distortion}
         onChange={(value) =>
           dispatch(
@@ -64,7 +63,7 @@ export default function Amp(props) {
           )
         }
       />
-    </div>
+    </Card>
   );
 }
 

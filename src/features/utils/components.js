@@ -54,7 +54,7 @@ function getKnobValue(dragStart, currentY, bipolar) {
   const slope = 0.01;
   let newValue = value + deltaY * slope;
   if (bipolar) {
-    const zeroCrossingResistance = 0.3;
+    const zeroCrossingResistance = 0; //0.3
     if (value >= 0 && newValue < 0) {
       newValue += Math.min(zeroCrossingResistance, -newValue);
     } else if (value < 0 && newValue > 0) {
@@ -89,7 +89,7 @@ function Knob({
   const [lineX1, lineY1] = getPointPair(
     size / 2,
     valueAngle,
-    radius - fillWidth + 2
+    radius - fillWidth + 3
   );
 
   const [dragStart, setDragStart] = useState(null);
@@ -220,7 +220,8 @@ function Knob({
               x2={size / 2}
               y2={size / 2}
               strokeLinecap='round'
-              className='stroke-current text-indigo-900 stroke-2'></line>
+              strokeWidth='2'
+              className='stroke-current text-indigo-900'></line>
           }
         </svg>
       </svg>
