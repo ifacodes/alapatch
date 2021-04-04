@@ -20,18 +20,21 @@ code {
 
 @layer base {
   h3 {
-    @apply pointer-events-none select-none;
+    @apply pointer-events-none select-none text-lg font-semibold text-gray-900;
   }
 }
 
 @layer components {
   .btn {
-    @apply mx-4 my-1 bg-gray-100 rounded-md w-32 h-10 border-transparent hover:bg-gray-200;
+    @apply w-2/3 font-semibold text-gray-700 rounded-md border px-2 py-2 border-gray-300 shadow-sm hover:bg-gray-50 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500;
   }
   .btn:disabled {
-    @apply opacity-60 hover:bg-gray-100 cursor-default;
+    @apply line-through opacity-50 hover:bg-white cursor-default;
   }
   .select {
     @apply select-none block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+  }
+  .checkbox {
+    @apply rounded-md border-2 text-blue-500 mt-2 w-6 h-6;
   }
 }

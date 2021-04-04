@@ -44,7 +44,7 @@ export default function VCO(props) {
         />
       </div>
       <div className='mb-2 flex flex-row'>
-        <div className='w-1/2'>
+        <div className='flex flex-col items-center w-1/2'>
           <h3 className='text-lg font-semibold text-gray-900'>Waveform Mod</h3>
           <Knob
             maxValue={127}
@@ -59,7 +59,7 @@ export default function VCO(props) {
             }
           />
         </div>
-        <div className='w-1/2'>
+        <div className='flex flex-col items-center w-1/2'>
           <h3 className='text-lg font-semibold text-gray-900'>LFO Mod</h3>
           <Knob
             maxValue={127}

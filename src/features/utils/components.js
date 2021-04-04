@@ -17,6 +17,21 @@ const Select = (props) => {
   );
 };
 
+const Checkbox = (props) => {
+  return (
+    <input
+      className={
+        props.className + ' rounded-md border-2 text-blue-500 mt-2 w-6 h-6'
+      }
+      style={props.style}
+      type='checkbox'
+      onChange={(e) => props.onChange(e.target.checked)}
+      defaultChecked={props.value}
+      value={props.value}
+    />
+  );
+};
+
 const RAD = Math.PI / 180;
 const START_ANGLE = Math.PI * 1.5 - (RAD * 45) / 2;
 const END_ANGLE = Math.PI * -0.5 + (RAD * 45) / 2;
@@ -54,7 +69,7 @@ function getKnobValue(dragStart, currentY, bipolar) {
   const slope = 0.01;
   let newValue = value + deltaY * slope;
   if (bipolar) {
-    const zeroCrossingResistance = 0; //0.3
+    const zeroCrossingResistance = 0.2; //0.3
     if (value >= 0 && newValue < 0) {
       newValue += Math.min(zeroCrossingResistance, -newValue);
     } else if (value < 0 && newValue > 0) {
@@ -169,15 +184,15 @@ function Knob({
           cx={size / 2}
           cy={size / 2}
           r={size / 2}
-          className='opacity-50'
-          style={{ mask: `url(#value-track-mask-${uid})`, fill: 'black' }}
+          className='fill-current text-blue-900 opacity-50'
+          style={{ mask: `url(#value-track-mask-${uid})` }}
         />
         {/* Value fill */}
         <circle
           cx={size / 2}
           cy={size / 2}
           r={size / 2}
-          className='fill-current text-indigo-500'
+          className='fill-current text-blue-500'
           style={{ mask: `url(#value-mask-${uid})` }}
         />
       </svg>
@@ -192,9 +207,7 @@ function Knob({
           cx={radius}
           cy={radius}
           r={radius - fillWidth}
-          style={{
-            fill: 'white',
-          }}
+          className='fill-current text-gray-300'
         />
         {/* Highlight */}
         <circle
@@ -220,12 +233,12 @@ function Knob({
               x2={size / 2}
               y2={size / 2}
               strokeLinecap='round'
-              strokeWidth='2'
-              className='stroke-current text-indigo-900'></line>
+              strokeWidth='3'
+              className='stroke-current text-blue-500'></line>
           }
         </svg>
       </svg>
     </div>
   );
 }
-export { Select, Knob };
+export { Select, Knob, Checkbox };

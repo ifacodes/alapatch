@@ -1,9 +1,8 @@
 import React from 'react';
-import { Knob } from '../../utils/components';
+import { Knob, Checkbox } from '../../utils/components';
 import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
-import { Slider, Checkbox } from '../../helpers/Helpers';
 
 export default function Amp(props) {
   const parameters = useSelector((state) => selectById(state, props.id));
@@ -11,7 +10,83 @@ export default function Amp(props) {
 
   return (
     <Card className={props.className} header={props.name}>
-      <h3>Amp Level</h3>
+      <div className='flex flex-row '>
+        <div className='flex flex-col items-center justify-evenly w-1/2'>
+          <h3>Amp Level</h3>
+          <Knob
+            value={parameters.ampLevel}
+            max={127}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id,
+                  changes: { ampLevel: value },
+                })
+              )
+            }
+          />
+        </div>
+        <div className='flex flex-col items-center justify-evenly w-1/2'>
+          <h3>Pan Pot</h3>
+          <Knob
+            value={parameters.panpot}
+            dual={true}
+            max={63}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id,
+                  changes: { panpot: value },
+                })
+              )
+            }
+          />
+        </div>
+      </div>
+      <div className='flex flex-row'>
+        <div className='flex flex-col items-center justify-evenly w-1/2'>
+          <h3>Keyboard Track</h3>
+          <Knob
+            value={parameters.ampTrack}
+            dual={true}
+            max={63}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id,
+                  changes: { ampTrack: value },
+                })
+              )
+            }
+          />
+        </div>
+        <div className='flex flex-col items-center justify-start w-1/2'>
+          <h3>Distortion</h3>
+          <Checkbox
+            value={parameters.distortion}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id,
+                  changes: { distortion: value },
+                })
+              )
+            }
+          />
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+export const VocoderAmp = (props) => {
+  const parameters = useSelector((state) => selectById(state, props.id));
+  const dispatch = useDispatch();
+
+  return (
+    <div className={props.className}>
+      <span>{`${props.name}`}</span>
+      Amp Level
       <Knob
         value={parameters.ampLevel}
         max={127}
@@ -24,21 +99,20 @@ export default function Amp(props) {
           )
         }
       />
-      <h3>PanPot</h3>
+      Direct Level
       <Knob
-        value={parameters.panpot}
-        dual={true}
-        max={63}
+        value={parameters.directLevel}
+        max={127}
         onChange={(value) =>
           dispatch(
             parameterUpdated({
               id: props.id,
-              changes: { panpot: value },
+              changes: { directLevel: value },
             })
           )
         }
       />
-      <h3>Amp Keyboard Tracking</h3>
+      Amp Keyboard Tracking
       <Knob
         value={parameters.ampTrack}
         dual={true}
@@ -53,72 +127,7 @@ export default function Amp(props) {
         }
       />
       <Checkbox
-        parameter={parameters.distortion}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { distortion: value },
-            })
-          )
-        }
-      />
-    </Card>
-  );
-}
-
-export const VocoderAmp = (props) => {
-  const parameters = useSelector((state) => selectById(state, props.id));
-  const dispatch = useDispatch();
-
-  return (
-    <div className={props.className}>
-      <span>{`${props.name}`}</span>
-      Amp Level
-      <Slider
-        parameter={parameters.ampLevel}
-        min={0}
-        max={127}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { ampLevel: value },
-            })
-          )
-        }
-      />
-      Direct Level
-      <Slider
-        parameter={parameters.directLevel}
-        min={0}
-        max={127}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { directLevel: value },
-            })
-          )
-        }
-      />
-      Amp Keyboard Tracking
-      <Slider
-        parameter={parameters.ampTrack}
-        min={-63}
-        max={63}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { ampTrack: value },
-            })
-          )
-        }
-      />
-      <Checkbox
-        name='Distortion'
-        parameter={parameters.distortion}
+        value={parameters.distortion}
         onChange={(value) =>
           dispatch(
             parameterUpdated({

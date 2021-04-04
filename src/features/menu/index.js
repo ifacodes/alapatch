@@ -34,7 +34,7 @@ export default function Menu() {
       <div className='menu-patch-container'>
         <div className='patch-name'>
           <input
-            className='block w-full rounded-md bg-gray-100 border-transparent hover:bg-gray-200 focus:bg-white focus:ring-1'
+            className='block w-full rounded-md rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
             placeholder='Patch Name'
             type='text'
             maxLength='12'
@@ -49,7 +49,7 @@ export default function Menu() {
             }}
           />
         </div>
-        <div className='my-1 flex flex-col items-center'>
+        <div className='my-3 flex flex-col items-center space-y-2'>
           <button
             className='btn'
             onClick={() => {
@@ -101,7 +101,7 @@ export default function Menu() {
           />
         </div>
       </div>
-      <div className='my-1 flex flex-col items-center'>
+      <div className='my-1 flex flex-col items-center space-y-2'>
         <button
           disabled={state.patch.mode === 'Vocoder'}
           className='btn'

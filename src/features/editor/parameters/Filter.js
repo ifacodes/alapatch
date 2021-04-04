@@ -11,8 +11,8 @@ export default function Filter(props) {
 
   return (
     <Card className={props.className} header={props.name}>
-      <div className='-mt-4 flex items-center justify-between'>
-        <h3 className='text-lg font-semibold text-gray-900'>Filter Type</h3>
+      <div className='-mt-2 flex items-center justify-between'>
+        <h3>Filter Type</h3>
         <Select
           className='select w-4/6'
           value={parameters.filterType}
@@ -32,9 +32,9 @@ export default function Filter(props) {
           }
         />
       </div>
-      <div className='flex flex-row justify-evenly'>
+      <div className='-mt-3 flex flex-row justify-evenly'>
         <div className='flex flex-col w-1/2'>
-          <div>
+          <div className='flex flex-col items-center'>
             <h3 className='text-lg font-semibold text-gray-900'>Cutoff</h3>
             <Knob
               value={parameters.cutoff}
@@ -49,7 +49,7 @@ export default function Filter(props) {
               }
             />
           </div>
-          <div className='pt-3'>
+          <div className='pt-3 flex flex-col items-center'>
             <h3 className='text-lg font-semibold text-gray-900'>Resonance</h3>
             <Knob
               value={parameters.resonance}
@@ -67,7 +67,7 @@ export default function Filter(props) {
         </div>
         <div className='px-4'></div>
         <div className='flex flex-col w-1/2'>
-          <div>
+          <div className='flex flex-col items-center'>
             <h3 className='text-lg font-semibold text-gray-900'>
               EG Intensity
             </h3>
@@ -85,9 +85,9 @@ export default function Filter(props) {
               }
             />
           </div>
-          <div className='pt-3'>
+          <div className='pt-3 flex flex-col items-center'>
             <h3 className='text-lg font-semibold text-gray-900'>
-              Keyboard Tracking
+              Keyboard Track
             </h3>
             <Knob
               value={parameters.keyboardTrack}

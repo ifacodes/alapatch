@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
-import { Slider } from '../../helpers/Helpers';
+import { Knob } from '../../utils/components';
 
 export default function Mixer(props) {
   const parameters = useSelector((state) => selectById(state, props.id));
@@ -11,12 +11,11 @@ export default function Mixer(props) {
   return (
     <Card header={props.name}>
       <div className='-mt-3'>
-        <div>
+        <div className='flex flex-col items-center'>
           <h3 className='text-lg font-semibold'>Volume 1</h3>
-          <Slider
-            min={0}
+          <Knob
             max={127}
-            parameter={parameters.vol1}
+            value={parameters.vol1}
             onChange={(value) =>
               dispatch(
                 parameterUpdated({
@@ -27,12 +26,11 @@ export default function Mixer(props) {
             }
           />
         </div>
-        <div>
+        <div className='flex flex-col items-center'>
           <h3 className='text-lg font-semibold'>Volume 2</h3>
-          <Slider
-            min={0}
+          <Knob
             max={127}
-            parameter={parameters.vol2}
+            value={parameters.vol2}
             onChange={(value) =>
               dispatch(
                 parameterUpdated({
@@ -43,12 +41,11 @@ export default function Mixer(props) {
             }
           />
         </div>
-        <div>
+        <div className='flex flex-col items-center'>
           <h3 className='text-lg font-semibold'>Volume 3</h3>
-          <Slider
-            min={0}
+          <Knob
             max={127}
-            parameter={parameters.vol3}
+            value={parameters.vol3}
             onChange={(value) =>
               dispatch(
                 parameterUpdated({

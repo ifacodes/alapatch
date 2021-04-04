@@ -115,10 +115,18 @@ export default function Timbre(props) {
       />
       <Mixer className='col-span-1' name='Mixer' id={ids.mixer} />
       <Pitch className='col-span-3' name='Pitch' id={ids.pitch} />
-      <Filter className='col-span-2' name='Filter' id={ids.filter} />
-      <Amp className='col-span-2' name='Amp' id={ids.amp} />
-      <EG className='col-span-2' name='EG 1' id={ids.eg1} />
-      <EG className='col-span-2' name='EG 2' id={ids.eg2} />
+      <div className='col-span-8 grid grid-cols-9 grid-rows-1 gap-4'>
+        <div />
+        <Amp className='col-span-2' name='Amp' id={ids.amp} />
+        <Filter className='col-span-2' name='Filter' id={ids.filter} />
+        <EG
+          className='col-span-3'
+          name='EG 1 / 2'
+          id1={ids.eg1}
+          id2={ids.eg2}
+        />
+        <div />
+      </div>
       <LFO
         className='col-span-2'
         name='LFO 1'
@@ -141,7 +149,7 @@ export default function Timbre(props) {
           { value: 'Sample & Hold' },
         ]}
       />
-      <Patches className='col-span-2' name='Patches' id={ids.patches} />
+      <Patches className='col-span-4' name='Patches' id={ids.patches} />
     </div>
   );
 }
