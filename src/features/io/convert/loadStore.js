@@ -780,14 +780,14 @@ function prepare_vocoder(object) {
     },
     pans: {
       id: 'pans',
-      pan1: object.v_pan_1,
-      pan2: object.v_pan_2,
-      pan3: object.v_pan_3,
-      pan4: object.v_pan_4,
-      pan5: object.v_pan_5,
-      pan6: object.v_pan_6,
-      pan7: object.v_pan_7,
-      pan8: object.v_pan_8,
+      pan1: object.v_pan_1 - 64,
+      pan2: object.v_pan_2 - 64,
+      pan3: object.v_pan_3 - 64,
+      pan4: object.v_pan_4 - 64,
+      pan5: object.v_pan_5 - 64,
+      pan6: object.v_pan_6 - 64,
+      pan7: object.v_pan_7 - 64,
+      pan8: object.v_pan_8 - 64,
     },
   };
 }
