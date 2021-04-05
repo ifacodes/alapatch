@@ -83,14 +83,14 @@ function getKnobValue(dragStart, currentY, bipolar) {
 let knob_id = 0;
 
 function Knob({
-  maxValue = 127,
+  max = 127,
   dual = false,
   size = 42,
   value = 0,
   fillWidth = 4,
   onChange,
 }) {
-  value = value / maxValue;
+  value = value / max;
   const uid = useMemo(() => knob_id++, []);
   const radius = size / 2;
   const dial_zero = dual ? Math.PI / 2 : START_ANGLE;
@@ -115,9 +115,9 @@ function Knob({
       if (!dragStart) return;
 
       const newValue = getKnobValue(dragStart, e.clientY, dual);
-      onChange(Math.round(newValue * maxValue));
+      onChange(Math.round(newValue * max));
     },
-    [dragStart, onChange, dual, maxValue]
+    [dragStart, onChange, dual, max]
   );
   const onMouseDown = useCallback(
     (e) => {
@@ -158,19 +158,21 @@ function Knob({
       {/* TOOLTIP */}
       <div
         className={` ${
-          isDragging ? 'opacity-100' : 'opacity-0'
+          isDragging ? 'opacity-100' : 'opacity-0 hidden'
         } transition duration-75 ease-in select-none pointer-events-none absolute -mt-6 bg-gray-800 text-white truncate text-xs box-content rounded text-center w-8 py-0.5`}>
-        {Math.round(value * maxValue)}
+        {Math.round(value * max)}
       </div>
       <svg
         className={` ${
-          isDragging ? 'opacity-100' : 'opacity-0'
+          isDragging ? 'opacity-100' : 'opacity-0 hidden'
         } transition duration-75 ease-in absolute text-gray-800 w-full h-2 -mt-1`}
         x='0px'
         y='0px'
         viewBox='0 0 255 255'
         xmlSpace='preserve'>
-        <polygon class='fill-current' points='0,0 127.5,127.5 255,0'></polygon>
+        <polygon
+          className='fill-current'
+          points='0,0 127.5,127.5 255,0'></polygon>
       </svg>
       <div
         style={{

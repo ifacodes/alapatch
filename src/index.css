@@ -31,6 +31,9 @@ code {
   .btn:disabled {
     @apply line-through opacity-50 hover:bg-white cursor-default;
   }
+  .btn-active {
+    @apply ring ring-blue-500;
+  }
   .select {
     @apply select-none block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
   }

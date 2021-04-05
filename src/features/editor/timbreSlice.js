@@ -44,6 +44,7 @@ const timbreSlice = createSlice({
         filter: 'filter3',
         fcMod: 'fcMod',
         eg: 'eg5',
+        eg2: 'unusedVocoder',
         amp: 'amp3',
         lfo1: 'lfo5',
         lfo2: 'lfo6',

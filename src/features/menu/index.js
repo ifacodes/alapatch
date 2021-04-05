@@ -14,6 +14,8 @@ export default function Menu() {
   const [file, setFile] = useState(null);
   const fileRef = useRef(null);
   const state = useSelector((state) => selectEntities(state));
+  const activeTab = useSelector((state) => state.parameters.activeTab);
+  console.log(activeTab);
   const dispatch = useDispatch();
   const reader = new FileReader();
   const loadFile = (f) => {
@@ -28,6 +30,15 @@ export default function Menu() {
       dispatch(parameterFromFile(return_store_from_file(file)));
     }
   }, [file, dispatch]);
+
+  useEffect(() => {
+    if (state.patch.mode === 'Vocoder') {
+      dispatch(parameterUpdateTab('Vocoder'));
+    }
+    if (state.patch.mode === 'Single' || state.patch.mode === 'Multiple') {
+      dispatch(parameterUpdateTab('Timbre1'));
+    }
+  }, [state.patch.mode, dispatch]);
 
   return (
     <div className='col-span-1 flex flex-col justify-around border-solid border-r border-gray-300 bg-white px-4'>
@@ -104,7 +115,7 @@ export default function Menu() {
       <div className='my-1 flex flex-col items-center space-y-2'>
         <button
           disabled={state.patch.mode === 'Vocoder'}
-          className='btn'
+          className={activeTab === 'Timbre1' ? `btn btn-active` : `btn`}
           onClick={() => {
             dispatch(parameterUpdateTab('Timbre1'));
           }}>
@@ -112,7 +123,7 @@ export default function Menu() {
         </button>
         <button
           disabled={state.patch.mode !== 'Multiple'}
-          className='btn'
+          className={activeTab === 'Timbre2' ? `btn btn-active` : `btn`}
           onClick={() => {
             dispatch(parameterUpdateTab('Timbre2'));
           }}>
@@ -120,21 +131,21 @@ export default function Menu() {
         </button>
         <button
           disabled={state.patch.mode !== 'Vocoder'}
-          className='btn'
+          className={activeTab === 'Vocoder' ? `btn btn-active` : `btn`}
           onClick={() => {
             dispatch(parameterUpdateTab('Vocoder'));
           }}>
           Vocoder
         </button>
         <button
-          className='btn'
+          className={activeTab === 'Effects' ? `btn btn-active` : `btn`}
           onClick={() => {
             dispatch(parameterUpdateTab('Effects'));
           }}>
           Effects
         </button>
         <button
-          className='btn'
+          className={activeTab === 'Arpeggio' ? `btn btn-active` : `btn`}
           onClick={() => {
             dispatch(parameterUpdateTab('Arpeggio'));
           }}>

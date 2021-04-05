@@ -4,7 +4,7 @@ import { selectById } from './timbreSlice';
 import VCO, { AudioIn } from './parameters/VCO';
 import Mixer from './parameters/Mixer';
 import Pitch from './parameters/Pitch';
-import EG from './parameters/EG';
+import { VocoderEG } from './parameters/EG';
 import LFO from './parameters/LFO';
 import { VocoderFilter, FCMod } from './parameters/Filter';
 import { VocoderAmp } from './parameters/Amp';
@@ -14,8 +14,9 @@ import Pans from './parameters/Pans';
 export default function Vocoder(props) {
   const ids = useSelector((state) => selectById(state, props.id));
   return (
-    <div>
+    <div className='h-screen grid grid-cols-8 grid-rows-3 gap-4 p-6'>
       <VCO
+        className='col-span-2'
         name='VCO'
         id={ids.vco}
         waveforms={[
@@ -96,18 +97,40 @@ export default function Vocoder(props) {
           { value: 'Voice4' },
         ]}
       />
-      <AudioIn name='Audio In' id={ids.audioIn} />
-      <Mixer name='Mixer' id={ids.mixer} />
-      <Pitch name='Pitch' id={ids.pitch} />
-      <VocoderFilter name='Filter' id={ids.filter} />
-      <FCMod name='FC Mod' id={ids.fcMod} />
-      <VocoderAmp name='Amp' id={ids.amp} />
-      <EG name='EG' id={ids.eg} />
-      <div />
-      <LFO name='LFO 1' id={ids.lfo1} />
-      <LFO name='LFO 2' id={ids.lfo2} />
-      <Levels name='Levels' id={ids.levels} />
-      <Pans name='Pans' id={ids.pans} />
+      <AudioIn className='col-span-2' name='Audio In' id={ids.audioIn} />
+      <Mixer className='col-span-1' name='Mixer' id={ids.mixer} />
+      <Pitch className='col-span-3' name='Pitch' id={ids.pitch} />
+      <div className='col-span-8 grid grid-cols-9 grid-rows-1 gap-4'>
+        <div />
+        <VocoderFilter name='Filter' id={ids.filter} />
+        <FCMod name='FC Mod' id={ids.fcMod} />
+        <VocoderAmp className='col-span-2' name='Amp' id={ids.amp} />
+        <VocoderEG className='col-span-3' name='EG' id1={ids.eg} />
+      </div>
+      <LFO
+        className='col-span-2'
+        name='LFO 1'
+        id={ids.lfo1}
+        waveforms={[
+          { value: 'Saw' },
+          { value: 'Square 1' },
+          { value: 'Triangle' },
+          { value: 'Sample & Hold' },
+        ]}
+      />
+      <LFO
+        className='col-span-2'
+        name='LFO 2'
+        id={ids.lfo2}
+        waveforms={[
+          { value: 'Saw' },
+          { value: 'Square 2' },
+          { value: 'Sine' },
+          { value: 'Sample & Hold' },
+        ]}
+      />
+      <Levels className='col-span-2' name='Levels' id={ids.levels} />
+      <Pans className='col-span-2' name='Pans' id={ids.pans} />
     </div>
   );
 }

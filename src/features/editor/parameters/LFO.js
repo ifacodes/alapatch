@@ -88,7 +88,7 @@ export default function LFO(props) {
             />
           </div>
         </div>
-        <div className='flex flex-col items-center w-1/2'>
+        <div className='flex flex-col items-center w-1/2 space-y-1'>
           <h3>Frequency</h3>
           <Knob
             value={parameters.frequency}

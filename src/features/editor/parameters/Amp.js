@@ -84,59 +84,71 @@ export const VocoderAmp = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={props.className}>
-      <span>{`${props.name}`}</span>
-      Amp Level
-      <Knob
-        value={parameters.ampLevel}
-        max={127}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { ampLevel: value },
-            })
-          )
-        }
-      />
-      Direct Level
-      <Knob
-        value={parameters.directLevel}
-        max={127}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { directLevel: value },
-            })
-          )
-        }
-      />
-      Amp Keyboard Tracking
-      <Knob
-        value={parameters.ampTrack}
-        dual={true}
-        max={63}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { ampTrack: value },
-            })
-          )
-        }
-      />
-      <Checkbox
-        value={parameters.distortion}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { distortion: value },
-            })
-          )
-        }
-      />
-    </div>
+    <Card className={props.className} header={props.name}>
+      <div className='flex flex-row'>
+        <div className='flex flex-col items-center w-1/2'>
+          <h3>Amp Level</h3>
+          <Knob
+            value={parameters.ampLevel}
+            max={127}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id,
+                  changes: { ampLevel: value },
+                })
+              )
+            }
+          />
+        </div>
+        <div className='flex flex-col items-center w-1/2'>
+          <h3>Direct Level</h3>
+          <Knob
+            value={parameters.directLevel}
+            max={127}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id,
+                  changes: { directLevel: value },
+                })
+              )
+            }
+          />
+        </div>
+      </div>
+      <div className='flex flex-row'>
+        <div className='flex flex-col items-center w-1/2'>
+          <h3>Keyboard Track</h3>
+          <Knob
+            value={parameters.ampTrack}
+            dual={true}
+            max={63}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id,
+                  changes: { ampTrack: value },
+                })
+              )
+            }
+          />
+        </div>
+        <div className='flex flex-col items-center w-1/2'>
+          <h3>Distortion</h3>
+          <Checkbox
+            value={parameters.distortion}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id,
+                  changes: { distortion: value },
+                })
+              )
+            }
+          />
+        </div>
+      </div>
+    </Card>
   );
 };

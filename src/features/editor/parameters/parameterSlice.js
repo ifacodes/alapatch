@@ -275,7 +275,8 @@ const defaultState = {
       waveform: 'Saw',
       keySync: 'Off',
       tempoSync: false,
-      frequency: '1/1',
+      frequency: 0,
+      syncNote: '1/1',
     },
     patches1: {
       id: 'patches1',

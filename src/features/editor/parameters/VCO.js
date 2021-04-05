@@ -2,8 +2,7 @@ import React from 'react';
 import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
-import { Select, Knob } from '../../utils/components';
-import { Slider, Checkbox } from '../../helpers/Helpers';
+import { Select, Knob, Checkbox } from '../../utils/components';
 
 export default function VCO(props) {
   const parameters = useSelector((state) => selectById(state, props.id));
@@ -84,62 +83,73 @@ export const AudioIn = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={props.className}>
-      <span>{`${props.name}`}</span>
-      Gate
-      <Slider
-        min={0}
-        max={127}
-        parameter={parameters.gate}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { gate: value },
-            })
-          )
-        }
-      />
-      Threshold
-      <Slider
-        min={0}
-        max={127}
-        parameter={parameters.threshold}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { threshold: value },
-            })
-          )
-        }
-      />
-      HPF Level
-      <Slider
-        min={0}
-        max={127}
-        parameter={parameters.hpfLevel}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { hpfLevel: value },
-            })
-          )
-        }
-      />
-      <Checkbox
-        name='HPF Gate'
-        parameter={parameters.hpfGate}
-        onChange={(value) =>
-          dispatch(
-            parameterUpdated({
-              id: props.id,
-              changes: { hpfGate: value },
-            })
-          )
-        }
-      />
-    </div>
+    <Card className={props.className} header={props.name}>
+      <div className='-mt-3 flex flex-col items-stretch space-y-4'>
+        <div className='flex flex-row'>
+          <div className='flex flex-col items-center w-1/2'>
+            <h3>Gate Sense</h3>
+            <Knob
+              max={127}
+              value={parameters.gate}
+              onChange={(value) =>
+                dispatch(
+                  parameterUpdated({
+                    id: props.id,
+                    changes: { gate: value },
+                  })
+                )
+              }
+            />
+          </div>
+          <div className='flex flex-col items-center w-1/2'>
+            <h3>Threshold</h3>
+            <Knob
+              max={127}
+              value={parameters.threshold}
+              onChange={(value) =>
+                dispatch(
+                  parameterUpdated({
+                    id: props.id,
+                    changes: { threshold: value },
+                  })
+                )
+              }
+            />
+          </div>
+        </div>
+        <div className='flex flex-row'>
+          <div className='flex flex-col items-center w-1/2'>
+            <h3>HPF Level</h3>
+            <Knob
+              max={127}
+              value={parameters.hpfLevel}
+              onChange={(value) =>
+                dispatch(
+                  parameterUpdated({
+                    id: props.id,
+                    changes: { hpfLevel: value },
+                  })
+                )
+              }
+            />
+          </div>
+          <div className='flex flex-col items-center w-1/2'>
+            <h3>HPF Gate</h3>
+            <Checkbox
+              className='checkbox'
+              value={parameters.hpfGate}
+              onChange={(value) =>
+                dispatch(
+                  parameterUpdated({
+                    id: props.id,
+                    changes: { hpfGate: value },
+                  })
+                )
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </Card>
   );
 };

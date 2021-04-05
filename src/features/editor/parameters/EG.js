@@ -168,3 +168,90 @@ export default function EG(props) {
     </Card>
   );
 }
+
+export function VocoderEG(props) {
+  const parameters_eg_1 = useSelector((state) => selectById(state, props.id1));
+  const dispatch = useDispatch();
+
+  return (
+    <Card className={props.className} header={props.name}>
+      <div className='-mt-1 flex flex-row justify-evenly'>
+        <div className='flex flex-col items-center'>
+          <h3>Attack</h3>
+          <Knob
+            value={parameters_eg_1.attack}
+            max={127}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id1,
+                  changes: { attack: value },
+                })
+              )
+            }
+          />
+        </div>
+        <div className='flex flex-col items-center'>
+          <h3>Decay</h3>
+          <Knob
+            value={parameters_eg_1.decay}
+            max={127}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id1,
+                  changes: { decay: value },
+                })
+              )
+            }
+          />
+        </div>
+        <div className='flex flex-col items-center'>
+          <h3>Sustain</h3>
+          <Knob
+            value={parameters_eg_1.sustain}
+            max={127}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id1,
+                  changes: { sustain: value },
+                })
+              )
+            }
+          />
+        </div>
+        <div className='flex flex-col items-center'>
+          <h3>Release</h3>
+          <Knob
+            value={parameters_eg_1.release}
+            max={127}
+            onChange={(value) =>
+              dispatch(
+                parameterUpdated({
+                  id: props.id1,
+                  changes: { release: value },
+                })
+              )
+            }
+          />
+        </div>
+      </div>
+      <div className='-mt-8 flex flex-col items-center'>
+        <h3>EG Reset</h3>
+        <Checkbox
+          className='checkbox'
+          value={parameters_eg_1.egReset}
+          onChange={(value) =>
+            dispatch(
+              parameterUpdated({
+                id: props.id1,
+                changes: { egReset: value },
+              })
+            )
+          }
+        />
+      </div>
+    </Card>
+  );
+}
