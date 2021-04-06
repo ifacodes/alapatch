@@ -142,14 +142,7 @@ export default function Menu() {
           onClick={() => {
             dispatch(parameterUpdateTab('Effects'));
           }}>
-          Effects
-        </button>
-        <button
-          className={activeTab === 'Arpeggio' ? `btn btn-active` : `btn`}
-          onClick={() => {
-            dispatch(parameterUpdateTab('Arpeggio'));
-          }}>
-          Arpeggio
+          Arp/FX
         </button>
       </div>
       <div className='w-full text-center text-xl font-semibold'>

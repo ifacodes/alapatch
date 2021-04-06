@@ -10,7 +10,7 @@ const Select = (props) => {
       value={props.value}>
       {props.list.map((element) => (
         <option key={element.value} value={element.value}>
-          {element.value}
+          {props.labelFunction ? props.labelFunction(element) : element.value}
         </option>
       ))}
     </select>
@@ -89,6 +89,7 @@ function Knob({
   value = 0,
   fillWidth = 4,
   onChange,
+  offset = 0,
 }) {
   value = value / max;
   const uid = useMemo(() => knob_id++, []);
@@ -160,7 +161,7 @@ function Knob({
         className={` ${
           isDragging ? 'opacity-100' : 'opacity-0 hidden'
         } transition duration-75 ease-in select-none pointer-events-none absolute -mt-6 bg-gray-800 text-white truncate text-xs box-content rounded text-center w-8 py-0.5`}>
-        {Math.round(value * max)}
+        {Math.round(value * max + offset)}
       </div>
       <svg
         className={` ${

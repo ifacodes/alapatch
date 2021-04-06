@@ -12,7 +12,6 @@ export default function Editor() {
       {activeTab === 'Timbre2' ? <Timbre id='timbre2' /> : null}
       {activeTab === 'Vocoder' ? <Vocoder id='vocoder' /> : null}
       {activeTab === 'Effects' ? <Effects id='effects' /> : null}
-      {activeTab === 'Arpeggio' ? <Arpeggio id='arpeggio' /> : null}
     </div>
   );
 }

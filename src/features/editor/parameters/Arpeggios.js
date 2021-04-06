@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Slider, SelectList, Checkbox } from '../../helpers/Helpers';
@@ -8,7 +9,7 @@ const ArpeggA = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <Card className={props.className} header='Arpeggio A'>
       <span>Arpeggio A.</span>
       <div>
         Tempo
@@ -97,7 +98,7 @@ const ArpeggA = (props) => {
           }
         />
       </div>
-    </div>
+    </Card>
   );
 };
 

@@ -56,6 +56,8 @@ const timbreSlice = createSlice({
         modfx: 'modfx',
         delay: 'delay',
         eq: 'eq',
+        arpeggA: 'arpeggA',
+        arpeggB: 'arpeggB',
       },
       arpeggio: {
         arpeggA: 'arpeggA',

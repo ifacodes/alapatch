@@ -3,7 +3,6 @@ import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import { Select, Knob } from '../../utils/components';
-import { Slider } from '../../helpers/Helpers';
 
 export default function Pitch(props) {
   const parameters = useSelector((state) => selectById(state, props.id));
