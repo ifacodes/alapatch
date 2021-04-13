@@ -56,7 +56,7 @@ function build_patch(patch) {
     arp_on_off: patch[32] & 0x80,
     arp_latch: patch[32] & 0x40,
     arp_target: getBits(patch[32], 4, 5),
-    arp_key_sync: patch[32] & 0x00,
+    arp_key_sync: patch[32] & 0x01,
     arp_type: getBits(patch[33], 0, 3),
     arp_range: getBits(patch[33], 4, 7),
     arp_gate_time: patch[34],
