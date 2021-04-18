@@ -3,7 +3,6 @@ import Card from '../card';
 import { Select, Knob } from '../../utils/components';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
-import { Slider } from '../../helpers/Helpers';
 
 export default function Filter(props) {
   const parameters = useSelector((state) => selectById(state, props.id));
@@ -11,10 +10,10 @@ export default function Filter(props) {
 
   return (
     <Card className={props.className} header={props.name}>
-      <div className='-mt-2 flex items-center justify-between'>
+      <div className="-mt-2 flex items-center justify-between">
         <h3>Filter Type</h3>
         <Select
-          className='select w-4/6'
+          className="select w-4/6"
           value={parameters.filterType}
           list={[
             { value: '-24db Low Pass' },
@@ -32,10 +31,10 @@ export default function Filter(props) {
           }
         />
       </div>
-      <div className='-mt-3 flex flex-row justify-evenly'>
-        <div className='flex flex-col w-1/2'>
-          <div className='flex flex-col items-center'>
-            <h3 className='text-lg font-semibold text-gray-900'>Cutoff</h3>
+      <div className="-mt-3 flex flex-row justify-evenly">
+        <div className="flex flex-col w-1/2">
+          <div className="flex flex-col items-center">
+            <h3 className="text-lg font-semibold text-gray-900">Cutoff</h3>
             <Knob
               value={parameters.cutoff}
               max={127}
@@ -49,8 +48,8 @@ export default function Filter(props) {
               }
             />
           </div>
-          <div className='pt-3 flex flex-col items-center'>
-            <h3 className='text-lg font-semibold text-gray-900'>Resonance</h3>
+          <div className="pt-3 flex flex-col items-center">
+            <h3 className="text-lg font-semibold text-gray-900">Resonance</h3>
             <Knob
               value={parameters.resonance}
               max={127}
@@ -65,10 +64,10 @@ export default function Filter(props) {
             />
           </div>
         </div>
-        <div className='px-4'></div>
-        <div className='flex flex-col w-1/2'>
-          <div className='flex flex-col items-center'>
-            <h3 className='text-lg font-semibold text-gray-900'>
+        <div className="px-4"></div>
+        <div className="flex flex-col w-1/2">
+          <div className="flex flex-col items-center">
+            <h3 className="text-lg font-semibold text-gray-900">
               EG Intensity
             </h3>
             <Knob
@@ -85,8 +84,8 @@ export default function Filter(props) {
               }
             />
           </div>
-          <div className='pt-3 flex flex-col items-center'>
-            <h3 className='text-lg font-semibold text-gray-900'>
+          <div className="pt-3 flex flex-col items-center">
+            <h3 className="text-lg font-semibold text-gray-900">
               Keyboard Track
             </h3>
             <Knob
@@ -114,8 +113,8 @@ export const VocoderFilter = (props) => {
   const dispatch = useDispatch();
   return (
     <Card className={props.className} header={props.name}>
-      <div className='-mt-3 flex flex-col justify-around'>
-        <div className='flex flex-col items-center'>
+      <div className="-mt-3 flex flex-col justify-around">
+        <div className="flex flex-col items-center">
           <h3>Cutoff</h3>
           <Knob
             value={parameters.cutoff}
@@ -130,7 +129,7 @@ export const VocoderFilter = (props) => {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Resonance</h3>
           <Knob
             value={parameters.resonance}
@@ -145,7 +144,7 @@ export const VocoderFilter = (props) => {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>EF Sense</h3>
           <Knob
             value={parameters.efSense}
@@ -170,11 +169,11 @@ export const FCMod = (props) => {
   const dispatch = useDispatch();
   return (
     <Card className={props.className} header={props.name}>
-      <div className='-mt-4 flex flex-col justify-around space-y-4'>
-        <div className='flex flex-col items-center space-y-0.5'>
+      <div className="-mt-4 flex flex-col justify-around space-y-4">
+        <div className="flex flex-col items-center space-y-0.5">
           <h3>Source</h3>
           <Select
-            className='select w-full'
+            className="select w-full"
             value={parameters.source}
             list={[
               { value: 'Amp EG' },
@@ -195,7 +194,7 @@ export const FCMod = (props) => {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Intensity</h3>
           <Knob
             value={parameters.intensity}

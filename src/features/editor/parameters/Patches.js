@@ -3,15 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectById, parameterUpdated } from './parameterSlice.js';
 import Card from '../card';
 import { Select, Knob } from '../../utils/components';
-import { Slider, SelectList } from '../../helpers/Helpers';
 
 const Patch = (props) => {
   return (
-    <div className='-mt-3 w-1/4'>
-      <div className='flex flex-col items-center justify-between'>
+    <div className="-mt-3 w-1/4">
+      <div className="flex flex-col items-center justify-between">
         <h3>Source</h3>
         <Select
-          className='select w-2/3'
+          className="select w-2/3"
           value={props.patch.source}
           list={[
             { value: 'Filter EG' },
@@ -32,10 +31,10 @@ const Patch = (props) => {
           }
         />
       </div>
-      <div className='mt-1 flex flex-col items-center justify-between'>
+      <div className="mt-1 flex flex-col items-center justify-between">
         <h3>Destination</h3>
         <Select
-          className='select w-2/3'
+          className="select w-2/3"
           value={props.patch.destination}
           list={[
             { value: 'Pitch' },
@@ -56,7 +55,7 @@ const Patch = (props) => {
           }
         />
       </div>
-      <div className='mt-1 flex flex-col items-center'>
+      <div className="mt-1 flex flex-col items-center">
         <h3>Mod Intensity</h3>
         <Knob
           max={127}
@@ -79,8 +78,8 @@ export default function Patches(props) {
   const dispatch = useDispatch();
 
   return (
-    <Card className={props.className} id='patches' header={props.name}>
-      <div className='flex flex-row justify-evenly'>
+    <Card className={props.className} id="patches" header={props.name}>
+      <div className="flex flex-row justify-evenly">
         <Patch
           patch={parameters.patch1}
           onChange={(value) =>

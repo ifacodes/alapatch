@@ -14,7 +14,7 @@ export default function serialise(patch) {
       data.append(serialise_vocoder(patch[1]));
       break;
   }
-  console.log(data);
+  return data;
 }
 
 function serialise_patch(patch) {
@@ -155,7 +155,93 @@ function serialise_timbre(num, timbre) {
     ),
     timbre[`t${num}_patch_4_intensity`],
   ];
+  array.append(Array(55).fill(0));
   return array;
 }
 
-function serialise_vocoder(vocoder) {}
+function serialise_vocoder(vocoder) {
+  const array = [
+    vocoder.v_midi_channel,
+    buildByte(
+      { value: vocoder.v_assign_mode, start: 6 },
+      { value: vocoder.v_eg_2_reset, start: 5 },
+      { value: vocoder.v_eg_1_reset, start: 4 },
+      { value: vocoder.v_trigger_mode, start: 3 },
+      { value: vocoder.v_key_priority, start: 0 }
+    ),
+    vocoder.v_unison_detune,
+    vocoder.v_tune,
+    vocoder.v_bend_range,
+    vocoder.v_transpose,
+    vocoder.v_vibrato_int,
+    vocoder.v_osc_wave,
+    vocoder.v_osc_ctrl_1,
+    vocoder.v_osc_ctrl_2,
+    vocoder.v_osc_dgws,
+    0,
+    vocoder.v_audio_in_hpf_gate,
+    0,
+    vocoder.v_portamento_time,
+    vocoder.v_osc_level,
+    vocoder.v_audio_in_level,
+    vocoder.v_noise_level,
+    vocoder.v_audio_in_hpf_level,
+    vocoder.v_audio_in_gate_sense,
+    vocoder.v_audio_in_threshold,
+    vocoder.v_filter_shift,
+    vocoder.v_filter_cutoff,
+    vocoder.v_filter_resonance,
+    vocoder.v_filter_mod_source,
+    vocoder.v_filter_intensity,
+    vocoder.v_filter_e_f_sense,
+    vocoder.v_amp_level,
+    vocoder.v_amp_direct_level,
+    vocoder.v_amp_distortion,
+    vocoder.v_amp_vel_sense,
+    vocoder.v_amp_key_track,
+    vocoder.v_eg_1_attack,
+    vocoder.v_eg_1_decay,
+    vocoder.v_eg_1_sustain,
+    vocoder.v_eg_1_release,
+    vocoder.v_eg_2_attack,
+    vocoder.v_eg_2_decay,
+    vocoder.v_eg_2_sustain,
+    vocoder.v_eg_2_release,
+    buildByte(
+      { value: vocoder.v_lfo_1_key_sync, start: 4 },
+      { value: vocoder.v_lfo_1_wave, start: 0 }
+    ),
+    vocoder.v_lfo_1_frequency,
+    buildByte(
+      { value: vocoder.v_lfo_1_tempo_sync, start: 7 },
+      { value: vocoder.v_lfo_1_sync_note, start: 0 }
+    ),
+    buildByte(
+      { value: vocoder.v_lfo_2_key_sync, start: 4 },
+      { value: vocoder.v_lfo_2_wave, start: 0 }
+    ),
+    vocoder.v_lfo_2_frequency,
+    buildByte(
+      { value: vocoder.v_lfo_2_tempo_sync, start: 7 },
+      { value: vocoder.v_lfo_2_sync_note, start: 0 }
+    ),
+    vocoder.v_level_1,
+    vocoder.v_level_2,
+    vocoder.v_level_3,
+    vocoder.v_level_4,
+    vocoder.v_level_5,
+    vocoder.v_level_6,
+    vocoder.v_level_7,
+    vocoder.v_level_8,
+    vocoder.v_pan_1,
+    vocoder.v_pan_2,
+    vocoder.v_pan_3,
+    vocoder.v_pan_4,
+    vocoder.v_pan_5,
+    vocoder.v_pan_6,
+    vocoder.v_pan_7,
+    vocoder.v_pan_8,
+  ];
+  array.append(Array(174).fill(0));
+  return array;
+}

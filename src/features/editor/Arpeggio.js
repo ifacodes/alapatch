@@ -4,30 +4,19 @@ import { selectById } from './parameters/parameterSlice.js';
 import Card from './card';
 import { Knob, Select, Checkbox } from '../utils/components';
 import { parameterUpdated } from './parameters/parameterSlice';
-import { ArpeggA, ArpeggB } from './parameters/Arpeggios';
 
-export default function Arpeggio(props) {
-  const ids = useSelector((state) => selectById(state, props.id));
-  return (
-    <div>
-      <ArpeggA id={ids.arpeggA} />
-      <ArpeggB id={ids.arpeggB} />
-    </div>
-  );
-}
-
-export function Arpeggiator(props) {
+export default function Arpeggiator(props) {
   const parameters_1 = useSelector((state) => selectById(state, props.id1));
   const parameters_2 = useSelector((state) => selectById(state, props.id2));
   const dispatch = useDispatch();
   return (
-    <Card className={props.className} header='Arpeggiator'>
-      <div className='flex flex-row'>
-        <section className='flex flex-col justify-around w-2/5'>
-          <div className='flex flex-row items-center justify-between'>
+    <Card className={props.className} header="Arpeggiator">
+      <div className="flex flex-row">
+        <section className="flex flex-col justify-around w-2/5">
+          <div className="flex flex-row items-center justify-between">
             <h3>Type</h3>
             <Select
-              className='select w-1/2'
+              className="select w-1/2"
               value={parameters_1.type}
               list={[
                 { value: 'Up' },
@@ -47,10 +36,10 @@ export function Arpeggiator(props) {
               }
             />
           </div>
-          <div className='flex flex-row items-center justify-between'>
+          <div className="flex flex-row items-center justify-between">
             <h3>Range</h3>
             <Select
-              className='select w-1/2'
+              className="select w-1/2"
               labelFunction={(v) => `${v.value} Oct`}
               value={parameters_1.range}
               list={[{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }]}
@@ -64,10 +53,10 @@ export function Arpeggiator(props) {
               }
             />
           </div>
-          <div className='flex flex-row items-center justify-between'>
+          <div className="flex flex-row items-center justify-between">
             <h3>Resolution</h3>
             <Select
-              className='select w-1/2'
+              className="select w-1/2"
               value={parameters_1.resolution}
               list={[
                 { value: '1/24' },
@@ -88,9 +77,9 @@ export function Arpeggiator(props) {
             />
           </div>
         </section>
-        <section className=' -mt-4 flex flex-col justify-around w-1/5'>
-          <div className='flex flex-col'>
-            <div className='flex flex-col items-center'>
+        <section className=" -mt-4 flex flex-col justify-around w-1/5">
+          <div className="flex flex-col">
+            <div className="flex flex-col items-center">
               <h3>Tempo</h3>
               <Knob
                 max={280}
@@ -106,7 +95,7 @@ export function Arpeggiator(props) {
                 }
               />
             </div>
-            <div className='flex flex-col items-center'>
+            <div className="flex flex-col items-center">
               <h3>Gate</h3>
               <Knob
                 max={100}
@@ -121,7 +110,7 @@ export function Arpeggiator(props) {
                 }
               />
             </div>
-            <div className='flex flex-col items-center'>
+            <div className="flex flex-col items-center">
               <h3>Swing</h3>
               <Knob
                 dual={true}
@@ -139,11 +128,11 @@ export function Arpeggiator(props) {
             </div>
           </div>
         </section>
-        <section className='flex flex-col space-y-4 w-2/5'>
-          <div className='flex flex-row items-center justify-between'>
+        <section className="flex flex-col space-y-4 w-2/5">
+          <div className="flex flex-row items-center justify-between">
             <h3>Target</h3>
             <Select
-              className='select w-1/2'
+              className="select w-1/2"
               value={parameters_2.target}
               list={[
                 { value: 'Both' },
@@ -160,10 +149,10 @@ export function Arpeggiator(props) {
               }
             />
           </div>
-          <div className='flex flex-row items-center justify-between'>
+          <div className="flex flex-row items-center justify-between">
             <h3>Last Step</h3>
             <Select
-              className='select w-1/2'
+              className="select w-1/2"
               labelFunction={(v) => `Step ${v.value}`}
               value={parameters_2.lastStep}
               list={[
@@ -186,8 +175,8 @@ export function Arpeggiator(props) {
               }
             />
           </div>
-          <div className='flex flex-row justify-around'>
-            <div className='flex flex-col items-center w-1/2'>
+          <div className="flex flex-row justify-around">
+            <div className="flex flex-col items-center w-1/2">
               <h3>Key Sync</h3>
               <Checkbox
                 parameter={parameters_2.keySync}
@@ -201,7 +190,7 @@ export function Arpeggiator(props) {
                 }
               />
             </div>
-            <div className='flex flex-col items-center w-1/2'>
+            <div className="flex flex-col items-center w-1/2">
               <h3>Latch</h3>
               <Checkbox
                 parameter={parameters_2.latch}

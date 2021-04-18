@@ -41,14 +41,14 @@ export default function Menu() {
   }, [state.patch.mode, dispatch]);
 
   return (
-    <div className='col-span-1 flex flex-col justify-around border-solid border-r border-gray-300 bg-white px-4'>
-      <div className='menu-patch-container'>
-        <div className='patch-name'>
+    <div className="col-span-1 flex flex-col justify-around border-solid border-r border-gray-300 bg-white px-4">
+      <div className="menu-patch-container">
+        <div className="patch-name">
           <input
-            className='block w-full rounded-md rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
-            placeholder='Patch Name'
-            type='text'
-            maxLength='12'
+            className="block w-full rounded-md rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder="Patch Name"
+            type="text"
+            maxLength="12"
             value={state.patch.name}
             onChange={(e) => {
               dispatch(
@@ -60,41 +60,44 @@ export default function Menu() {
             }}
           />
         </div>
-        <div className='my-3 flex flex-col items-center space-y-2'>
+        <div className="my-3 flex flex-col items-center space-y-2">
           <button
-            className='btn'
+            className="btn"
             onClick={() => {
               dispatch(parameterRefreshAll());
-            }}>
+            }}
+          >
             New Patch
           </button>
           <button
-            className='btn'
+            className="btn"
             onClick={() => {
               fileRef.current.click();
-            }}>
+            }}
+          >
             Load Patch
           </button>
           <button
-            className='btn'
+            className="btn"
             onClick={() => {
-              return_file_from_store(state);
-            }}>
+              console.log(return_file_from_store(state));
+            }}
+          >
             Save Patch
           </button>
           <input
-            className='hidden'
-            type='file'
-            accept='.syx'
+            className="hidden"
+            type="file"
+            accept=".syx"
             ref={fileRef}
             onChange={(e) => {
               loadFile(e.target.files[0]);
             }}
           />
         </div>
-        <div className='patch-settings'>
+        <div className="patch-settings">
           <Select
-            className='w-full select'
+            className="w-full select"
             value={state.patch.mode}
             list={[
               { value: 'Single' },
@@ -112,13 +115,14 @@ export default function Menu() {
           />
         </div>
       </div>
-      <div className='my-1 flex flex-col items-center space-y-2'>
+      <div className="my-1 flex flex-col items-center space-y-2">
         <button
           disabled={state.patch.mode === 'Vocoder'}
           className={activeTab === 'Timbre1' ? `btn btn-active` : `btn`}
           onClick={() => {
             dispatch(parameterUpdateTab('Timbre1'));
-          }}>
+          }}
+        >
           Timbre 1
         </button>
         <button
@@ -126,7 +130,8 @@ export default function Menu() {
           className={activeTab === 'Timbre2' ? `btn btn-active` : `btn`}
           onClick={() => {
             dispatch(parameterUpdateTab('Timbre2'));
-          }}>
+          }}
+        >
           Timbre 2
         </button>
         <button
@@ -134,19 +139,21 @@ export default function Menu() {
           className={activeTab === 'Vocoder' ? `btn btn-active` : `btn`}
           onClick={() => {
             dispatch(parameterUpdateTab('Vocoder'));
-          }}>
+          }}
+        >
           Vocoder
         </button>
         <button
           className={activeTab === 'Effects' ? `btn btn-active` : `btn`}
           onClick={() => {
             dispatch(parameterUpdateTab('Effects'));
-          }}>
+          }}
+        >
           Arp/FX
         </button>
       </div>
-      <div className='w-full text-center text-xl font-semibold'>
-        <span className='text-3xl pb-6'>Alapatch</span> <br /> A microKORG Patch
+      <div className="w-full text-center text-xl font-semibold">
+        <span className="text-3xl pb-6">Alapatch</span> <br /> A microKORG Patch
         Editor
       </div>
     </div>

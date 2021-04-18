@@ -9,11 +9,11 @@ export default function VCO(props) {
   const dispatch = useDispatch();
 
   return (
-    <Card className='col-span-2' header={props.name}>
-      <div className='-mt-2 flex items-center justify-between'>
-        <h3 className='text-lg font-semibold text-gray-900'>Waveform</h3>
+    <Card className="col-span-2" header={props.name}>
+      <div className="-mt-2 flex items-center justify-between">
+        <h3 className="text-lg font-semibold text-gray-900">Waveform</h3>
         <Select
-          className='select w-4/6'
+          className="select w-4/6"
           value={parameters.waveform}
           list={props.waveforms}
           onChange={(value) =>
@@ -26,10 +26,10 @@ export default function VCO(props) {
           }
         />
       </div>
-      <div className='-mt-4 flex items-center justify-between'>
-        <h3 className='text-lg font-semibold text-gray-900'>{`${props.dwgsOrModTypeName}`}</h3>
+      <div className="-mt-4 flex items-center justify-between">
+        <h3 className="text-lg font-semibold text-gray-900">{`${props.dwgsOrModTypeName}`}</h3>
         <Select
-          className='select w-4/6'
+          className="select w-4/6"
           value={parameters.dwgsOrModType}
           list={props.dwgsOrModType}
           onChange={(value) =>
@@ -42,9 +42,9 @@ export default function VCO(props) {
           }
         />
       </div>
-      <div className='mb-2 flex flex-row'>
-        <div className='flex flex-col items-center w-1/2'>
-          <h3 className='text-lg font-semibold text-gray-900'>Waveform Mod</h3>
+      <div className="mb-2 flex flex-row">
+        <div className="flex flex-col items-center w-1/2">
+          <h3 className="text-lg font-semibold text-gray-900">Waveform Mod</h3>
           <Knob
             maxValue={127}
             value={parameters.waveMod}
@@ -58,8 +58,8 @@ export default function VCO(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center w-1/2'>
-          <h3 className='text-lg font-semibold text-gray-900'>LFO Mod</h3>
+        <div className="flex flex-col items-center w-1/2">
+          <h3 className="text-lg font-semibold text-gray-900">LFO Mod</h3>
           <Knob
             maxValue={127}
             value={parameters.lfoMod}
@@ -84,9 +84,9 @@ export const AudioIn = (props) => {
 
   return (
     <Card className={props.className} header={props.name}>
-      <div className='-mt-3 flex flex-col items-stretch space-y-4'>
-        <div className='flex flex-row'>
-          <div className='flex flex-col items-center w-1/2'>
+      <div className="-mt-3 flex flex-col items-stretch space-y-4">
+        <div className="flex flex-row">
+          <div className="flex flex-col items-center w-1/2">
             <h3>Gate Sense</h3>
             <Knob
               max={127}
@@ -101,7 +101,7 @@ export const AudioIn = (props) => {
               }
             />
           </div>
-          <div className='flex flex-col items-center w-1/2'>
+          <div className="flex flex-col items-center w-1/2">
             <h3>Threshold</h3>
             <Knob
               max={127}
@@ -117,8 +117,8 @@ export const AudioIn = (props) => {
             />
           </div>
         </div>
-        <div className='flex flex-row'>
-          <div className='flex flex-col items-center w-1/2'>
+        <div className="flex flex-row">
+          <div className="flex flex-col items-center w-1/2">
             <h3>HPF Level</h3>
             <Knob
               max={127}
@@ -133,10 +133,10 @@ export const AudioIn = (props) => {
               }
             />
           </div>
-          <div className='flex flex-col items-center w-1/2'>
+          <div className="flex flex-col items-center w-1/2">
             <h3>HPF Gate</h3>
             <Checkbox
-              className='checkbox'
+              className="checkbox"
               value={parameters.hpfGate}
               onChange={(value) =>
                 dispatch(
