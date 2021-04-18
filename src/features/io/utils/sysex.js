@@ -75,10 +75,10 @@ export function sysex_encode(data) {
 
 export function sysex_write_header(data, channel) {
   const ch = 0x30 + channel;
-  return new Uint8Array(5 + SYSEX_LENGTH + 1)
-    .set([0xf0, 0x42, ch, 0x58, 0x40], 0)
-    .set(data, 5)
-    .set(0xf7, -1);
+  const array = new Uint8Array(5 + SYSEX_LENGTH + 1);
+  array.set([0xf0, 0x42, ch, 0x58, 0x40], 0);
+  array.set([...data, 0xf7], 5);
+  return array;
 }
 
 export function sysex_decode(syx) {

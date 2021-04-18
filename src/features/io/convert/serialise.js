@@ -1,17 +1,17 @@
 import { fromBitArray, buildByte } from '../utils/functions';
 
 export default function serialise(patch) {
-  const data = new Array.from(serialise_patch(patch[0]));
+  const data = Array.from(serialise_patch(patch[0]));
   switch (patch[0].voice_mode) {
     default:
     case 'Single':
-      data.append(serialise_timbre(1, patch[1]));
+      data.concat(serialise_timbre(1, patch[1]));
       break;
     case 'Multiple':
-      data.append(serialise_timbre(1, patch[1]), serialise_timbre(2, patch[2]));
+      data.concat(serialise_timbre(1, patch[1]), serialise_timbre(2, patch[2]));
       break;
     case 'Vocoder':
-      data.append(serialise_vocoder(patch[1]));
+      data.concat(serialise_vocoder(patch[1]));
       break;
   }
   return data;
@@ -155,7 +155,7 @@ function serialise_timbre(num, timbre) {
     ),
     timbre[`t${num}_patch_4_intensity`],
   ];
-  array.append(Array(55).fill(0));
+  array.concat(Array(55).fill(0));
   return array;
 }
 
@@ -242,6 +242,6 @@ function serialise_vocoder(vocoder) {
     vocoder.v_pan_7,
     vocoder.v_pan_8,
   ];
-  array.append(Array(174).fill(0));
+  array.concat(Array(174).fill(0));
   return array;
 }
