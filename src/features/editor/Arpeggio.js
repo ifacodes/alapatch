@@ -77,7 +77,7 @@ export default function Arpeggiator(props) {
             />
           </div>
         </section>
-        <section className=" -mt-4 flex flex-col justify-around w-1/5">
+        <section className="mb-2 flex flex-col justify-around w-1/5">
           <div className="flex flex-col">
             <div className="flex flex-col items-center">
               <h3>Tempo</h3>
@@ -175,7 +175,7 @@ export default function Arpeggiator(props) {
               }
             />
           </div>
-          <div className="flex flex-row justify-around">
+          <div className="pt-2 flex flex-row justify-around">
             <div className="flex flex-col items-center w-1/2">
               <h3>Key Sync</h3>
               <Checkbox

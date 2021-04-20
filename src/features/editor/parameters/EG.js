@@ -11,8 +11,8 @@ export default function EG(props) {
 
   return (
     <Card className={props.className} header={props.name}>
-      <div className='flex flex-row justify-evenly'>
-        <div className='flex flex-col items-center'>
+      <div className="flex flex-row justify-evenly">
+        <div className="flex flex-col items-center">
           <h3>Attack</h3>
           <Knob
             value={parameters_eg_1.attack}
@@ -27,7 +27,7 @@ export default function EG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Decay</h3>
           <Knob
             value={parameters_eg_1.decay}
@@ -42,7 +42,7 @@ export default function EG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Sustain</h3>
           <Knob
             value={parameters_eg_1.sustain}
@@ -57,7 +57,7 @@ export default function EG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Release</h3>
           <Knob
             value={parameters_eg_1.release}
@@ -72,10 +72,10 @@ export default function EG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>EG 1 Reset</h3>
           <Checkbox
-            className='rounded-md border-2 text-blue-500 mt-2 w-6 h-6'
+            className="rounded-md border-2 text-blue-500 mt-2 w-6 h-6"
             value={parameters_eg_1.egReset}
             onChange={(value) =>
               dispatch(
@@ -88,8 +88,8 @@ export default function EG(props) {
           />
         </div>
       </div>
-      <div className='flex flex-row justify-evenly'>
-        <div className='flex flex-col items-center'>
+      <div className="flex flex-row justify-evenly">
+        <div className="flex flex-col items-center">
           <h3>Attack</h3>
           <Knob
             value={parameters_eg_2.attack}
@@ -104,7 +104,7 @@ export default function EG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Decay</h3>
           <Knob
             value={parameters_eg_2.decay}
@@ -119,7 +119,7 @@ export default function EG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Sustain</h3>
           <Knob
             value={parameters_eg_2.sustain}
@@ -134,7 +134,7 @@ export default function EG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Release</h3>
           <Knob
             value={parameters_eg_2.release}
@@ -149,10 +149,10 @@ export default function EG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>EG 2 Reset</h3>
           <Checkbox
-            className='rounded-md border-2 text-blue-500 mt-2 w-6 h-6'
+            className="rounded-md border-2 text-blue-500 mt-2 w-6 h-6"
             value={parameters_eg_2.egReset}
             onChange={(value) =>
               dispatch(
@@ -175,8 +175,8 @@ export function VocoderEG(props) {
 
   return (
     <Card className={props.className} header={props.name}>
-      <div className='-mt-1 flex flex-row justify-evenly'>
-        <div className='flex flex-col items-center'>
+      <div className="-mt-1 flex flex-row justify-evenly">
+        <div className="flex flex-col items-center">
           <h3>Attack</h3>
           <Knob
             value={parameters_eg_1.attack}
@@ -191,7 +191,7 @@ export function VocoderEG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Decay</h3>
           <Knob
             value={parameters_eg_1.decay}
@@ -206,7 +206,7 @@ export function VocoderEG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Sustain</h3>
           <Knob
             value={parameters_eg_1.sustain}
@@ -221,7 +221,7 @@ export function VocoderEG(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <h3>Release</h3>
           <Knob
             value={parameters_eg_1.release}
@@ -237,10 +237,10 @@ export function VocoderEG(props) {
           />
         </div>
       </div>
-      <div className='-mt-8 flex flex-col items-center'>
+      <div className="flex flex-col items-center">
         <h3>EG Reset</h3>
         <Checkbox
-          className='checkbox'
+          className="checkbox"
           value={parameters_eg_1.egReset}
           onChange={(value) =>
             dispatch(

@@ -14,10 +14,10 @@ import Pans from './parameters/Pans';
 export default function Vocoder(props) {
   const ids = useSelector((state) => selectById(state, props.id));
   return (
-    <div className='h-screen grid grid-cols-8 grid-rows-3 gap-4 p-6'>
+    <div className="flex flex-wrap justify-between py-6 px-4">
       <VCO
-        className='col-span-2'
-        name='VCO'
+        className="flex-grow w-80"
+        name="VCO"
         id={ids.vco}
         waveforms={[
           { value: 'Saw' },
@@ -29,7 +29,7 @@ export default function Vocoder(props) {
           { value: 'Noise' },
           { value: 'Audio In' },
         ]}
-        dwgsOrModTypeName='DWGS'
+        dwgsOrModTypeName="DWGS"
         dwgsOrModType={[
           { value: 'SynSine1' },
           { value: 'SynSine2' },
@@ -97,19 +97,17 @@ export default function Vocoder(props) {
           { value: 'Voice4' },
         ]}
       />
-      <AudioIn className='col-span-2' name='Audio In' id={ids.audioIn} />
-      <Mixer className='col-span-1' name='Mixer' id={ids.mixer} />
-      <Pitch className='col-span-3' name='Pitch' id={ids.pitch} />
-      <div className='col-span-8 grid grid-cols-9 grid-rows-1 gap-4'>
-        <div />
-        <VocoderFilter name='Filter' id={ids.filter} />
-        <FCMod name='FC Mod' id={ids.fcMod} />
-        <VocoderAmp className='col-span-2' name='Amp' id={ids.amp} />
-        <VocoderEG className='col-span-3' name='EG' id1={ids.eg} />
-      </div>
+      <AudioIn className="flex-grow w-80" name="Audio In" id={ids.audioIn} />
+      <Mixer name="Mixer" id={ids.mixer} />
+      <Pitch className="flex-grow w-1/2 " name="Pitch" id={ids.pitch} />
+      <VocoderFilter name="Filter" id={ids.filter} />
+      <FCMod name="FC Mod" id={ids.fcMod} />
+      <VocoderAmp className="flex-grow w-80" name="Amp" id={ids.amp} />
+      <VocoderEG className="flex-grow w-80" name="EG" id1={ids.eg} />
+      <div style={{ flexBasis: '100%' }} />
       <LFO
-        className='col-span-2'
-        name='LFO 1'
+        className="flex-grow w-80"
+        name="LFO 1"
         id={ids.lfo1}
         waveforms={[
           { value: 'Saw' },
@@ -119,8 +117,8 @@ export default function Vocoder(props) {
         ]}
       />
       <LFO
-        className='col-span-2'
-        name='LFO 2'
+        className="flex-grow w-80"
+        name="LFO 2"
         id={ids.lfo2}
         waveforms={[
           { value: 'Saw' },
@@ -129,8 +127,9 @@ export default function Vocoder(props) {
           { value: 'Sample & Hold' },
         ]}
       />
-      <Levels className='col-span-2' name='Levels' id={ids.levels} />
-      <Pans className='col-span-2' name='Pans' id={ids.pans} />
+      <div style={{ flexBasis: '100%' }} />
+      <Levels className="flex-grow w-96" name="Levels" id={ids.levels} />
+      <Pans className="flex-grow w-96" name="Pans" id={ids.pans} />
     </div>
   );
 }

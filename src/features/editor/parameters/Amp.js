@@ -117,7 +117,7 @@ export const VocoderAmp = (props) => {
           />
         </div>
       </div>
-      <div className="flex flex-row">
+      <div className="my-3 flex flex-row">
         <div className="flex flex-col items-center w-1/2">
           <h3>Keyboard Track</h3>
           <Knob
