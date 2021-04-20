@@ -10,10 +10,10 @@ export default function LFO(props) {
 
   return (
     <Card className={props.className} header={props.name}>
-      <div className='flex items-center justify-between'>
+      <div className="flex items-center justify-between">
         <h3>LFO Waveform</h3>
         <Select
-          className='select w-3/5'
+          className="select w-3/5"
           value={parameters.waveform}
           list={props.waveforms}
           onChange={(value) =>
@@ -26,10 +26,10 @@ export default function LFO(props) {
           }
         />
       </div>
-      <div className='flex items-center justify-between'>
+      <div className="mt-2 flex items-center justify-between">
         <h3>Key Sync</h3>
         <Select
-          className='select w-3/5'
+          className="select w-3/5"
           value={parameters.keySync}
           list={[{ value: 'Off' }, { value: 'Timbre' }, { value: 'Voice' }]}
           onChange={(value) =>
@@ -42,10 +42,10 @@ export default function LFO(props) {
           }
         />
       </div>
-      <div className='flex flex-row mb-4'>
-        <div className='flex flex-col w-1/2'>
-          <h3 className='self-center'>Tempo Sync</h3>
-          <div className='flex flex-row items-center justify-evenly'>
+      <div className="mt-2 flex flex-row mb-4">
+        <div className="flex flex-col w-1/2">
+          <h3 className="self-center">Tempo Sync</h3>
+          <div className="flex flex-row items-center justify-evenly">
             <Checkbox
               value={parameters.tempoSync}
               onChange={(value) =>
@@ -58,7 +58,7 @@ export default function LFO(props) {
               }
             />
             <Select
-              className='select mt-2 w-2/3'
+              className="select mt-2 w-2/3"
               value={parameters.syncNote}
               list={[
                 { value: '1/1' },
@@ -88,7 +88,7 @@ export default function LFO(props) {
             />
           </div>
         </div>
-        <div className='flex flex-col items-center w-1/2 space-y-1'>
+        <div className="flex flex-col items-center w-1/2 space-y-2">
           <h3>Frequency</h3>
           <Knob
             value={parameters.frequency}

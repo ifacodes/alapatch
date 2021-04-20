@@ -1,20 +1,24 @@
 import { fromBitArray, buildByte } from '../utils/functions';
 
 export default function serialise(patch) {
-  const data = Array.from(serialise_patch(patch[0]));
+  let data = serialise_patch(patch[0]);
   switch (patch[0].voice_mode) {
     default:
-    case 'Single':
-      data.concat(serialise_timbre(1, patch[1]));
+    case 0:
+      data = data.concat(serialise_timbre(1, patch[1]));
       break;
-    case 'Multiple':
-      data.concat(serialise_timbre(1, patch[1]), serialise_timbre(2, patch[2]));
+    case 2:
+      data = data.concat(
+        serialise_timbre(1, patch[1]),
+        serialise_timbre(2, patch[2])
+      );
       break;
-    case 'Vocoder':
-      data.concat(serialise_vocoder(patch[1]));
+    case 3:
+      data = data.concat(serialise_vocoder(patch[1]));
       break;
   }
   return data;
+  //console.log(data);
 }
 
 function serialise_patch(patch) {
@@ -72,7 +76,7 @@ function serialise_timbre(num, timbre) {
       { value: timbre[`t${num}_eg_2_reset`], start: 5 },
       { value: timbre[`t${num}_eg_1_reset`], start: 4 },
       { value: timbre[`t${num}_trigger_mode`], start: 3 },
-      { value: timbre[`t${num}_key_priority`], start: 0 }
+      { value: timbre[`t${num}_key_priority`], start: 1 }
     ),
     timbre[`t${num}_unison_detune`],
     timbre[`t${num}_tune`],
@@ -155,8 +159,7 @@ function serialise_timbre(num, timbre) {
     ),
     timbre[`t${num}_patch_4_intensity`],
   ];
-  array.concat(Array(55).fill(0));
-  return array;
+  return array.concat(Array(55).fill(0));
 }
 
 function serialise_vocoder(vocoder) {
@@ -242,6 +245,5 @@ function serialise_vocoder(vocoder) {
     vocoder.v_pan_7,
     vocoder.v_pan_8,
   ];
-  array.concat(Array(174).fill(0));
-  return array;
+  return array.concat(Array(174).fill(0));
 }

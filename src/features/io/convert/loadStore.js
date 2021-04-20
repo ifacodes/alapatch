@@ -10,7 +10,6 @@ export default function build_store(patch, timbre1, timbre2, vocoder) {
 }
 
 function prepare_patch(object) {
-  console.log(object.voice_mode);
   return {
     unusedPatch: {
       id: 'unusedPatch',

@@ -6,7 +6,7 @@ import { Select, Knob } from '../../utils/components';
 
 const Patch = (props) => {
   return (
-    <div className="-mt-3 w-1/4">
+    <div className="mb-2 w-1/4">
       <div className="flex flex-col items-center justify-between">
         <h3>Source</h3>
         <Select

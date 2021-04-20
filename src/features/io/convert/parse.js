@@ -67,7 +67,6 @@ function build_patch(patch) {
 }
 
 function build_timbre(num, timbre) {
-  console.log(timbre[0]);
   return {
     [`t${num}_midi_channel`]: timbre[0],
     [`t${num}_assign_mode`]: getBits(timbre[1], 6, 7),

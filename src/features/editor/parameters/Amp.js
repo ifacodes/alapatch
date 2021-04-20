@@ -10,8 +10,8 @@ export default function Amp(props) {
 
   return (
     <Card className={props.className} header={props.name}>
-      <div className='flex flex-row '>
-        <div className='flex flex-col items-center justify-evenly w-1/2'>
+      <div className="flex flex-row ">
+        <div className="flex flex-col items-center justify-evenly w-1/2">
           <h3>Amp Level</h3>
           <Knob
             value={parameters.ampLevel}
@@ -26,7 +26,7 @@ export default function Amp(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center justify-evenly w-1/2'>
+        <div className="flex flex-col items-center justify-evenly w-1/2">
           <h3>Pan Pot</h3>
           <Knob
             value={parameters.panpot}
@@ -43,8 +43,8 @@ export default function Amp(props) {
           />
         </div>
       </div>
-      <div className='flex flex-row'>
-        <div className='flex flex-col items-center justify-evenly w-1/2'>
+      <div className="flex flex-row">
+        <div className="flex flex-col items-center justify-evenly w-1/2">
           <h3>Keyboard Track</h3>
           <Knob
             value={parameters.ampTrack}
@@ -60,7 +60,7 @@ export default function Amp(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center justify-start w-1/2'>
+        <div className="flex flex-col items-center justify-start w-1/2">
           <h3>Distortion</h3>
           <Checkbox
             value={parameters.distortion}
@@ -85,8 +85,8 @@ export const VocoderAmp = (props) => {
 
   return (
     <Card className={props.className} header={props.name}>
-      <div className='flex flex-row'>
-        <div className='flex flex-col items-center w-1/2'>
+      <div className="flex flex-row">
+        <div className="flex flex-col items-center w-1/2">
           <h3>Amp Level</h3>
           <Knob
             value={parameters.ampLevel}
@@ -101,7 +101,7 @@ export const VocoderAmp = (props) => {
             }
           />
         </div>
-        <div className='flex flex-col items-center w-1/2'>
+        <div className="flex flex-col items-center w-1/2">
           <h3>Direct Level</h3>
           <Knob
             value={parameters.directLevel}
@@ -117,8 +117,8 @@ export const VocoderAmp = (props) => {
           />
         </div>
       </div>
-      <div className='flex flex-row'>
-        <div className='flex flex-col items-center w-1/2'>
+      <div className="flex flex-row">
+        <div className="flex flex-col items-center w-1/2">
           <h3>Keyboard Track</h3>
           <Knob
             value={parameters.ampTrack}
@@ -134,7 +134,7 @@ export const VocoderAmp = (props) => {
             }
           />
         </div>
-        <div className='flex flex-col items-center w-1/2'>
+        <div className="flex flex-col items-center w-1/2">
           <h3>Distortion</h3>
           <Checkbox
             value={parameters.distortion}

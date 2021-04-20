@@ -10,7 +10,7 @@ export default function Filter(props) {
 
   return (
     <Card className={props.className} header={props.name}>
-      <div className="-mt-2 flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <h3>Filter Type</h3>
         <Select
           className="select w-4/6"
@@ -31,7 +31,7 @@ export default function Filter(props) {
           }
         />
       </div>
-      <div className="-mt-3 flex flex-row justify-evenly">
+      <div className="my-2 flex flex-row justify-evenly">
         <div className="flex flex-col w-1/2">
           <div className="flex flex-col items-center">
             <h3 className="text-lg font-semibold text-gray-900">Cutoff</h3>

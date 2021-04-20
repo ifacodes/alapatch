@@ -9,10 +9,10 @@ export default function Mixer(props) {
   const dispatch = useDispatch();
 
   return (
-    <Card header={props.name}>
-      <div className='-mt-3'>
-        <div className='flex flex-col items-center'>
-          <h3 className='text-lg font-semibold'>Volume 1</h3>
+    <Card className={props.className} header={props.name}>
+      <div className="-mt-3">
+        <div className="flex flex-col items-center">
+          <h3 className="text-lg font-semibold">Volume 1</h3>
           <Knob
             max={127}
             value={parameters.vol1}
@@ -26,8 +26,8 @@ export default function Mixer(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
-          <h3 className='text-lg font-semibold'>Volume 2</h3>
+        <div className="flex flex-col items-center">
+          <h3 className="text-lg font-semibold">Volume 2</h3>
           <Knob
             max={127}
             value={parameters.vol2}
@@ -41,8 +41,8 @@ export default function Mixer(props) {
             }
           />
         </div>
-        <div className='flex flex-col items-center'>
-          <h3 className='text-lg font-semibold'>Volume 3</h3>
+        <div className="flex flex-col items-center">
+          <h3 className="text-lg font-semibold">Volume 3</h3>
           <Knob
             max={127}
             value={parameters.vol3}

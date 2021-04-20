@@ -13,10 +13,10 @@ import { selectById } from './timbreSlice.js';
 export default function Timbre(props) {
   const ids = useSelector((state) => selectById(state, props.id));
   return (
-    <div className='h-screen grid grid-cols-8 grid-rows-3 gap-4 p-6 pr-10'>
+    <div className="flex flex-wrap justify-between py-6 px-4">
       <VCO
-        className='col-span-2'
-        name='VCO 1'
+        name="VCO 1"
+        className="flex-grow w-80"
         id={ids.vco1}
         waveforms={[
           { value: 'Saw' },
@@ -28,7 +28,7 @@ export default function Timbre(props) {
           { value: 'Noise' },
           { value: 'Audio In' },
         ]}
-        dwgsOrModTypeName='DWGS'
+        dwgsOrModTypeName="DWGS"
         dwgsOrModType={[
           { value: 'SynSine1' },
           { value: 'SynSine2' },
@@ -97,15 +97,15 @@ export default function Timbre(props) {
         ]}
       />
       <VCO
-        className='col-span-2'
-        name='VCO 2'
+        name="VCO 2"
+        className="flex-grow w-80"
         id={ids.vco2}
         waveforms={[
           { value: 'Saw' },
           { value: 'Square' },
           { value: 'Triangle' },
         ]}
-        dwgsOrModTypeName='Mod Type'
+        dwgsOrModTypeName="Mod Type"
         dwgsOrModType={[
           { value: 'Off' },
           { value: 'Ring' },
@@ -113,23 +113,21 @@ export default function Timbre(props) {
           { value: 'Ring Sync' },
         ]}
       />
-      <Mixer className='col-span-1' name='Mixer' id={ids.mixer} />
-      <Pitch className='col-span-3' name='Pitch' id={ids.pitch} />
-      <div className='col-span-8 grid grid-cols-9 grid-rows-1 gap-4'>
-        <div />
-        <Amp className='col-span-2' name='Amp' id={ids.amp} />
-        <Filter className='col-span-2' name='Filter' id={ids.filter} />
-        <EG
-          className='col-span-3'
-          name='EG 1 / 2'
-          id1={ids.eg1}
-          id2={ids.eg2}
-        />
-        <div />
-      </div>
+      <Mixer name="Mixer" id={ids.mixer} />
+      <Pitch className="flex-grow w-3/6" name="Pitch" id={ids.pitch} />
+
+      <Amp className="flex-grow w-80" name="Amp" id={ids.amp} />
+      <Filter className="flex-grow w-96" name="Filter" id={ids.filter} />
+      <EG
+        className="flex-grow w-1/2"
+        name="EG 1 / 2"
+        id1={ids.eg1}
+        id2={ids.eg2}
+      />
+
       <LFO
-        className='col-span-2'
-        name='LFO 1'
+        className="flex-grow"
+        name="LFO 1"
         id={ids.lfo1}
         waveforms={[
           { value: 'Saw' },
@@ -139,8 +137,8 @@ export default function Timbre(props) {
         ]}
       />
       <LFO
-        className='col-span-2'
-        name='LFO 2'
+        className="flex-grow"
+        name="LFO 2"
         id={ids.lfo2}
         waveforms={[
           { value: 'Saw' },
@@ -149,7 +147,7 @@ export default function Timbre(props) {
           { value: 'Sample & Hold' },
         ]}
       />
-      <Patches className='col-span-4' name='Patches' id={ids.patches} />
+      <Patches className="flex-grow" name="Patches" id={ids.patches} />
     </div>
   );
 }

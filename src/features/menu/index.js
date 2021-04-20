@@ -15,7 +15,6 @@ export default function Menu() {
   const fileRef = useRef(null);
   const state = useSelector((state) => selectEntities(state));
   const activeTab = useSelector((state) => state.parameters.activeTab);
-  console.log(activeTab);
   const dispatch = useDispatch();
   const reader = new FileReader();
   const loadFile = (f) => {
@@ -41,7 +40,7 @@ export default function Menu() {
   }, [state.patch.mode, dispatch]);
 
   return (
-    <div className="col-span-1 flex flex-col justify-around border-solid border-r border-gray-300 bg-white px-4">
+    <div className="h-screen col-span-1 flex flex-col justify-around border-solid border-r border-gray-300 bg-white px-4">
       <div className="menu-patch-container">
         <div className="patch-name">
           <input
