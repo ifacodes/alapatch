@@ -9,6 +9,7 @@ import {
   selectEntities,
 } from '../editor/parameters/parameterSlice'; // probably temporarily here
 import { return_store_from_file, return_file_from_store } from '../io';
+import download from 'downloadjs';
 
 export default function Menu() {
   const [file, setFile] = useState(null);
@@ -79,7 +80,11 @@ export default function Menu() {
           <button
             className="btn"
             onClick={() => {
-              console.log(return_file_from_store(state));
+              download(
+                return_file_from_store(state),
+                'microKORG_patch.syx',
+                'application/octet-bianry'
+              );
             }}
           >
             Save Patch
