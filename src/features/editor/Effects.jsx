@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { ModFX, Delay, EQ } from './parameters/ModFX';
-import { selectById } from './timbreSlice.js';
+import { selectById } from './timbreSlice.jsx';
 import Arpeggiator from './Arpeggio';
 
 export default function Effects(props) {

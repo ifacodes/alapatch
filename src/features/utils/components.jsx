@@ -5,7 +5,7 @@ import { useMemo, useCallback, useEffect, useState } from 'react';
 const Select = (props) => {
   return (
     <select
-      className={props.className}
+      className={`${props.className || ''} text-xs py-0 px-1 h-6`}
       onChange={(e) => props.onChange(e.target.value)}
       value={props.value}>
       {props.list.map((element) => (

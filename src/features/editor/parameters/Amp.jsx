@@ -2,7 +2,7 @@ import React from 'react';
 import { Knob, Checkbox } from '../../utils/components';
 import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectById, parameterUpdated } from './parameterSlice.js';
+import { selectById, parameterUpdated } from './parameterSlice.jsx';
 
 export default function Amp(props) {
   const parameters = useSelector((state) => selectById(state, props.id));

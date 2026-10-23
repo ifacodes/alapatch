@@ -19,9 +19,9 @@ code {
 @tailwind utilities;
 
 @layer base {
-  h3 {
-    @apply pointer-events-none select-none text-lg font-semibold text-gray-900;
-  }
+h3 {
+  @apply pointer-events-none select-none text-xs font-medium leading-tight text-gray-900;
+}
 }
 
 @layer components {

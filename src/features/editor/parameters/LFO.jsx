@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectById, parameterUpdated } from './parameterSlice.js';
+import { selectById, parameterUpdated } from './parameterSlice.jsx';
 import Card from '../card';
 import { Select, Knob, Checkbox } from '../../utils/components';
 

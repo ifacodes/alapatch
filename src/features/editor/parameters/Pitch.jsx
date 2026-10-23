@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectById, parameterUpdated } from './parameterSlice.js';
+import { selectById, parameterUpdated } from './parameterSlice.jsx';
 import { Select, Knob } from '../../utils/components';
 
 export default function Pitch(props) {
@@ -12,7 +12,7 @@ export default function Pitch(props) {
     <Card className={props.className} header={props.name}>
       <div className="mt-2 flex flex-row">
         <div className="mx-4 flex items-center justify-between w-1/2">
-          <h3 className="text-lg font-semibold text-gray-900">Voice Assign</h3>
+          <h3>Voice Assign</h3>
           <Select
             className="select w-2/4"
             value={parameters.voiceAssign}
@@ -28,7 +28,7 @@ export default function Pitch(props) {
           />
         </div>
         <div className="mx-4 flex items-center justify-between w-1/2">
-          <h3 className="text-lg font-semibold text-gray-900">Trigger Mode</h3>
+          <h3>Trigger Mode</h3>
           <Select
             className="select w-2/4"
             value={parameters.triggerMode}
@@ -47,7 +47,7 @@ export default function Pitch(props) {
       <div className="mt-2 mb-4 flex flex-row">
         <section className="w-1/3">
           <div className="flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-900">Transpose</h3>
+            <h3>Transpose</h3>
             <Knob
               value={parameters.transpose}
               dual={true}
@@ -63,7 +63,7 @@ export default function Pitch(props) {
             />
           </div>
           <div className="flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-900">Tune</h3>
+            <h3>Tune</h3>
             <Knob
               value={parameters.tune}
               dual={true}
@@ -81,7 +81,7 @@ export default function Pitch(props) {
         </section>
         <section className="w-1/3">
           <div className="flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3>
               Unison Detune
             </h3>
             <Knob
@@ -98,7 +98,7 @@ export default function Pitch(props) {
             />
           </div>
           <div className="flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-900">Portamento</h3>
+            <h3>Portamento</h3>
             <Knob
               value={parameters.portamento}
               max={127}
@@ -115,7 +115,7 @@ export default function Pitch(props) {
         </section>
         <section className="w-1/3">
           <div className="flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-900">Bend Range</h3>
+            <h3>Bend Range</h3>
             <Knob
               value={parameters.bendRange}
               dual={true}
@@ -131,7 +131,7 @@ export default function Pitch(props) {
             />
           </div>
           <div className="flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3>
               Vibrato Intensity
             </h3>
             <Knob

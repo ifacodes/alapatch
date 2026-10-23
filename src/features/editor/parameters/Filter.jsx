@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../card';
 import { Select, Knob } from '../../utils/components';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectById, parameterUpdated } from './parameterSlice.js';
+import { selectById, parameterUpdated } from './parameterSlice.jsx';
 
 export default function Filter(props) {
   const parameters = useSelector((state) => selectById(state, props.id));
@@ -34,7 +34,7 @@ export default function Filter(props) {
       <div className="my-2 flex flex-row justify-evenly">
         <div className="flex flex-col w-1/2">
           <div className="flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-900">Cutoff</h3>
+            <h3>Cutoff</h3>
             <Knob
               value={parameters.cutoff}
               max={127}
@@ -49,7 +49,7 @@ export default function Filter(props) {
             />
           </div>
           <div className="pt-3 flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-900">Resonance</h3>
+            <h3>Resonance</h3>
             <Knob
               value={parameters.resonance}
               max={127}
@@ -67,7 +67,7 @@ export default function Filter(props) {
         <div className="px-4"></div>
         <div className="flex flex-col w-1/2">
           <div className="flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3>
               EG Intensity
             </h3>
             <Knob
@@ -85,7 +85,7 @@ export default function Filter(props) {
             />
           </div>
           <div className="pt-3 flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3>
               Keyboard Track
             </h3>
             <Knob

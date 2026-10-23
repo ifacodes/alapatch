@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectById, parameterUpdated } from './parameterSlice.js';
+import { selectById, parameterUpdated } from './parameterSlice.jsx';
 import { Knob, Select, Checkbox } from '../../utils/components';
 
 const ModFX = (props) => {

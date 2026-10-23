@@ -17,8 +17,14 @@ Alapatch currently only supports loading and saving patch files in the .SYSEX fo
 -   [x] style components (may restyle in later update)
 -   [ ] finish file loading and saving
 -   [ ] add testing cases
--   [ ] add sending live updates thru midi (eventually. aim for 2.0.0)
+-   [x] add sending live updates thru midi (eventually. aim for 2.0.0)
 
 # Link to the MicroKORG Midi Implementation
 
 http://i.korg.com/uploads/Support/MK1_633652915168960000.pdf
+
+Updated 9.08.2026 :
+ - to add sending and receiving MIDI features from the device
+ - to revamp slightly the interface
+ - upgrade react content with nodejs 22 version
+ - docker ready to use

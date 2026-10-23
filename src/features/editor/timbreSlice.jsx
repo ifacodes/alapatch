@@ -1,4 +1,6 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+// Étape 1 : Importer notre module d-envoi Web MIDI
+import { sendMicroKorgParam } from '../../utils/midiHelper';
 
 const timbreAdapter = createEntityAdapter({});
 
@@ -71,7 +73,24 @@ const timbreSlice = createSlice({
       state.currentTimbre = action.payload;
     },
     timbreAdded: timbreAdapter.addOne,
-    timbreUpdated: timbreAdapter.updateOne,
+    // Étape 2 : Réécrire l-action de mise à jour pour intercepter le mouvement du potentiomètre
+    timbreUpdated(state, action) {
+      // action.payload contient la modification sous la forme { id: "nom_du_paramètre", changes: { value: X } }
+      // ou { id: "nom_du_paramètre", changes: { ... } } selon les composants du projet
+      const parameterId = action.payload.id;
+      const changes = action.payload.changes;
+      
+      // Si la modification contient une valeur numérique, on la transmet au synthétiseur physique
+      if (changes && typeof changes.value !== 'undefined') {
+        sendMicroKorgParam(parameterId, changes.value);
+      } else if (changes && typeof changes.val !== 'undefined') {
+        // Double sécurité au cas où le développeur a nommé le champ 'val' au lieu de 'value'
+        sendMicroKorgParam(parameterId, changes.val);
+      }
+      
+      // On applique ensuite le comportement d-origine pour mettre à jour l-écran
+      timbreAdapter.updateOne(state, action);
+    },
   },
 });
 

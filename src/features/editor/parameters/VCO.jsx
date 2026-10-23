@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../card';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectById, parameterUpdated } from './parameterSlice.js';
+import { selectById, parameterUpdated } from './parameterSlice.jsx';
 import { Select, Knob, Checkbox } from '../../utils/components';
 
 export default function VCO(props) {
@@ -11,7 +11,7 @@ export default function VCO(props) {
   return (
     <Card className={props.className} header={props.name}>
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-gray-900">Waveform</h3>
+        <h3 className="text-xs font-medium text-gray-900">Waveform</h3>
         <Select
           className="select w-4/6"
           value={parameters.waveform}
@@ -27,7 +27,7 @@ export default function VCO(props) {
         />
       </div>
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-gray-900">{`${props.dwgsOrModTypeName}`}</h3>
+        <h3 className="text-xs font-medium text-gray-900">{`${props.dwgsOrModTypeName}`}</h3>
         <Select
           className="select w-4/6"
           value={parameters.dwgsOrModType}
@@ -42,9 +42,9 @@ export default function VCO(props) {
           }
         />
       </div>
-      <div className="my-2 flex flex-row">
+      <div className="my-0.5 flex flex-row">
         <div className="flex flex-col items-center w-1/2">
-          <h3 className="ml-1 text-lg font-semibold text-gray-900">
+          <h3 className="ml-1 text-xs font-medium text-gray-900">
             Waveform Mod
           </h3>
           <Knob
@@ -61,7 +61,7 @@ export default function VCO(props) {
           />
         </div>
         <div className="flex flex-col items-center w-1/2">
-          <h3 className="text-lg font-semibold text-gray-900">LFO Mod</h3>
+          <h3 className="text-xs font-medium text-gray-900">LFO Mod</h3>
           <Knob
             maxValue={127}
             value={parameters.lfoMod}
@@ -86,7 +86,7 @@ export const AudioIn = (props) => {
 
   return (
     <Card className={props.className} header={props.name}>
-      <div className="-mt-3 flex flex-col items-stretch space-y-4">
+      <div className="-mt-3 flex flex-col items-stretch space-y-1">
         <div className="flex flex-row">
           <div className="flex flex-col items-center w-1/2">
             <h3>Gate Sense</h3>

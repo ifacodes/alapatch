@@ -1,0 +1,52 @@
+name: Deploy to home
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: linux
+
+    steps:
+      - name: Install SSH client
+        shell: sh
+        run: |
+          apk add --no-cache openssh-client
+
+      - name: Deploy via SSH
+        shell: sh
+        run: |
+          echo "Démarrage du déploiement alapatch..."
+
+          ssh \
+            -o StrictHostKeyChecking=no \
+            -o BatchMode=yes \
+            -i /root/.ssh/id_gitea \
+            deployer@192.168.199.37 '
+              set -e
+
+              cd /opt/home/alapatch
+
+              echo "=> [1/4] Synchronisation Git"
+              git fetch origin
+              git reset --hard origin/main
+              git clean -fd
+
+              echo "=> [2/4] Build Docker"
+              docker build -t alapatch-app .
+
+              echo "=> [3/4] Arrêt ancien conteneur"
+              docker rm -f alapatch-app 2>/dev/null || true
+
+              echo "=> [4/4] Démarrage application"
+              docker run -d \
+                --restart unless-stopped \
+                -p 5001:4321 \
+                --name alapatch-app \
+                alapatch-app
+
+              echo "=> Déploiement terminé"
+            '
